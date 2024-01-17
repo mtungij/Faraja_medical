@@ -11,7 +11,7 @@ class Setting extends BaseController
     public function index()
     {
         $setting =model(SettingModel::class);
-         $settings=$setting->findAll();
+         $settings=$setting->find('7');
 
          return view("setting/general",["settings"=>$settings]);
     }
@@ -39,12 +39,18 @@ class Setting extends BaseController
      
     //    dd($validatedData);
 
-       model(SettingModel::class)->save([ ...$validatedData]);
+     $id=$this->request->getPost('id');
+    $setting=$this->validator->getvalidated();
+   model(SettingModel::class)->update($id,$setting);
+
+
+
 
        
-       return redirect()->back()->with('successcreate','Order added successfully');
+       return redirect()->back()->with('success',' successfully settings Updated');
     }
 
+    
 }
 
 
