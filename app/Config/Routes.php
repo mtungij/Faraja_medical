@@ -7,3 +7,4 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('General_setting','Setting::index');
+$routes->post('create_setting','Setting::create');

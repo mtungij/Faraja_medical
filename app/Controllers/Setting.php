@@ -15,4 +15,37 @@ class Setting extends BaseController
 
          return view("setting/general",["settings"=>$settings]);
     }
+
+    public function create()
+    {
+        
+       if(! $this->validate([
+        'center_name' => 'required',
+        'address'=> 'required',
+        'phone'=> 'required',
+        'location'=>'required',
+        'email'=> 'required',
+        // 'logo'=>'required',
+        
+       ])){
+           return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+       }
+
+       $validatedData = $this->validator->getValidated();
+
+    //    dd($validatedData);
+
+      
+     
+    //    dd($validatedData);
+
+       model(SettingModel::class)->save([ ...$validatedData]);
+
+       
+       return redirect()->back()->with('successcreate','Order added successfully');
+    }
+
 }
+
+
+
