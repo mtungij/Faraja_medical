@@ -106,32 +106,32 @@
             <ul id="dropdown-pages" class="hidden py-2 space-y-2">
               <li>
                 <a
-                  href="payment_method"
+                  href="/payment_method"
                   
-                  class="flex items-center <?= url_is('/') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  class="flex items-center <?= url_is('payment_method') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Payment Method</a
                 >
               </li>
               <li>
                 <a
-                  href="tests_settings"
-                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  href="/tests_settings"
+                  class="flex items-center <?= url_is('tests_settings') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Laboratory Tests</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
-                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  href="<?= site_url("services")?>"
+                  class="flex items-center <?= url_is('services') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Services</a
                 >
               </li>
               <li>
-                <a
+                <!-- <a
                   href="#"
                   class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Register Surgical Price</a
-                >
+                > -->
               </li>
             </ul>
           </li>
@@ -175,25 +175,25 @@
             <ul id="dropdown-sales" class="hidden py-2 space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="<?= site_url("user/create") ?>"
                   class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Register Staff</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  href="<?php echo base_url("staffs") ?>"
                   class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >All Staff</a
                 >
               </li>
-              <li>
+              <!-- <li>
                 <a
                   href="#"
                   class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Invoice</a
                 >
-              </li>
+              </li> -->
             </ul>
           </li>
           <li>
@@ -263,7 +263,7 @@
             <ul id="dropdown-authentication" class="hidden py-2 space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="<?= site_url("patient") ?>"
                   class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Add Patient</a
                 >
@@ -277,14 +277,14 @@
               </li>
               <li>
                 <a
-                  href="#"
+                  href="profile"
                   class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Patient Profile</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  href="all_patients"
                   class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >All Patients</a
                 >

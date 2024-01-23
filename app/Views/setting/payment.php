@@ -17,7 +17,7 @@
                 
         <div class="w-full">        
                     <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-            <select id="countries" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-sky-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-sky-400">
+            <select id="countries" data-te-select-init data-te-select-filter="true" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-sky-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-sky-400">
                     <option selected>Choose a Method</option>
                     <option value="M-PES">M-PESA</option>
                     <option value="LIPA-MPESA">LIPA-MPESA</option>
@@ -44,7 +44,7 @@
 <div>
 <div class="relative overflow-x-auto">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <thead class="text-xs  uppercase bg-sky-500 dark:bg-gray-700 text-white">
             <tr>
                 <th scope="col" class="px-6 py-3">
                    S/No
@@ -85,6 +85,8 @@
         </tbody>
     </table>
 </div>
+
+
 
 <?= $this->endSection() ;?>
 

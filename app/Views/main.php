@@ -11,28 +11,31 @@ $setting = model(SettingModel::class)->find(7);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" >
-    <link href="./css/styles.css" rel="stylesheet">
+    <link href="<?php echo base_url('css/styles.css') ?>" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="<?php echo base_url('js/jquery.js')?>"></script>
+
+    <script>
+      console.log(document.getElementById('departmentunique'))
+    </script>
+</head>
+<body>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
         body {
             font-family: 'Inter', sans-serif !important;
+            
         }
+
     </style>
     <title><?= $setting->center_name ;?> </title>
 </head>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#jquery-datatable-example-no-configuration').DataTable();
-    });
-</script>
+
 <body>
     
-
     
-    
-    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+    <div class="antialiased bg-white dark:bg-gray-900">
      
      <?= $this->include('partials/navbar') ;?>
 
@@ -75,10 +78,27 @@ $setting = model(SettingModel::class)->find(7);
        
     </main>
   </div>
- 
-  <script src="js/flowbite.js"></script>
+  <script src="<?php echo base_url('js/flowbite.js') ?>"></script>
+  <script src="<?php echo base_url('js/tw-elements.umd.min.js') ?>"></script>
+  <script src="<?php echo base_url('js/quill.js') ?>"></script>
+
+  <script type="module">
+    import { Select, initTE } from "tw-elements";
+initTE({ Select });
+  </script>
+
+<script>
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+</script>
   </body>
+
 </html>
+
+
+
+
 
 
 

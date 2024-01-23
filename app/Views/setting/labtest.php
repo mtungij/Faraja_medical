@@ -2,9 +2,6 @@
 
 <?= $this->section('content') ;?>
 
-<?= $this->extend('main') ;?>
-
-<?= $this->section('content') ;?>
 
 <section class="bg-gray-50 w-full dark:bg-gray-900 py-5 sm:py-5">
   <div class=" w-full">
@@ -170,14 +167,6 @@
       </div>
   </div>
 </section>
-
-
-<?= $this->endSection() ;?>
-
-<!-- Modal toggle -->
-
-
-
 
 
 <?= $this->endSection() ;?>
