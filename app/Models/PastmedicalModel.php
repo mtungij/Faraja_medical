@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ComplainModel extends Model
+class PastmedicalModel extends Model
 {
-    protected $table            = 'main_complaints';
+    protected $table            = 'past_medicals';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
@@ -39,16 +39,4 @@ class ComplainModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-
-    public function getComplains()
-
-    {
-        $quiery =$this->db->table('main_complaints')
-        ->join('users','main_complaints.id = users.id','left')
-        ->join('patients','main_complaints.id = patients.id','left')->get();
-
-        $result =$quiery->getResult();
-        
-    }
 }

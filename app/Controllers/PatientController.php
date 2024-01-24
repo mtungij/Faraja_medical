@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ComplainModel;
+use App\Models\LabtestModel;
 use App\Models\PatientModel;
 use App\Models\VitalModel;
 use App\Models\UserModel;
@@ -113,17 +115,22 @@ if ($search == '') {
     public function profile($id)
 
     {
-      
-         $service=model(ServiceModel::class);
+       $complains =model(ComplainModel::class);
+       $complain=$complains-> getComplains();
+        $service=model(ServiceModel::class);
+        $tests=model(LabtestModel::class);
         $vital=model(VitalModel::class);
         $vitals =$vital->where('patient_id',$id)->orderBy('created_at','desc')->paginate(10);
         $service=$service->findAll();
-
-        // dd($service);
+        $test=$tests->findAll();
+       
+        
+        dd($complain);
+       
 
         $patient = model(PatientModel::class)->find($id);
 
-        return view('patient/profile', ['patient'=> $patient,'vitals'=>$vitals,'service'=> $service]);
+        return view('patient/profile', ['patient'=> $patient,'vitals'=>$vitals,'service'=> $service ,'test'=> $test ]);
     }
 
     public function pro()

@@ -3,24 +3,22 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ExaminationModel;
 use App\Models\PatientModel;
-use App\Models\ComplainModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class ComplainController extends BaseController
+class ExaminationController extends BaseController
 {
     public function index($id)
     {
-       
         $patient = model(PatientModel::class)->find( $id );
-
-      
-        return view("patient/complain", ["patient"=> $patient]);
+        return view("patient/examination", ["patient"=> $patient ]);
     }
 
     public function store()
     {
 
+         
         if( !$this->validate([
             'desc' => 'required',
             'patient_id' => 'required',
@@ -41,10 +39,14 @@ class ComplainController extends BaseController
     
     
     
-     model(ComplainModel::class)->insert($validatedData );
+     model(ExaminationModel::class)->insert($validatedData );
     
 
        return redirect()->to("nextpage/".$validatedData["patient_id"])->with("good","data saved successfully");
         
+
+
+
+
     }
 }

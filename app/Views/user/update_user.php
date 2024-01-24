@@ -28,6 +28,7 @@
                   <label for="order_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Position</label>
                   <select id="countries"   name="department" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-sky-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-sky-400" value="<?= old('department') ?>" required>
                     <option <?=  $user->department == "doctor" ? "selected" : "" ?> value="doctor">Doctor</option>
+                    <option <?=  $user->department == "admin" ? "selected" : "" ?> value="admin">Admin</option>
                     <option <?= $user->department == "receptionist" ? "selected" : "" ?> value="receptionist">receptionist</option>
                     <option <?= $user->department == "lab" ? "selected" : ""?> value="lab">Lab</option>
                     <option <?= $user->department == "pharmacist" ? "selected" : ""?> value="pharmacist">Pharmacist</option>

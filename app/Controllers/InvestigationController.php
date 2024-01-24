@@ -3,24 +3,18 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\TransferModel;
+use App\Models\InvestigationModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class TransferController extends BaseController
+class InvestigationController extends BaseController
 {
-    public function transfer()
+    public function store()
     {
-       
-        
-        
-        
 
-        if( ! $this->validate([
-            'from' => 'required',
-            'to' => 'required',
-            'patient_id'=> 'required'
-        
-    
+        if( !$this->validate([
+            'category_id' => 'required',
+            'patient_id'=> 'required',
+            'user_id'=> 'required',
         ])){
                        
             return redirect()->back()->withInput()->with('erros','please fill all field');     
@@ -35,9 +29,12 @@ class TransferController extends BaseController
     
     
     
-     model(TransferModel::class)->insert($validatedData );
+     model(InvestigationModel::class)->insert($validatedData );
     
        
-       return redirect()->back()->with('good','Patient Transfered successfully');
+       return redirect()->back()->with('success','data added successfully');
+        
+
+
     }
 }

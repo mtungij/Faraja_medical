@@ -74,4 +74,13 @@ $routes->get('hpi/(:segment)','HistoryController::index/$1');
 $routes->post('store_history','HistoryController::store');
 $routes->get('review/(:segment)','ReviewController::index/$1');
 $routes->post('storeReview','ReviewController::store');
+$routes->get('past-medical/(:segment)','PastmedicalController::index/$1');
+$routes->post('store','PastmedicalController::store');
+$routes->get('family/(:segment)','FamilyhistorylController::index/$1');
+$routes->post('family-store','FamilyhistorylController::store');
+$routes->get('examination/(:segment)','ExaminationController::index/$1');
+$routes->post('examination-store','ExaminationController::store');
+$routes->get('diagnosis/(:segment)','DiagnosisController::index/$1');
+$routes->post('store_diagnosis','DiagnosisController::store');
+$routes->post('invest','InvestigationController::store');
 

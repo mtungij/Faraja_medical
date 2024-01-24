@@ -3,22 +3,19 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DiagnosisModel;
 use App\Models\PatientModel;
-use App\Models\ComplainModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class ComplainController extends BaseController
+class DiagnosisController extends BaseController
 {
     public function index($id)
     {
-       
         $patient = model(PatientModel::class)->find( $id );
-
-      
-        return view("patient/complain", ["patient"=> $patient]);
+        return view("patient/diagnosis", ["patient"=> $patient ]);
     }
 
-    public function store()
+    public function store ()
     {
 
         if( !$this->validate([
@@ -41,10 +38,15 @@ class ComplainController extends BaseController
     
     
     
-     model(ComplainModel::class)->insert($validatedData );
+     model(DiagnosisModel::class)->insert($validatedData );
     
 
        return redirect()->to("nextpage/".$validatedData["patient_id"])->with("good","data saved successfully");
         
+
+
+
+
+
     }
 }

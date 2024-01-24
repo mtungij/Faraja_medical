@@ -68,14 +68,7 @@ $setting = model(SettingModel::class)->find(7);
             </div>
       <?php endif?>
 
-    
-        
-
-
- 
-        <?= $this->renderSection('content') ;?>
-
-       
+   <?= $this->renderSection('content') ;?>
     </main>
   </div>
   <script src="<?php echo base_url('js/flowbite.js') ?>"></script>
