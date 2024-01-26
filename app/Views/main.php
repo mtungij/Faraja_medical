@@ -1,7 +1,7 @@
 <?php
 use App\Models\SettingModel;
 
-$setting = model(SettingModel::class)->find(7);
+$setting = model(SettingModel::class)->first();
 
 ;?>
 
