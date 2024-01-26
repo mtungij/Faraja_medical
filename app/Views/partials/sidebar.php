@@ -109,21 +109,14 @@
                   href="/payment_method"
                   
                   class="flex items-center <?= url_is('payment_method') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Payment Method</a
+                  >Payment Module Setup</a
                 >
               </li>
               <li>
                 <a
                   href="/tests_settings"
                   class="flex items-center <?= url_is('tests_settings') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Laboratory Tests</a
-                >
-              </li>
-              <li>
-                <a
-                  href="<?= site_url("services")?>"
-                  class="flex items-center <?= url_is('services') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Services</a
+                  >Investigation Setup</a
                 >
               </li>
               <li>

@@ -22,7 +22,7 @@ class InvestigationController extends BaseController
     
      $validatedData = $this->validator->getValidated();
     
-     dd($validatedData); 
+    //  dd($validatedData); 
     
     // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
     // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);

@@ -12,14 +12,15 @@
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div class="w-full">
                   <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Account Number</label>
-                  <input type="number" name="number"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('center_name') ?>" placeholder="example 0629364847" required="">
+                  <input type="number" name="number"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('center_name') ?>" placeholder="example 0629364847" >
               </div>
                 
         <div class="w-full">        
                     <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-            <select id="countries" data-te-select-init data-te-select-filter="true" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-sky-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-sky-400">
+            <select id="countries" data-te-select-init data-te-select-filter="true" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-sky-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-sky-400" required>
                     <option selected>Choose a Method</option>
-                    <option value="M-PES">M-PESA</option>
+                    <option value="CASH">CASH</option>
+                    <option value="M-PESA">M-PESA</option>
                     <option value="LIPA-MPESA">LIPA-MPESA</option>
                     <option value="TIGO-PESA">TIGO-PESA</option>
                     <option value="AIRTEL-MONEY">AIRTEL-MONEY</option>
@@ -76,7 +77,16 @@
                   <?= $item->name ;?>
                
                 <td class="px-6 py-4 text-right">
-                    <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                   
+                <a  href="<?= site_url("update_payment/$item->id") ?>">
+                            <button class="flex space-x-2 items-center px-3 py-2 bg-sky-500 rounded-md drop-shadow-md">
+                           
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil">
+                              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                              <path d="m15 5 4 4"/>
+                            </svg>
+                          </button>
+                        </a>
                 </td>
                     
                

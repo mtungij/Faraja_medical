@@ -115,8 +115,7 @@ if ($search == '') {
     public function profile($id)
 
     {
-       $complains =model(ComplainModel::class);
-       $complain=$complains-> getComplains();
+       
         $service=model(ServiceModel::class);
         $tests=model(LabtestModel::class);
         $vital=model(VitalModel::class);
@@ -125,7 +124,7 @@ if ($search == '') {
         $test=$tests->findAll();
        
         
-        dd($complain);
+       
        
 
         $patient = model(PatientModel::class)->find($id);

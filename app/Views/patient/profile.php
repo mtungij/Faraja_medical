@@ -32,72 +32,45 @@ helper('form');
 
 
 <div class="bg-gray-100">
- <div class="w-full text-white bg-main-color">
-        <div x-data="{ open: false }"
-            class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-            <div class="p-4 flex flex-row items-center justify-between">
-                <a href="#"
-                    class="text-lg font-semibold tracking-widest uppercase rounded-lg focus:outline-none focus:shadow-outline"><?= $patient->first_name ." ".$patient->middle_name ." ".$patient->last_name ;?></a>
-            </div>
-
-           <div class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
-                <div>
-                <a href="<?= site_url("patient") ?>" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900  bg-white rounded-full border border-gray-200  hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                  Go Back
-                </a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
             
         </div>
         
     </div>
     <!-- End of Navbar -->
 
-    <div class="max-w-2xl mx-4   sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
-                    <div class="image  overflow-hidden">
-                        
-                    <?php
-                     if ($patient->gender == 'female') {
-        // Display female picture
-              echo '<img src="/img/female.png" alt="Female Image">';
-                      } else {
-        // Display male picture or a default image for other genders
-                      echo '<img src="/img/male2.png" alt="Male Image">';
-                         }
-                          ?>
-                    </div>
-                    <h1 class="text-gray-900 font-bold text-l flex justify-center"><?= $patient->first_name ." ".$patient->middle_name ." ".$patient->last_name ;?></h1>
-                    <h3 class=" font-lg text-bold flex justify-center  ">
-                   
-                   <?= $patient->phone ;?>
 
-                    </h3>
-                    <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">
-
-                    </p>
-                    <ul
-                        class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                        <li class="flex items-center py-3">
-                            <span>Status</span>
-                            <span class="ml-auto">
-                            <?php
-                      $statusClass = ($patient->illiness_status == 'normal') ? 'bg-green-300   py-2 px-5 ' : 'bg-red-100 text-red-800';
-                    ?>
-                        <span class="<?= $statusClass; ?> text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 <?= ( $patient->illiness_status == 'active') ? 'dark:text-green-400 border border-green-400' : 'dark:text-red-400 border border-red-400'; ?>">
-                        <?= ucfirst($patient->illiness_status ); ?>
-                    </span>
-                              
-                            <span
-                          </li>
-                          <!-- <li class="flex items-center py-3">
-                            <span>Member since</span>
-                            <span class="ml-auto">Nov 07, 2016</span>
-                          </li> -->
-                    </ul>
-                  </div>
+<div>
+  <div>
+    <img class="h-32 w-full object-cover  lg:h-48" src="/img/final.jpg" alt="">
+  </div>
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
+      <div class="flex">
+        <img class="h-24 w-24 rounded-full ring-4 ring-blue-300 sm:h-32 sm:w-32" src="/img/female.png" alt="">
+      </div>
+      <div class="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+        <div class="mt-6 min-w-0 flex-1 sm:hidden md:block">
+          <h1 class="truncate text-2xl uppercase font-bold "><?= $patient->first_name ." ".$patient->middle_name ." ".$patient->last_name ;?></h1>
+        </div>
+        <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
+          <button type="button" class="inline-flex justify-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+            
+            <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">status</span>
+          </button>
+          <a href="<?= site_url("transfers/$patient->id") ?>" class="text-white bg-cyan-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            TRANSFER
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+        </a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 hidden min-w-0 flex-1 sm:block md:hidden">
+      <h1 class="truncate text-2xl font-bold text-blue-300">Shehab coding</h1>
+    </div>
+  </div>
+</div>
            
 
     <div class="container mx-auto my-5 p-5">

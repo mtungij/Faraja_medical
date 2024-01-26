@@ -15,11 +15,22 @@ $routes->post('create_setting','Setting::create');
 //Payment ROutes
 $routes->get('payment_method','Payment::index');
 $routes->post('create_payment','Payment::store');
+//labtest
+$routes->get('/edit/(:segment)','Payment::edit/$1');
+
+//labtest
+
+//payment
+$routes->get('update_payment/(:segment)','Payment::indexes/$1');
+$routes->post('update_payment','Payment::update');
+//payment
 
 //categories 
 $routes->get('tests_settings','LabtestController::index');
-$routes->post('create_test','LabtestController::store');
-// $routes->get('test_setting/(:segment)','LabtestController:edit/$1');
+$routes->post('create_test','LabtestController::update');
+$routes->post('create_category','LabtestController::store');
+$routes->get('update_category/(:segment)','LabtestController::Update/$1');
+$routes->post('update_categor','LabtestController::insert_update');
 
 //service routes
 $routes->get('services','ServiceController::index');
@@ -57,11 +68,11 @@ $routes->post('user/name/(:segment)', [UserController::class,'getUsersByDepartme
 //vital signs
 $routes->post('store_vital','VitalController::index');
 $routes->get('signs/(:segment)','VitalController::preview/$1');
-$routes->post('store_signs','VitalController::index');
+$routes->post('store_signs','VitalController::insert');
 
 
 // Transfer
-$routes->post('transfer','TransferController::transfer');
+$routes->get('transfers/(:segment)','TransferController::index/$id');
 
 // service payment
 

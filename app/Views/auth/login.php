@@ -16,7 +16,7 @@ $setting = model(SettingModel::class)->find(7);
     <style>
 
         section{
-           background-image: url('/img/background.jpg');  
+           background-image: url('/img/back2.jpg');  
         }
     </style>
 

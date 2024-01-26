@@ -3,184 +3,48 @@
 <?= $this->section('content') ;?>
 
 
+iv class="max-w-2xl mx-4   sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
+                    <div class="image  overflow-hidden">
+                        
+                    <?php
+                     if ($patient->gender == 'female') {
+        // Display female picture
+              echo '<img src="/img/female.png" alt="Female Image">';
+                      } else {
+        // Display male picture or a default image for other genders
+                      echo '<img src="/img/male2.png" alt="Male Image">';
+                         }
+                          ?>
+                    </div>
+                    <h1 class="text-gray-900 font-bold text-l flex justify-center"><?= $patient->first_name ." ".$patient->middle_name ." ".$patient->last_name ;?></h1>
+                    <h3 class=" font-lg text-bold flex justify-center  ">
+                   
+                   <?= $patient->phone ;?>
 
+                    </h3>
+                    <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">
 
-
-<style>
-    /* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-
-.container header {
-  font-size: 1.5rem;
-  color: #333;
-  font-weight: 500;
-  text-align: center;
-}
-.container .form {
-  margin-top: 30px;
-}
-.form .input-box {
-  width: 100%;
-  margin-top: 20px;
-}
-.input-box label {
-  color: #333;
-}
-.form :where(.input-box input, .select-box) {
-  position: relative;
-  height: 50px;
-  width: 100%;
-  outline: none;
-  font-size: 1rem;
-  color: #707070;
-  margin-top: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0 15px;
-}
-.input-box input:focus {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-}
-.form .column {
-  display: flex;
-  column-gap: 15px;
-}
-.form .gender-box {
-  margin-top: 20px;
-}
-.gender-box h3 {
-  color: #333;
-  font-size: 1rem;
-  font-weight: 400;
-  margin-bottom: 8px;
-}
-.form :where(.gender-option, .gender) {
-  display: flex;
-  align-items: center;
-  column-gap: 50px;
-  flex-wrap: wrap;
-}
-.form .gender {
-  column-gap: 5px;
-}
-.gender input {
-  accent-color: rgb(130, 106, 251);
-}
-.form :where(.gender input, .gender label) {
-  cursor: pointer;
-}
-.gender label {
-  color: #707070;
-}
-.address :where(input, .select-box) {
-  margin-top: 15px;
-}
-.select-box select {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-  color: #707070;
-  font-size: 1rem;
-}
-.form button {
-  height: 55px;
-  width: 100%;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 400;
-  margin-top: 30px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: rgb(130, 106, 251);
-}
-.form button:hover {
-  background: rgb(88, 56, 250);
-}
-/*Responsive*/
-@media screen and (max-width: 500px) {
-  .form .column {
-    flex-wrap: wrap;
-  }
-  .form :where(.gender-option, .gender) {
-    row-gap: 15px;
-  }
-}
-</style>
-<body>
-
-<!DOCTYPE html>
-<!---Coding By CodingLab | www.codinglabweb.com--->
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!--<title>Registration Form in HTML CSS</title>-->
-    <!---Custom CSS File--->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <section class="container">
-      <header>Registration Form</header>
-      <form action="#" class="form">
-       
-        <div class="column">
-          <div class="input-box">
-            <label>Blood Pressure</label>
-            <input type="text" name="	blood_pressure" placeholder="Enter phone number" required />
-          </div>
-          <div class="input-box">
-            <label>Pulse Rate</label>
-            <input type="text"name="pulse_rate" placeholder="Enter pulse rate" required />
-          </div>
-        </div>
-        <div class="column">
-          <div class="input-box">
-            <label>Blood Pressure</label>
-            <input type="text" name="	blood_pressure" placeholder="Enter phone number" required />
-          </div>
-          <div class="input-box">
-            <label>Pulse Rate</label>
-            <input type="text"name="pulse_rate" placeholder="Enter pulse rate" required />
-          </div>
-        </div>
-        
-        <div class="input-box address">
-         
-          <div class="column">
-            <div class="select-box">
-              <select>
-                <option hidden>Country</option>
-                <option>America</option>
-                <option>Japan</option>
-                <option>India</option>
-                <option>Nepal</option>
-              </select>
-            </div>
-            <input type="text" placeholder="Enter your city" required />
-          </div>
-          <div class="column">
-            <input type="text" placeholder="Enter your region" required />
-            <input type="number" placeholder="Enter postal code" required />
-          </div>
-        </div>
-        <button>Submit</button>
-      </form>
-    </section>
-  </body>
-</html>
-    
-</body>
-</html>
+                    </p>
+                    <ul
+                        class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                        <li class="flex items-center py-3">
+                            <span>Status</span>
+                            <span class="ml-auto">
+                            <?php
+                      $statusClass = ($patient->illiness_status == 'normal') ? 'bg-green-300   py-2 px-5 ' : 'bg-red-100 text-red-800';
+                    ?>
+                        <span class="<?= $statusClass; ?> text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 <?= ( $patient->illiness_status == 'active') ? 'dark:text-green-400 border border-green-400' : 'dark:text-red-400 border border-red-400'; ?>">
+                        <?= ucfirst($patient->illiness_status ); ?>
+                    </span>
+                              
+                            <span
+                          </li>
+                          <!-- <li class="flex items-center py-3">
+                            <span>Member since</span>
+                            <span class="ml-auto">Nov 07, 2016</span>
+                          </li> -->
+                    </ul>
+                  </div>
 
 
 

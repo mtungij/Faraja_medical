@@ -8,6 +8,21 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class TransferController extends BaseController
 {
+
+
+    public function index($id)
+
+    {
+
+       return view("transfer/transfer");
+
+    }
+
+
+
+
+
+
     public function transfer()
     {
        
