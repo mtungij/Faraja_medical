@@ -13,41 +13,29 @@ class HistoryController extends BaseController
     {
         
         $patient = model(PatientModel::class)->find( $id );
-        return view("patient/history_presenting", ["patient"=> $patient ]);
+        $hpis = model(HistoryModel::class)->builder()->select("*")
+                                           ->join('users', 'patient_histories.id = users.id')
+                                           ->where('patient_id', $id)->orderBy('patient_histories.id', 'DESC')
+                                           ->get()->getResult();
+
+        return view("patient/history_presenting", ["patient"=> $patient, "hpis"=> $hpis]);
     }
 
     public function store()
     {
-
-        
         if( !$this->validate([
             'desc' => 'required',
             'patient_id' => 'required',
             'user_id'=> 'required',
-        
-    
         ])){
                        
-            return redirect()->back()->withInput()->with('erros','please fill all field');     
+        return redirect()->back()->withInput()->with('erros','please fill all field');     
     }
     
      $validatedData = $this->validator->getValidated();
     
-    //  dd($validatedData); 
-
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
-    
-    
-    
      model(HistoryModel::class)->insert($validatedData );
-    
 
-       return redirect()->to("nextpage/".$validatedData["patient_id"])->with("good","data saved successfully");
-        
-
-
-
-
+     return redirect()->back()->with("success","data saved successfully");
     }
 }

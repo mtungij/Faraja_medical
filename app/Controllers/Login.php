@@ -12,7 +12,7 @@ class Login extends BaseController
     {
         helper('form');
 
-        return view('Auth/login');
+        return view('auth/login');
     }
 
     public function auth()

@@ -13,13 +13,9 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class PatientController extends BaseController
 {
-    public function index()
+    public function show()
     {
-
-
-        // $patient=new PatientModel();
-        // $patients=$patient->find();
-        // // dd($patients);
+        
        return view("patient/create_patient");
     }
 
@@ -85,8 +81,6 @@ if ($search == '') {
             'gender'=>'required',
             'address'=> 'required',
             'age'=> 'required',
-        
-    
         ])){
                        
             return redirect()->back()->withInput()->with('erros','please fill all field');     
@@ -94,10 +88,6 @@ if ($search == '') {
     
      $validatedData = $this->validator->getValidated();
     
-    //  dd($validatedData); 
-    
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
     $patientExist = model(PatientModel::class)->where(['first_name' => $validatedData['first_name'], 'middle_name' => $validatedData['middle_name'],'last_name'=>$validatedData['last_name']])->first();
     
     if($patientExist)
@@ -123,10 +113,6 @@ if ($search == '') {
         $service=$service->findAll();
         $test=$tests->findAll();
        
-        
-       
-       
-
         $patient = model(PatientModel::class)->find($id);
 
         return view('patient/profile', ['patient'=> $patient,'vitals'=>$vitals,'service'=> $service ,'test'=> $test ]);

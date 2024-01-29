@@ -12,6 +12,8 @@ module.exports = {
   },
   darkMode: 'class',
   plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
     require('flowbite/plugin'),
     require("tw-elements/dist/plugin.cjs"),
   ],

@@ -160,6 +160,8 @@
       </dd>
     </div>
   </dl>
+
+  <div id="editor"></div>
 </div>
 
 

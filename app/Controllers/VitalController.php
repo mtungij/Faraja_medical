@@ -9,9 +9,18 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class VitalController extends BaseController
 {
-    public function insert()
+    public function index(int $id)
     {
-        
+        $patients=model(PatientModel::class);
+
+        $patient=$patients->find($id);
+
+        $vitals = model('VitalModel')->builder()->select('*')->join('users', 'vital_signs.user_id = users.id')->where('vital_signs.patient_id',$id)->orderBy('vital_signs.created_at','desc')->get()->getResult();
+        return view("patient/vital_sign",["patient"=>$patient, 'vitals'=>$vitals]);
+    }
+
+    public function store()
+    {
         if( !$this->validate([
             'blood_pressure' => 'required',
             'resp_rate' => 'required',
@@ -21,32 +30,18 @@ class VitalController extends BaseController
             'height'=> 'required',
             'patient_id'=> 'required',
             'user_id'=> 'required',
-        
-    
         ])){
-                       
-            return redirect()->back()->withInput()->with('erros','please fill all field');     
-    }
-    
-     $validatedData = $this->validator->getValidated();
-    
-     dd($validatedData); 
+            // dd($this->validator->getErrors());
+            return redirect()->back()->withInput()->with('val_errors',$this->validator->getErrors());     
+        }
+        
+        $validatedData = $this->validator->getValidated();
 
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
-    
-    
-    
-     model(VitalModel::class)->insert($validatedData );
-    
+        // dd($validatedData);
+        
+        model(VitalModel::class)->insert($validatedData );
 
-       return redirect()->to("nextpage/".$validatedData["patient_id"])->with("good","data saved successfully");
-    }
+        return redirect()->back()->with("success","data saved successfully");
+        }
 
-    public function preview($id)
-    {
-        $patients=model(PatientModel::class);
-        $patient=$patients->find($id);
-        return view("patient/vital_sign",["patient"=>$patient]);
-    }
 }

@@ -1,7 +1,10 @@
 <?php
 
+use App\Controllers\ComplainController;
+use App\Controllers\HistoryController;
 use App\Controllers\PatientController;
 use App\Controllers\UserController;
+use App\Controllers\VitalController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -37,17 +40,37 @@ $routes->get('services','ServiceController::index');
 $routes->post('create_service','ServiceController::store');
 
 //patient
-$routes->get('patients','PatientController::loadRecord');
-$routes->get('loadRecord','PatientController::loadRecord');
-$routes->get('create_patient','PatientController::index');
-$routes->post('store_patient','PatientController::store');
-$routes->get('patient','PatientController::loadRecord');
-$routes->get('nextpage/(:segment)','PatientController::profile/$1');
-$routes->get('editpage/(:segment)','PatientController::editpage/$1');
-$routes->post('update_patient','PatientController::update_patient');
-// $routes->get('profile','PatientController::pro');
-$routes->get('vital_signs/(:segment)','PatientController::update/$1');
-$routes->get('transfer/(:segment)','PatientController::getDepartments/$1');
+// // $routes->get('patients','PatientController::loadRecord');
+// $routes->get('loadRecord','PatientController::loadRecord');
+// // $routes->get('create_patient','PatientController::index');
+// $routes->post('store_patient','PatientController::store');
+// // $routes->get('nextpage/(:segment)','PatientController::profile/$1');
+// $routes->get('editpage/(:segment)','PatientController::editpage/$1');
+// $routes->post('update_patient','PatientController::update_patient');
+// // $routes->get('profile','PatientController::pro');
+// $routes->get('vital_signs/(:segment)','PatientController::update/$1');
+// $routes->get('transfer/(:segment)','PatientController::getDepartments/$1');
+
+
+$routes->group('patients', static function ($routes) {
+    $routes->get('/','PatientController::loadRecord');
+    $routes->get('(:num)','PatientController::profile/$1');
+
+    $routes->get('(:num)/signs', [VitalController::class, 'index']);
+    $routes->post('(:num)/signs', [VitalController::class, 'store']);
+
+    $routes->get('(:num)/complains', [ComplainController::class, 'index']);
+    $routes->post('(:num)/complains', [ComplainController::class, 'store']);
+
+    $routes->get('(:num)/hpis', [HistoryController::class, 'index']);
+    $routes->post('(:num)/hpis', [HistoryController::class, 'store']);
+
+    $routes->post('(:num)/complains', [ComplainController::class, 'store']);
+    $routes->get('show','PatientController::show');
+    $routes->get('edit/(:segment)','PatientController::editpage/$1');
+    $routes->post('update',[PatientController::class, 'update_patient']);
+    $routes->post('store_patient',[PatientController::class, 'store']);
+});
 
 
 //user Auth

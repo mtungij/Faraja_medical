@@ -11,24 +11,20 @@ class ComplainController extends BaseController
 {
     public function index($id)
     {
-       
         $patient = model(PatientModel::class)->find( $id );
-
-      
-        return view("patient/complain", ["patient"=> $patient]);
+        $complains = model(ComplainModel::class)->builder()->select('*')->join('users', 'main_complaints.user_id = users.id')->where('main_complaints.patient_id',$id)->orderBy('main_complaints.created_at','desc')->get()->getResult();
+        return view("patient/complain", ["patient"=> $patient, 'complains'=>$complains]);
     }
 
     public function store()
     {
-
-        if( !$this->validate([
+        $rules = [
             'desc' => 'required',
             'patient_id' => 'required',
             'user_id'=> 'required',
-        
-    
-        ])){
-                       
+        ];  
+
+        if( !$this->validate($rules)){
             return redirect()->back()->withInput()->with('erros','please fill all field');     
     }
     
@@ -44,7 +40,7 @@ class ComplainController extends BaseController
      model(ComplainModel::class)->insert($validatedData );
     
 
-       return redirect()->to("nextpage/".$validatedData["patient_id"])->with("good","data saved successfully");
+       return redirect()->back()->with("success","data saved successfully");
         
     }
 }
