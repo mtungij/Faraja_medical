@@ -31,7 +31,7 @@ class SurgicalController extends BaseController
     
      $validatedData = $this->validator->getValidated();
 
-       dd($validatedData); 
+    //    dd($validatedData); 
     
     
      $labtestExist = model(SurgicalModel::class)->where('name',$validatedData['name'])->first();

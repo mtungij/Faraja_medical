@@ -6,17 +6,17 @@
 <section class="bg-white dark:bg-gray-900">
 
 <div class="py-8 px-4 pb-14 w-l ">
-      <h2 class="mb-4 text-xl  font-bold text-gray-900 dark:text-white">INVESTIGATION SETUP</h2>
+      <h2 class="mb-4 text-xl  font-bold text-gray-900 dark:text-white">SURGICAL SETUP</h2>
       <form action="surgical/create" method="post">
        
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div class="w-full">
-                  <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Investigation Name</label>
+                  <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surgical Name</label>
                   <input type="text" name="name"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('name') ?>" placeholder="example Mrdt" >
               </div>
                 
         <div class="w-full">        
-        <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Investigation Price</label>
+        <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surgical Price</label>
         <input type="text" name="price"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('price') ?>" >
         </div>
         
