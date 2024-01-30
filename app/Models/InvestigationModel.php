@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class InvestigationModel extends Model
 {
-    protected $table            = 'investigations';
+    protected $table            = 'investigatigations';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';

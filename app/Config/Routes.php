@@ -5,6 +5,7 @@ use App\Controllers\DiagnosisController;
 use App\Controllers\ExaminationController;
 use App\Controllers\FamilyhistorylController;
 use App\Controllers\HistoryController;
+use App\Controllers\InvestigationController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
 use App\Controllers\ReviewController;
@@ -85,6 +86,9 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/diagnosis', [DiagnosisController::class, 'index']);
     $routes->post('(:num)/diagnosis', [DiagnosisController::class, 'store']);
+
+    $routes->get('(:num)/investigations', [InvestigationController::class, 'index']);
+    $routes->post('(:num)/investigations', [InvestigationController::class, 'store']);
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
     $routes->get('show','PatientController::show');
