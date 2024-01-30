@@ -127,3 +127,6 @@ $routes->get('diagnosis/(:segment)','DiagnosisController::index/$1');
 $routes->post('store_diagnosis','DiagnosisController::store');
 $routes->post('invest','InvestigationController::store');
 
+
+
+$routes->presenter('drugs',['controller' => 'DrugController']);
