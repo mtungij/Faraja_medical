@@ -130,3 +130,4 @@ $routes->post('invest','InvestigationController::store');
 
 
 $routes->presenter('drugs',['controller' => 'DrugController']);
+$routes->presenter('surgical',['controller' => 'SurgicalController']);
