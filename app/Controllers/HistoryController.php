@@ -18,8 +18,6 @@ class HistoryController extends BaseController
                                            ->where('patient_id', $id)->orderBy('patient_histories.created_at', 'DESC')
                                            ->get()->getResult();
 
-        dd($hpis);
-
         return view("patient/history_presenting", ["patient"=> $patient, "hpis"=> $hpis]);
     }
 
