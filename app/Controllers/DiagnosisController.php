@@ -12,41 +12,30 @@ class DiagnosisController extends BaseController
     public function index($id)
     {
         $patient = model(PatientModel::class)->find( $id );
-        return view("patient/diagnosis", ["patient"=> $patient ]);
+        $diagnosises = model(DiagnosisModel::class)->builder()->select("*")
+                            ->join('users', 'users.id = diagnoses.user_id')
+                            ->where('patient_id', $id)
+                            ->get()
+                            ->getResult();
+
+        return view("patient/diagnosis", ["patient"=> $patient, 'diagnosises' => $diagnosises ]);
     }
 
     public function store ()
     {
-
         if( !$this->validate([
             'desc' => 'required',
             'patient_id' => 'required',
             'user_id'=> 'required',
-        
-    
         ])){
-                       
-            return redirect()->back()->withInput()->with('erros','please fill all field');     
+        return redirect()->back()->withInput()->with('errors','please fill all field');     
     }
     
      $validatedData = $this->validator->getValidated();
     
-    //  dd($validatedData); 
-
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
-    
-    
-    
      model(DiagnosisModel::class)->insert($validatedData );
-    
 
-       return redirect()->to("nextpage/".$validatedData["patient_id"])->with("good","data saved successfully");
-        
-
-
-
-
+    return redirect()->back()->with("success","data saved successfully");
 
     }
 }
