@@ -19,7 +19,7 @@ class PastmedicalController extends BaseController
                        ->get()
                        ->getResult();
                        
-        return view("patient/past_medical", ["patient"=> $patient ] );
+        return view("patient/past_medical", ["patient"=> $patient, 'pmhs' => $pmhs ] );
     }
 
     public function store()

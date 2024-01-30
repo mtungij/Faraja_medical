@@ -1,6 +1,9 @@
 <?php
 
 use App\Controllers\ComplainController;
+use App\Controllers\DiagnosisController;
+use App\Controllers\ExaminationController;
+use App\Controllers\FamilyhistorylController;
 use App\Controllers\HistoryController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
@@ -73,6 +76,15 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/pmhs', [PastmedicalController::class, 'index']);
     $routes->post('(:num)/pmhs', [PastmedicalController::class, 'store']);
+
+    $routes->get('(:num)/fshs', [FamilyhistorylController::class, 'index']);
+    $routes->post('(:num)/fshs', [FamilyhistorylController::class, 'store']);
+
+    $routes->get('(:num)/examinations', [ExaminationController::class, 'index']);
+    $routes->post('(:num)/examinations', [ExaminationController::class, 'store']);
+
+    $routes->get('(:num)/diagnosis', [DiagnosisController::class, 'index']);
+    $routes->post('(:num)/diagnosis', [DiagnosisController::class, 'store']);
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
     $routes->get('show','PatientController::show');

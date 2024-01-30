@@ -41,34 +41,34 @@
             <a href="<?= site_url("patients/$patient->id/signs") ?>" class="py-6">Vital Sign</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/complains") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/complains") ?>" class="py-6">Chief Complain</a>
+            <a href="<?= site_url("patients/$patient->id/complains") ?>" class="py-6">Chief Complain</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/hpis") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/hpis") ?>" class="py-6">HPI</a>
+            <a href="<?= site_url("patients/$patient->id/hpis") ?>" class="py-6">HPI</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/rvs") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/rvs") ?>" class="py-6">RVS</a>
+            <a href="<?= site_url("patients/$patient->id/rvs") ?>" class="py-6">RVS</a>
         </li>
         <li class="class='<?= url_is("/patients/$patient->id/pmhs") ? "border-b-2 border-sky-600": "" ?> font-medium'">
-            <a href="<?= site_url("/patients/$patient->id/pmhs") ?>" class="py-6">PMH</a>
+            <a href="<?= site_url("patients/$patient->id/pmhs") ?>" class="py-6">PMH</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/fshs") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/fshs") ?>" class="py-6">FSH</a>
+            <a href="<?= site_url("patients/$patient->id/fshs") ?>" class="py-6">FSH</a>
         </li>
         <li class="class='<?= url_is("/patients/$patient->id/examinations") ? "border-b-2 border-sky-600": "" ?> font-medium'">
-            <a href="<?= site_url("/patients/$patient->id/examinations") ?>" class="py-6">Examination</a>
+            <a href="<?= site_url("patients/$patient->id/examinations") ?>" class="py-6">Examination</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/diagnosis") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/diagnosis") ?>" class="py-6">Diagnosis</a>
+            <a href="<?= site_url("patients/$patient->id/diagnosis") ?>" class="py-6">Diagnosis</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/investigations") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/investigations") ?>" class="py-6">Investigation</a>
+            <a href="<?= site_url("patients/$patient->id/investigations") ?>" class="py-6">Investigation</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/treatiments") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/treatments") ?>" class="p-2">Treatments</a>
+            <a href="<?= site_url("patients/$patient->id/treatments") ?>" class="p-2">Treatments</a>
         </li>
         <li class='<?= url_is("/patients/$patient->id/pinfos") ? "border-b-2 border-sky-600": "" ?> font-medium'>
-            <a href="<?= site_url("/patients/$patient->id/pinfos") ?>" class="p-2">Patient Info</a>
+            <a href="<?= site_url("patients/$patient->id/pinfos") ?>" class="p-2">Patient Info</a>
         </li>
     </ul>
 </nav>

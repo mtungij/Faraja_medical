@@ -12,19 +12,22 @@ class ExaminationController extends BaseController
     public function index($id)
     {
         $patient = model(PatientModel::class)->find( $id );
-        return view("patient/examination", ["patient"=> $patient ]);
+        $examinations = model(ExaminationModel::class)->builder()
+                         ->select('*')
+                         ->join('users', 'users.id = examinations.user_id')
+                         ->where('patient_id', $id)
+                         ->get()
+                         ->getResult();
+
+        return view("patient/examination", ["patient"=> $patient , "examinations" => $examinations]);
     }
 
     public function store()
     {
-
-         
         if( !$this->validate([
             'desc' => 'required',
             'patient_id' => 'required',
             'user_id'=> 'required',
-        
-    
         ])){
                        
             return redirect()->back()->withInput()->with('erros','please fill all field');     
@@ -32,21 +35,9 @@ class ExaminationController extends BaseController
     
      $validatedData = $this->validator->getValidated();
     
-    //  dd($validatedData); 
-
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
-    
-    
-    
      model(ExaminationModel::class)->insert($validatedData );
-    
 
-       return redirect()->to("nextpage/".$validatedData["patient_id"])->with("good","data saved successfully");
-        
-
-
-
+     return redirect()->back()->with("good","data saved successfully");
 
     }
 }
