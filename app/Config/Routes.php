@@ -2,6 +2,7 @@
 
 use App\Controllers\ComplainController;
 use App\Controllers\HistoryController;
+use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
 use App\Controllers\ReviewController;
 use App\Controllers\UserController;
@@ -69,6 +70,9 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/rvs', [ReviewController::class, 'index']);
     $routes->post('(:num)/rvs', [ReviewController::class, 'store']);
+
+    $routes->get('(:num)/pmhs', [PastmedicalController::class, 'index']);
+    $routes->post('(:num)/pmhs', [PastmedicalController::class, 'store']);
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
     $routes->get('show','PatientController::show');
