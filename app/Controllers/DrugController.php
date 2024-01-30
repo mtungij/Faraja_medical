@@ -10,8 +10,13 @@ class DrugController extends BaseController
 {
     public function index()
     {
+        $saleprice = model(DrugModel::class)->selectSum("sell_price", 'total')->get()->getRow();
+        $buyprice =model(DrugModel::class)->selectSum('buy_price','total_buy')->get()->getRow();
+        $stock = model(DrugModel::class)->selectSum('quantity','stock')->get()->getRow();
+       
+        // dd($buyprice);
     $drug =model(DrugModel::class)->findAll();
-    return view ('drug/index.php',['drug'=> $drug]);
+    return view ('drug/index.php',['drug'=> $drug,'saleprice' => $saleprice,'buyprice' => $buyprice,'stock'=> $stock]);
     }
 
     public function create()

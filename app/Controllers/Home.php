@@ -1,11 +1,79 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\DrugModel;
+use App\Models\PatientModel;
 
 class Home extends BaseController
 {
     public function index(): string
     {
-        return view('welcome_message');
+
+        // if(!session('user_id')){
+
+        //     return redirect ("login");
+        // }
+        // $users=model(UserModel::class)->findAll();
+        // $usercount=count($users);
+ 
+        $today = date('Y-m-d');
+        $minAge = 1;
+        $maxAge = 5;
+
+        $mainerage = 18;
+        $painerage = 40;
+
+        $oldage= 60;
+        $olderage=120;
+
+
+        $patienttoday =model(PatientModel::class)->where("DATE(created_at)",$today)->findAll();
+        $femaletoday =model(PatientModel::class)->where('gender','female')->where("DATE(created_at)",$today)->findAll();
+        $maletoday =model(PatientModel::class)->where("gender","male")->where("DATE(created_at)","$today")->findAll();
+        $patients=model(PatientModel::class)->findAll();
+        $medicine =model(DrugModel::class)->findAll();
+        $lowage=model(PatientModel::class)->where("DATE(created_at)",$today)
+        ->where('age >=', $minAge)
+        ->where('age <=', $maxAge)
+        ->findAll();
+
+        $middleage = model(PatientModel::class)->where("DATE(created_at)",$today)->where('age >=',$mainerage )
+        ->where('age <=',$painerage)
+        ->findAll();
+
+        $olders=model(PatientModel::class)->where("DATE(created_at)",$today)->where('age >=', $oldage)->where('age <=',$olderage)
+        ->findAll();
+
+
+        // dd($middleage);
+        // dd($femaletoday);
+        //  dd($lowage);
+        // dd($patienttoday);
+        // dd($olders);
+
+        $todayP=count($patienttoday);
+        $female=count($femaletoday);
+        $male =count($maletoday);
+        $patients =count($patients);
+        $medicine=count($medicine);
+        $childage=count($lowage);
+        $middleage=count($middleage);
+        $olders=count($olders);
+
+        
+        
+        $data = [
+            'todayP' => $todayP,
+            'female'=> $female,
+            'male'=> $male,
+            'patients'=> $patients,
+            'medicine' => $medicine,
+            'childage' => $childage,
+            'middleage'=> $middleage,
+            'olders'=> $olders
+        ];
+    
+
+        return view('welcome_message', $data);
     }
 }
