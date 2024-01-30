@@ -3,8 +3,10 @@
 use App\Controllers\ComplainController;
 use App\Controllers\HistoryController;
 use App\Controllers\PatientController;
+use App\Controllers\ReviewController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
+use App\Models\Reviews;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -64,6 +66,9 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/hpis', [HistoryController::class, 'index']);
     $routes->post('(:num)/hpis', [HistoryController::class, 'store']);
+
+    $routes->get('(:num)/rvs', [ReviewController::class, 'index']);
+    $routes->post('(:num)/rvs', [ReviewController::class, 'store']);
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
     $routes->get('show','PatientController::show');

@@ -14,9 +14,11 @@ class HistoryController extends BaseController
         
         $patient = model(PatientModel::class)->find( $id );
         $hpis = model(HistoryModel::class)->builder()->select("*")
-                                           ->join('users', 'patient_histories.id = users.id')
-                                           ->where('patient_id', $id)->orderBy('patient_histories.id', 'DESC')
+                                           ->join('users', 'patient_histories.user_id = users.id')
+                                           ->where('patient_id', $id)->orderBy('patient_histories.created_at', 'DESC')
                                            ->get()->getResult();
+
+        dd($hpis);
 
         return view("patient/history_presenting", ["patient"=> $patient, "hpis"=> $hpis]);
     }
