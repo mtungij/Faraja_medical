@@ -114,6 +114,11 @@ initTE({ Select });
     }
   });
 </script>
+
+<script src="path/to/chartjs/dist/chart.umd.js"></script>
+<script>
+    const myChart = new Chart(ctx, {...});
+</script>
   </body>
 
 </html>

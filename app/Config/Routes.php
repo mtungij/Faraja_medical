@@ -154,6 +154,7 @@ $routes->post('invest','InvestigationController::store');
 
 $routes->get('drugs','DrugController::index');
 $routes->post('drugscreate','DrugController::store');
+$routes->get('sell','DrugController::sell');
 
 
 $routes->presenter('surgical',['controller' => 'SurgicalController']);
@@ -161,4 +162,5 @@ $routes->presenter('surgical',['controller' => 'SurgicalController']);
 
 // PRINTING REPORTS
 $routes->get('print_medicine','PrintController::medicine');
+
 
