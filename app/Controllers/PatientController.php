@@ -195,32 +195,25 @@ if($result){
     return view('patient/vital_sign');
     }
 
-    // public function getDepartments($department)
+    public function new ()
 
-    // {
-    //     $userModel = new UserModel();
+    {
+  
+        $today = date('Y-m-d');
 
-    //     $departments = $userModel->distinct()->select('department')->findAll();
+        $users = model(PatientModel::class)->where('DATE(created_at)',$today)->findAll();
 
-    //     return json_encode($departments);
+        return view('patient/newpatient',['users'=>$users]);
+    }
 
-    // }
+    public function all_patients()
 
-    // public function getUsersByDepartment($name)
-    // {
-    //     $userModel = new UserModel();
+    {
 
-    //     $users = $userModel->where('name', $name)->findAll();
-
-    //     return json_encode($users);
-    // }
-
-    
-
-    
-
-
-
+        $patients = model(PatientModel::class)->findAll();
+        return view('patient/all_patients',['patients'=>$patients]);
+    }
+   
 }
 
 

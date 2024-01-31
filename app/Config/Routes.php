@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\AppointmentController;
 use App\Controllers\ComplainController;
 use App\Controllers\DiagnosisController;
 use App\Controllers\ExaminationController;
@@ -48,16 +49,19 @@ $routes->get('services','ServiceController::index');
 $routes->post('create_service','ServiceController::store');
 
 //patient
-// // $routes->get('patients','PatientController::loadRecord');
-// $routes->get('loadRecord','PatientController::loadRecord');
-// // $routes->get('create_patient','PatientController::index');
-// $routes->post('store_patient','PatientController::store');
-// // $routes->get('nextpage/(:segment)','PatientController::profile/$1');
-// $routes->get('editpage/(:segment)','PatientController::editpage/$1');
-// $routes->post('update_patient','PatientController::update_patient');
-// // $routes->get('profile','PatientController::pro');
-// $routes->get('vital_signs/(:segment)','PatientController::update/$1');
-// $routes->get('transfer/(:segment)','PatientController::getDepartments/$1');
+$routes->get('patients','PatientController::loadRecord');
+$routes->get('loadRecord','PatientController::loadRecord');
+$routes->get('create_patient','PatientController::index');
+$routes->post('store_patient','PatientController::store');
+$routes->get('Newpatients','PatientController::new');
+$routes->get('all_patients','PatientController::all_patients');
+$routes->get('nextpage/(:segment)','PatientController::profile/$1');
+$routes->get('editpage/(:segment)','PatientController::editpage/$1');
+$routes->post('update_patient','PatientController::update_patient');
+$routes->get('today/appointments','AppointmentController::todayappointment');
+$routes->get('weekly/appointments','AppointmentController::weeklyappointment');
+$routes->get('vital_signs/(:segment)','PatientController::update/$1');
+$routes->get('transfer/(:segment)','PatientController::getDepartments/$1');
 
 
 $routes->group('patients', static function ($routes) {
@@ -95,6 +99,10 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/treatments', [TreatmentController::class, 'index']);
     $routes->post('(:num)/treatments', [TreatmentController::class, 'store']);
+
+    $routes->get('(:num)/appointments', [AppointmentController::class, 'index']);
+    $routes->post('(:num)/appointments', [AppointmentController::class, 'store']);
+    
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
     $routes->get('show','PatientController::show');
@@ -150,6 +158,13 @@ $routes->post('store_diagnosis','DiagnosisController::store');
 $routes->post('invest','InvestigationController::store');
 
 
+$routes->get('drugs','DrugController::index');
+$routes->post('drugscreate','DrugController::store');
 
-$routes->presenter('drugs',['controller' => 'DrugController']);
+
 $routes->presenter('surgical',['controller' => 'SurgicalController']);
+
+
+// PRINTING REPORTS
+$routes->get('print_medicine','PrintController::medicine');
+
