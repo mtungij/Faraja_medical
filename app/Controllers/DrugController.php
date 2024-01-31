@@ -19,7 +19,7 @@ class DrugController extends BaseController
     return view ('drug/index.php',['drug'=> $drug,'saleprice' => $saleprice,'buyprice' => $buyprice,'stock'=> $stock]);
     }
 
-    public function create()
+    public function store()
     {
         if( !$this->validate([
             'name' => 'required',

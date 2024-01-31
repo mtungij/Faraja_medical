@@ -67,6 +67,10 @@
         <li class='<?= url_is("/patients/$patient->id/treatiments") ? "border-b-2 border-sky-600": "" ?> font-medium'>
             <a href="<?= site_url("patients/$patient->id/treatments") ?>" class="p-2">Treatments</a>
         </li>
+
+        <li class='<?= url_is("/patients/$patient->id/appointments") ? "border-b-2 border-sky-600": "" ?> font-medium'>
+            <a href="<?= site_url("patients/$patient->id/appointments") ?>" class="p-2">Make Appointment</a>
+        </li>
         <li class='<?= url_is("/patients/$patient->id/pinfos") ? "border-b-2 border-sky-600": "" ?> font-medium'>
             <a href="<?= site_url("patients/$patient->id/pinfos") ?>" class="p-2">Patient Info</a>
         </li>
