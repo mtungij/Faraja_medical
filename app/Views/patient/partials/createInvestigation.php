@@ -29,17 +29,28 @@ Add investigation
             <!-- Modal body -->
             <div class="p-4 md:p-5">
                 <div>
-                    <label class="block">Investigations</label>
+                    <label class="block font-medium">Investigations</label>
                     <div class="grid grid-cols-2 lg:grid-cols-3 border border-gray-200 p-3 rounded-md gap-4 my-4">
                         <?php foreach($categories as $category): ?>
                             <div class="flex items-center">
-                                <input id="checked-checkbox" name="category_id[]" type="checkbox" value="<?= $category->id ?>" class="w-4 h-4 text-skay-600 bg-gray-100 border-gray-300 rounded focus:ring-skay-500 dark:focus:ring-skay-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <input id="checked-checkbox" name="categories[]" type="checkbox" value="<?= $category->id ?>" class="w-4 h-4 text-skay-600 bg-gray-100 border-gray-300 rounded focus:ring-skay-500 dark:focus:ring-skay-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $category->name . " . " . number_format($category->price) ?></label>
                             </div>
                         <?php endforeach ?>
                     </div>
                 </div>
-                   
+
+                <div>
+                    <label class="block font-medium">Surgicals</label>
+                    <div class="grid grid-cols-2 lg:grid-cols-3 border border-gray-200 p-3 rounded-md gap-4 my-4">
+                        <?php foreach($surgicals as $surgical): ?>
+                            <div class="flex items-center">
+                                <input id="checked-checkbox" name="surgicals[]" type="checkbox" value="<?= $surgical->id ?>" class="w-4 h-4 text-skay-600 bg-gray-100 border-gray-300 rounded focus:ring-skay-500 dark:focus:ring-skay-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $surgical->name . " . " . number_format($category->price) ?></label>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
 
                 <div id="editor"></div>
                 <input type="hidden" name="desc" value="" id="editorContent">

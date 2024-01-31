@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class InvestigationModel extends Model
+class TreatmentModel extends Model
 {
-    protected $table            = 'investigatigations';
+    protected $table            = 'treatments';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['patient_id','user_id', 'categories', 'surgicals', 'comment', 'replied_by', 'result'];
+    protected $allowedFields    = ['patient_id','user_id', 'desc'];
 
     // Dates
     protected $useTimestamps = true;
