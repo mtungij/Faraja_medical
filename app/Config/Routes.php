@@ -10,6 +10,7 @@ use App\Controllers\InvestigationController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
 use App\Controllers\ReviewController;
+use App\Controllers\SellController;
 use App\Controllers\TreatmentController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
@@ -160,7 +161,13 @@ $routes->post('invest','InvestigationController::store');
 
 $routes->get('drugs','DrugController::index');
 $routes->post('drugscreate','DrugController::store');
-$routes->get('sell','DrugController::sell');
+// $routes->get('sell','DrugController::sell');
+
+$routes->get('sell',[SellController::class, 'index']);
+$routes->post('sell',[SellController::class, 'store']);
+$routes->patch('sell/update',[SellController::class, 'update']);
+$routes->delete('sell/remove',[SellController::class, 'remove']);
+
 
 
 $routes->presenter('surgical',['controller' => 'SurgicalController']);
