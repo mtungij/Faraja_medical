@@ -113,6 +113,13 @@ initTE({ Select });
       toolbar: toolbarOptions
     }
   });
+
+  var quill = new Quill('#editor2', {
+    theme: 'snow',
+    modules: {
+      toolbar: toolbarOptions
+    }
+  });
 </script>
   </body>
 

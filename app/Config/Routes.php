@@ -9,6 +9,7 @@ use App\Controllers\InvestigationController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
 use App\Controllers\ReviewController;
+use App\Controllers\TreatmentController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
 use App\Models\Reviews;
@@ -89,6 +90,11 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/investigations', [InvestigationController::class, 'index']);
     $routes->post('(:num)/investigations', [InvestigationController::class, 'store']);
+    $routes->get('(:num)/investigations/(:num)/edit', [InvestigationController::class, 'edit']);
+    $routes->patch('(:num)/investigations/(:num)/update', [InvestigationController::class, 'update']);
+
+    $routes->get('(:num)/treatments', [TreatmentController::class, 'index']);
+    $routes->post('(:num)/treatments', [TreatmentController::class, 'store']);
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
     $routes->get('show','PatientController::show');
