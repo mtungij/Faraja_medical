@@ -12,7 +12,7 @@ class Home extends BaseController
 
         if(!session('user_id')){
 
-            return redirect('/login');
+            return redirect('login');
         }
         // $users=model(UserModel::class)->findAll();
         // $usercount=count($users);

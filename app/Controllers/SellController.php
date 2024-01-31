@@ -3,16 +3,32 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DrugModel;
+use App\Models\PatientModel;
+use App\Models\TreatmentModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class SellController extends BaseController
 {
+
+    public function  search()
+    {
+        $patients =model(PatientModel::class)->findAll();
+       
+        return view('patient/search_patient',['patients'=>$patients]);
+    }
+
+
+
     public function index()
     {
         $cart = \Config\Services::cart();
-
+        $patientId = $this->request->getGet('patient_id');
+        $treatment = model(TreatmentModel::class)->where('patient_id', $patientId)->orderBy('created_at','DESC')->first();
+      
         return view('drug/sell', [
             'cart' => $cart->contents(),
+            'treatment' => $treatment,
             'drugs' => model('App\Models\DrugModel')->findAll(),
         ]);
     }

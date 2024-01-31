@@ -3,7 +3,25 @@
 <?= $this->section('content') ;?>
 
 
+
+
+<div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Work fast from anywhere</h5>
+   
+    <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
+      
+    <article class="prose lg:prose-xl">
+
+        <?= $treatment ? $treatment->desc : "No treatment available for this patient" ?>
+    </article>
+
+    </div>
+</div>
+
 <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+
+
     <div class="relative overflow-x-auto">
         <h2 class="text-3xl font-bold text-sky-950 my-3">Cart</h2>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

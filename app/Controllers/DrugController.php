@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\DrugModel;
+use App\Models\PatientModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class DrugController extends BaseController
@@ -50,11 +51,7 @@ class DrugController extends BaseController
         
     }
 
-    public function sell()
-    {
-       
-        return view('drug/sell');
-    }
+    
 }
 
 

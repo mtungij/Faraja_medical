@@ -162,6 +162,7 @@ $routes->post('invest','InvestigationController::store');
 $routes->get('drugs','DrugController::index');
 $routes->post('drugscreate','DrugController::store');
 // $routes->get('sell','DrugController::sell');
+$routes->get('search/patient','SellController::search');
 
 $routes->get('sell',[SellController::class, 'index']);
 $routes->post('sell',[SellController::class, 'store']);
