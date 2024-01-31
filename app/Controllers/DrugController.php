@@ -48,9 +48,12 @@ class DrugController extends BaseController
        
        return redirect()->back()->with('success','data added successfully');
         
+    }
 
-
-    
+    public function sell()
+    {
+       
+        return view('drug/sell');
     }
 }
 
