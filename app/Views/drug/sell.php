@@ -88,9 +88,17 @@
         <div class="flex justify-end w-full">
             <div>
                 <h2 class="text-2xl font-bold text-sky-950 my-3">Total: <?= number_format($total) ?></h2>
-                <form action="<?= site_url("sell/checkout") ?>" method="post">
+                <form action="<?= site_url("sell/checkout") ?>" method="post" class="space-y-3">
                     <?= csrf_field() ?>
-                    <button type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">Sell</button>
+                    <input type="hidden" name="patient_id" value="<?= $patient->id ?>">
+                    <select name="payment_id" data-te-select-init data-te-select-filter="true" class="shrink"   data-te-select-placeholder="Payment method">
+                        <?php foreach ($payments as $payment): ?>
+                            <option value=" <?= $payment->id ?>"><?= $payment->name ?></option>
+                        <?php endforeach ?>
+                    </select>
+                    <div class="flex justify-end">
+                        <button type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">Sell</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -168,6 +168,7 @@ $routes->get('sell',[SellController::class, 'index']);
 $routes->post('sell',[SellController::class, 'store']);
 $routes->patch('sell/update',[SellController::class, 'update']);
 $routes->delete('sell/remove',[SellController::class, 'remove']);
+$routes->post('sell/checkout',[SellController::class, 'checkout']);
 
 
 
