@@ -4485,6 +4485,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   padding: 1.5rem;
 }
 
+.p-8 {
+  padding: 2rem;
+}
+
 .p-9 {
   padding: 2.25rem;
 }
@@ -4762,6 +4766,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .ps-3 {
   padding-inline-start: 0.75rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
 }
 
 .pt-14 {

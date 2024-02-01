@@ -28,7 +28,9 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <div id="editor"></div>
+
+            <div id="editor"></div>
+               
                 <input type="hidden" name="desc" value="" id="editorContent">
                 <input type="hidden" name="patient_id" value="<?= $patient->id ?>">
                 <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">

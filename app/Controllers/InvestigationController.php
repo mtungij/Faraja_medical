@@ -48,13 +48,31 @@ class InvestigationController extends BaseController
         
             $validatedData = $this->validator->getValidated();
             
-            model(InvestigationModel::class)->insert([
+           $investigation= model(InvestigationModel::class)->insert([
                 ...$validatedData, 
                 'comment' => $comment, 
                 'result' => $result,
                 'surgicals' => serialize($surgicals), 
                 'categories' => serialize($categories)
             ]);
+
+            //if patient_id is available to invoice table then update else insert
+
+        $patient = model('App\Models\InvoiceModel')->where('patient_id', $this->request->getPost('patient_id'))->first();
+
+        if ($patient) {
+            model('App\Models\InvoiceModel')->update($patient['id'], [
+                'investigatigation_id' => $investigation,
+            ]);
+        } else {
+            model('App\Models\InvoiceModel')->insert([
+                'patient_id' => $this->request->getPost('patient_id'),
+                'investigatigation_id' => $investigation,
+            ]);
+        }
+
+
+
             
             return redirect()->back()->with('success','data added successfully');
 
