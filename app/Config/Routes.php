@@ -7,6 +7,7 @@ use App\Controllers\ExaminationController;
 use App\Controllers\FamilyhistorylController;
 use App\Controllers\HistoryController;
 use App\Controllers\InvestigationController;
+use App\Controllers\InvoiceController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
 use App\Controllers\ReviewController;
@@ -14,6 +15,7 @@ use App\Controllers\SellController;
 use App\Controllers\TreatmentController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
+use App\Models\InvoiceModel;
 use App\Models\Reviews;
 use CodeIgniter\Router\RouteCollection;
 
@@ -103,6 +105,9 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/appointments', [AppointmentController::class, 'index']);
     $routes->post('(:num)/appointments', [AppointmentController::class, 'store']);
+
+
+    $routes->get('(:num)/invoice', [InvoiceController::class, 'index']);
     
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);

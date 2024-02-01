@@ -14,6 +14,7 @@ class TreatmentController extends BaseController
         $treatments = model(TreatmentModel::class)->builder()
                                 ->select("treatments.*, users.name")
                                 ->join("users", 'users.id = treatments.user_id')
+                                ->where('patient_id', $id)
                                 ->get()
                                 ->getResult();
         $patient = model(PatientModel::class)->find($id);
