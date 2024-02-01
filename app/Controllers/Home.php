@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\DrugModel;
 use App\Models\AppointmentModel;
 use App\Models\PatientModel;
+use App\Models\SaleItemModel;
 
 class Home extends BaseController
 {
@@ -31,6 +32,10 @@ class Home extends BaseController
         $startDate = date('Y-m-d', strtotime('last monday', strtotime($today)));
 
         $endDate = date('Y-m-d', strtotime('next sunday', strtotime($today)));
+
+        // end of weekly appointments
+
+        $todaysale = model(SaleItemModel::class)->builder()->select("sale_items.*,d.name,d.unit")->
 
         $weeklyappointments =model(AppointmentModel::class)->builder()->select("appointments.*,u.name as name,r.name as receiver ,p.first_name , p.middle_name , p.last_name ")
                             ->join('users u', 'u.id = appointments.user_id')
