@@ -9,10 +9,10 @@ class InvoiceModel extends Model
     protected $table            = 'invoices';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['patient_id', 'investigatigation_id', 'sale_id'];
+    protected $allowedFields    = ['id', 'patient_id', 'investigatigation_id', 'sale_id', 'status'];
 
     // Dates
     protected $useTimestamps = true;

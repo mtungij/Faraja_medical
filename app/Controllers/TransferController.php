@@ -4,55 +4,42 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\TransferModel;
+use App\Models\User;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class TransferController extends BaseController
 {
-
-
-    public function index($id)
-
+    // Controller method to fetch departments
+    public function get_departments()
     {
-
-       return view("transfer/transfer");
-
+        $departments = model(UserModel::class)->builder()->select('department')->distinct()->get()->getResultArray();
+        echo json_encode($departments);
     }
 
-
-
-
-
-
-    public function transfer()
+    // Controller method to fetch staff by department
+    public function getStaffByDepartment($department)
     {
-       
-        
-        
-        
+        $staffs = model(UserModel::class)->where('department', $department)->get()->getResultArray();
+        echo json_encode($staffs);
+    }
 
-        if( ! $this->validate([
+    public function store()
+    {
+        if(! $this->validate([
+            'patient_id' => 'required',
             'from' => 'required',
             'to' => 'required',
-            'patient_id'=> 'required'
-        
-    
         ])){
-                       
-            return redirect()->back()->withInput()->with('erros','please fill all field');     
+            return redirect()->back()->withInput()->with('errors', "Please fill all fields");
+        }
+
+        $validatedData = $this->validator->getValidated();
+
+        $transfer = model(TransferModel::class)->insert($validatedData);
+
+        return redirect()->back()->with('success', 'Patient transfered successfully');
     }
-    
-     $validatedData = $this->validator->getValidated();
-    
-     dd($validatedData); 
-    
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
-    
-    
-    
-     model(TransferModel::class)->insert($validatedData );
-    
-       
-       return redirect()->back()->with('good','Patient Transfered successfully');
-    }
+
+
 }
