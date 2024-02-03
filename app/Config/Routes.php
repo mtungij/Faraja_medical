@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ActivitiesController;
 use App\Controllers\AppointmentController;
 use App\Controllers\ComplainController;
 use App\Controllers\DiagnosisController;
@@ -117,6 +118,9 @@ $routes->group('patients', static function ($routes) {
     $routes->post('update',[PatientController::class, 'update_patient']);
     $routes->post('store_patient',[PatientController::class, 'store']);
 });
+
+
+$routes->get('activities', [ActivitiesController::class, 'index']);
 
 
 //user Auth
