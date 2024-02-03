@@ -21,7 +21,7 @@
         
         <li class="flex  items-center ">
           
-            <button class="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg  bg-green-500 font-semibold text-white px-6 py-2"><?= $item->status ;?></button>
+            <button class="w-1/2 block mx-auto rounded-full  hover:shadow-lg  bg-green-500 font-semibold text-white px-6 py-2"><?= $item->status ;?></button>
         </li>
     </ul>
     <div class="p-4 border-t items-center mx-14 ">

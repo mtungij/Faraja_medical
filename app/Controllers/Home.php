@@ -35,7 +35,10 @@ class Home extends BaseController
 
         // end of weekly appointments
 
-        $todaysale = model(SaleItemModel::class)->builder()->select("sale_items.*,d.name,d.unit")->
+        $todaysale = model(SaleItemModel::class)->builder()->select('sale_items.*,d.name,d.unit')->join('drugs d','sale_items.id = d.id')->where("DATE(sale_items.created_at)",$today)->get()
+        ->getResult(); 
+
+      
 
         $weeklyappointments =model(AppointmentModel::class)->builder()->select("appointments.*,u.name as name,r.name as receiver ,p.first_name , p.middle_name , p.last_name ")
                             ->join('users u', 'u.id = appointments.user_id')

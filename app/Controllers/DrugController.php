@@ -51,7 +51,14 @@ class DrugController extends BaseController
         
     }
 
-    
+    public function filter_drug()
+
+{
+  
 }
+    }
+
+    
+
 
 
