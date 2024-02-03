@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\DrugModel;
 use App\Models\PatientModel;
 use App\Models\PaymentModel;
+use App\Models\TransferModel;
 use App\Models\TreatmentModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -28,6 +29,13 @@ class SellController extends BaseController
         $payments = model(PaymentModel::class)->findAll();
         $patient = model(PatientModel::class)->find($patientId);
         $treatment = model(TreatmentModel::class)->where('patient_id', $patientId)->orderBy('created_at','DESC')->first();
+
+        if(session('department') != "admin") {
+            $transfer = model(TransferModel::class)->where('patient_id', $patientId)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
+            if($transfer && $transfer->status == 'new') {
+                model(TransferModel::class)->update((int) $transfer->id, ['status' => 'done']);
+            }
+        }
       
         return view('drug/sell', [
             'cart' => $cart->contents(),

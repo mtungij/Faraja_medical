@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\InvoiceModel;
+use App\Models\SaleModel;
 use App\Models\TransferModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -18,6 +20,7 @@ class ActivitiesController extends BaseController
                             ->where('to', session('user_id'))
                             ->join('users f', 'transfers.from = f.id')
                             ->join('patients p', 'transfers.patient_id = p.id')
+                            ->orderBy('created_at', 'desc')
                             ->like('p.first_name', $search)
                             ->orLike('p.middle_name', $search)
                             ->orLike('p.last_name', $search)
@@ -29,12 +32,47 @@ class ActivitiesController extends BaseController
                             ->where('to', session('user_id'))
                             ->join('users f', 'transfers.from = f.id')
                             ->join('patients p', 'transfers.patient_id = p.id')
+                            ->orderBy('created_at', 'desc')
                             ->paginate(10);
         }
 
-        // dd($patients);
+        $staffSales = null;
+        if(session('department') == 'pharmacist') {
+            $staffSales = model(SaleModel::class)->builder()->select('SUM(si.quantity) as quantity, SUM(si.price) as price, d.name')
+                                ->join('sale_items si', 'sales.id = si.sale_id')
+                                ->join('drugs d', 'si.drug_id = d.id')
+                                ->where('sales.user_id', session('user_id'))
+                                ->where('DATE(sales.created_at)', date('Y-m-d'))
+                                ->groupBy('si.drug_id')
+                                ->get()
+                                ->getResult();
+                                
+        } elseif(session('department') == 'receptionist') {
+            $staffSales = model(SaleModel::class)->builder()->select('SUM(si.quantity) as quantity, SUM(si.price) as price, d.name')
+                                ->join('sale_items si', 'sales.id = si.sale_id')
+                                ->join('drugs d', 'si.drug_id = d.id')
+                                ->where('DATE(sales.created_at)', date('Y-m-d'))
+                                ->groupBy('si.drug_id')
+                                ->get()
+                                ->getResult();
+        }
+
+        $investigations = [];
+        if(session('department') == 'receptionist') {
+            $investigations = model(InvoiceModel::class)->builder()->select("inv.categories, inv.surgicals")
+                                    ->join('investigatigations inv', 'invoices.investigatigation_id = inv.id')
+                                    ->where('invoices.status !=', 'pending')
+                                    ->where('DATE(invoices.updated_at)', date('Y-m-d'))
+                                    ->get()
+                                    ->getResult();
+        }
+
+
+
         return view('activities', [
             'patients' => $patients,
+            'staffSales' => $staffSales,
+            'investigations' => $investigations,
         ]);
     }
 }

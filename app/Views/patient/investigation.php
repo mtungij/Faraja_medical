@@ -103,9 +103,10 @@
                     if(!empty($serializedcategories)) {
                         $categories = model('LabtestModel')->find($serializedcategories);
                     }
-                    ?>
+                    
+                    $invoice = model('InvoiceModel')->where('investigatigation_id', $investigation->id)->first();
 
-                    <?php $invoice = model('InvoiceModel')->where('investigatigation_id', $investigation->id)->first() ;?>
+                    ?>
                                    
                 <li class="mb-4 ms-4">
                     <div class="absolute w-3 h-3 bg-gray-300 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>

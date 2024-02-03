@@ -128,16 +128,17 @@
                                     <span class="text-white">View</span>
                            </button>
                           </a>
-
-                          <a  href="<?= site_url("patients/edit/$item->id") ?>">
-                            <button class="flex space-x-2 items-center px-3 py-2 bg-sky-500 rounded-md drop-shadow-md">
-                           
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil">
-                              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-                              <path d="m15 5 4 4"/>
-                            </svg>
-                          </button>
-                        </a>
+                         <?php if(session('department') == 'admin'): ?>
+                            <a  href="<?= site_url("patients/edit/$item->id") ?>">
+                              <button class="flex space-x-2 items-center px-3 py-2 bg-sky-500 rounded-md drop-shadow-md">
+                            
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil">
+                                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                <path d="m15 5 4 4"/>
+                              </svg>
+                            </button>
+                          </a>
+                        <?php endif ?>
                         </div>
                       </td>
                     </tr>

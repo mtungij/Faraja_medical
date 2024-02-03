@@ -7,12 +7,19 @@ use App\Models\InvestigationModel;
 use App\Models\LabtestModel;
 use App\Models\PatientModel;
 use App\Models\SurgicalModel;
+use App\Models\TransferModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class InvestigationController extends BaseController
 {
     public function index($id)
     {
+        if(session('department') != "admin") {
+            $transfer = model(TransferModel::class)->where('patient_id', $id)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
+            if($transfer && $transfer->status == 'new') {
+                model(TransferModel::class)->update((int) $transfer->id, ['status' => 'done']);
+            }
+        }
         $categories = model(LabtestModel::class)->findAll();
         $surgicals = model(SurgicalModel::class)->findAll();
         $patient = model(PatientModel::class)->find($id);

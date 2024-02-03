@@ -13,7 +13,7 @@ class TransferModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'from','to','patient_id'
+        'from','to','patient_id', 'status'
     ];
 
     // Dates

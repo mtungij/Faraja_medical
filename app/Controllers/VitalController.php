@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\PatientModel;
+use App\Models\TransferModel;
 use App\Models\VitalModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -14,6 +15,13 @@ class VitalController extends BaseController
         $patients=model(PatientModel::class);
 
         $patient=$patients->find($id);
+
+        if(session('department') != "admin") {
+            $transfer = model(TransferModel::class)->where('patient_id', $id)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
+            if($transfer->status == 'new') {
+                model(TransferModel::class)->update((int) $transfer->id, ['status' => 'done']);
+            }
+        }
 
         $vitals = model('VitalModel')->builder()->select('*')->join('users', 'vital_signs.user_id = users.id')->where('vital_signs.patient_id',$id)->orderBy('vital_signs.created_at','desc')->get()->getResult();
         return view("patient/vital_sign",["patient"=>$patient, 'vitals'=>$vitals]);
