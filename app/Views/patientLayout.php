@@ -15,9 +15,17 @@
           <h1 class="truncate text-2xl uppercase font-bold "><?= $patient->first_name ." ".$patient->middle_name ." ".$patient->last_name ;?></h1>
         </div>
         <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
-          <button type="button" class="inline-flex justify-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+          <button type="button">
             
-            <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">status</span>
+            <span>
+            <?php
+                      $statusClass = ($patient->illiness_status == 'normal') ? 'bg-green-200  px-12 py-3 text-green-800 ' : 'bg-red-100  px-12 py-3 text-red-800';
+                    ?>
+                        <span class="<?= $statusClass; ?> text-19px font-bold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 <?= ( $patient->illiness_status == 'active') ? 'dark:text-green-400 border border-green-400' : 'dark:text-red-400 border border-red-400'; ?>">
+                        <?= ucfirst($patient->illiness_status ); ?>
+                    </span>
+
+            </span>
           </button>
           <button type="button" data-modal-target="transfer-model" data-modal-toggle="transfer-model" class="text-white bg-cyan-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             TRANSFER
@@ -76,9 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-6 hidden min-w-0 flex-1 sm:block md:hidden">
-      <h1 class="truncate text-2xl font-bold text-blue-300">Shehab coding</h1>
-    </div>
+    
   </div>
 </div>
 

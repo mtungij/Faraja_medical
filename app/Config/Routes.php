@@ -56,6 +56,7 @@ $routes->post('create_service','ServiceController::store');
 //patient
 $routes->get('patients','PatientController::loadRecord');
 $routes->get('loadRecord','PatientController::loadRecord');
+$routes->get('searchpatient','PatientController::loadRecord');
 $routes->get('create_patient','PatientController::index');
 $routes->post('store_patient','PatientController::store');
 $routes->get('Newpatients','PatientController::new');
@@ -170,6 +171,8 @@ $routes->post('invest','InvestigationController::store');
 
 $routes->get('drugs','DrugController::index');
 $routes->post('drugscreate','DrugController::store');
+$routes->get('filter/sales','DrugController::filter_drug');
+
 // $routes->get('sell','DrugController::sell');
 $routes->get('search/patient','SellController::search');
 
@@ -178,6 +181,9 @@ $routes->post('sell',[SellController::class, 'store']);
 $routes->patch('sell/update',[SellController::class, 'update']);
 $routes->delete('sell/remove',[SellController::class, 'remove']);
 $routes->post('sell/checkout',[SellController::class, 'checkout']);
+$routes->get('today/sales','SellController::todaysales');
+$routes->get('product/sold','SellController::productsold'); 
+  
 
 
 

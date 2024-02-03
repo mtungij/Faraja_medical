@@ -40,7 +40,7 @@ class PatientController extends BaseController
 if ($search == '') {
     $paginateData = $users->orderBy('created_at', 'DESC')  // Order by created_at in descending order
 
-                         ->paginate();
+                         ->paginate(10);
 } else {
     $paginateData = $users->select('*')
         ->orLike('first_name', $search)
