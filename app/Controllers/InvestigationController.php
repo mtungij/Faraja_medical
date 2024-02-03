@@ -21,6 +21,7 @@ class InvestigationController extends BaseController
                                 ->join("users", 'users.id = investigatigations.user_id')
                                 // ->join('users r', 'r.id = investigatigations.replied_by')
                                 ->where('patient_id', $id)
+                                ->orderBy('created_at', 'desc')
                                 ->get()
                                 ->getResult();
 
@@ -31,6 +32,7 @@ class InvestigationController extends BaseController
             'surgicals' => $surgicals,
         ]);
     }
+
     public function store()
     {
         $comment = $this->request->getPost('desc');
@@ -46,7 +48,7 @@ class InvestigationController extends BaseController
            return redirect()->back()->withInput()->with('errors','please fill all field');     
         }
         
-            $validatedData = $this->validator->getValidated();
+           $validatedData = $this->validator->getValidated();
             
            $investigation= model(InvestigationModel::class)->insert([
                 ...$validatedData, 
@@ -61,8 +63,9 @@ class InvestigationController extends BaseController
         $patient = model('App\Models\InvoiceModel')->where('patient_id', $this->request->getPost('patient_id'))->first();
 
         if ($patient) {
-            model('App\Models\InvoiceModel')->update($patient['id'], [
+            model('App\Models\InvoiceModel')->update($patient->id, [
                 'investigatigation_id' => $investigation,
+                'status' => 'pending',
             ]);
         } else {
             model('App\Models\InvoiceModel')->insert([

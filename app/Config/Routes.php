@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ActivitiesController;
 use App\Controllers\AppointmentController;
 use App\Controllers\ComplainController;
 use App\Controllers\DiagnosisController;
@@ -12,6 +13,7 @@ use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
 use App\Controllers\ReviewController;
 use App\Controllers\SellController;
+use App\Controllers\TransferController;
 use App\Controllers\TreatmentController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
@@ -65,7 +67,6 @@ $routes->post('update_patient','PatientController::update_patient');
 $routes->get('today/appointments','AppointmentController::todayappointment');
 $routes->get('weekly/appointments','AppointmentController::weeklyappointment');
 $routes->get('vital_signs/(:segment)','PatientController::update/$1');
-$routes->get('transfer/(:segment)','PatientController::getDepartments/$1');
 
 
 $routes->group('patients', static function ($routes) {
@@ -109,6 +110,7 @@ $routes->group('patients', static function ($routes) {
 
 
     $routes->get('(:num)/invoice', [InvoiceController::class, 'index']);
+    $routes->patch('(:num)/(:num)/invoice_status', [InvoiceController::class, 'changeStatus']);
     
 
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
@@ -117,6 +119,9 @@ $routes->group('patients', static function ($routes) {
     $routes->post('update',[PatientController::class, 'update_patient']);
     $routes->post('store_patient',[PatientController::class, 'store']);
 });
+
+
+$routes->get('activities', [ActivitiesController::class, 'index']);
 
 
 //user Auth
@@ -130,9 +135,6 @@ $routes->get('updateUser/(:segment)','UserController::update_user/$1');
 $routes->post('update_staff','UserController::update_staff');
 
 
-$routes->post('user/departiments', [UserController::class,'getDepartments']);
-$routes->post('user/name/(:segment)', [UserController::class,'getUsersByDepartment']);
-
 
 //vital signs
 $routes->post('store_vital','VitalController::index');
@@ -141,7 +143,9 @@ $routes->post('store_signs','VitalController::insert');
 
 
 // Transfer
-$routes->get('transfers/(:segment)','TransferController::index/$id');
+$routes->get('transfer/departments', [TransferController::class, 'get_departments']);
+$routes->get('transfer/staffs/(:segment)', [TransferController::class, 'getStaffByDepartment']);
+$routes->post('transfer', [TransferController::class, 'store']);
 
 // service payment
 

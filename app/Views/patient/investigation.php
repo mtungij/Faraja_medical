@@ -5,7 +5,7 @@
 
 <section class="bg-gray-50 dark:bg-gray-900">
     <header>
-        <h2 class="text-2xl font-bold my-3">Chief investigations</h2>
+        <h2 class="text-2xl font-bold my-3">Investigations</h2>
     </header>
     <?php if(session('val_errors')): ?>
         <ul>
@@ -95,15 +95,30 @@
                 <?php
                     $serializedSurgicals = unserialize($investigation->surgicals);
                     $serializedcategories = unserialize($investigation->categories);
+                    $surgicals = [];
+                    $categories = [];
+                    if(!empty($serializedSurgicals)) {
+                        $surgicals = model('SurgicalModel')->find($serializedSurgicals);
+                    }
+                    if(!empty($serializedcategories)) {
+                        $categories = model('LabtestModel')->find($serializedcategories);
+                    }
+                    ?>
 
-                    $surgicals = model('SurgicalModel')->find($serializedSurgicals);
-                    $categories = model('LabtestModel')->find($serializedcategories);
-
-                    
-                    ?>               
+                    <?php $invoice = model('InvoiceModel')->where('investigatigation_id', $investigation->id)->first() ;?>
+                                   
                 <li class="mb-4 ms-4">
                     <div class="absolute w-3 h-3 bg-gray-300 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><?= date('d M Y', strtotime($investigation->created_at)) ;?></time>
+                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                        <?= date('d M Y', strtotime($investigation->created_at))  ;?>
+                        <?php if($invoice): ?>
+                            <?php if($invoice->status == "pending"): ?>
+                                <span class="bg-yellow-100 uppercase text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300"><?= $invoice->status ?></span>
+                            <?php else: ?>
+                                <span class="bg-green-200 uppercase text-green-900 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-green-900 dark:text-green-300"><?= $invoice->status ?></span>
+                            <?php endif ;?>
+                        <?php endif ;?>
+                    </time>
                     <div class="border border-gray-300 rounded-md my-3 p-3">
                         <h3 class="font-medium text-sky-950 mb-3">Investigations</h3>
                         <ul role="list" class="marker:text-sky-400 list-disc pl-5 space-y-3 text-sky-950/60">
@@ -136,14 +151,16 @@
                         </article>
                     </div>
 
-                    <div class="border border-gray-300 rounded-md p-3 ml-20 my-4 bg-sky-100">
-                        <h3 class="text-lg font-semibold text-gray-900 w-fit dark:text-white">
-                            <span class="font-medium text-sky-950n pb-2">Replied by - <i class="font-normal"><?= $replied_by ?? "No results yet" ?></i></span>
-                            </h3>
-                        <article class="prose lg:prose-xl">
-                            <?= $investigation->result ?? 'No replay yet' ?>
-                        </article>
-                    </div>
+                    <?php if($investigation->result): ?>
+                        <div class="border border-gray-300 rounded-md p-3 ml-20 my-4 bg-sky-100">
+                            <h3 class="text-lg font-semibold text-gray-900 w-fit dark:text-white">
+                                <span class="font-medium text-sky-950n pb-2">Replied by - <i class="font-normal"><?= $replied_by ?? "No results yet" ?></i></span>
+                                </h3>
+                            <article class="prose lg:prose-xl">
+                                <?= $investigation->result ?? 'No replay yet' ?>
+                            </article>
+                        </div>
+                    <?php endif ;?>
                 </li>
                 <div class="flex justify-end">
                    
