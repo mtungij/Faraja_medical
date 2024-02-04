@@ -38,6 +38,7 @@ class Home extends BaseController
         $todaysale = model(SaleItemModel::class)->builder()->select('sale_items.*,d.name,d.unit')->join('drugs d','sale_items.id = d.id')->where("DATE(sale_items.created_at)",$today)->get()
         ->getResult(); 
 
+        $products = model(DrugModel::class)->where("quantity",0)->get()->getResult(); 
       
 
         $weeklyappointments =model(AppointmentModel::class)->builder()->select("appointments.*,u.name as name,r.name as receiver ,p.first_name , p.middle_name , p.last_name ")
@@ -56,7 +57,7 @@ class Home extends BaseController
         $femaletoday =model(PatientModel::class)->where('gender','female')->where("DATE(created_at)",$today)->findAll();
         $maletoday =model(PatientModel::class)->where("gender","male")->where("DATE(created_at)","$today")->findAll();
         $patients=model(PatientModel::class)->findAll();
-        $medicine =model(DrugModel::class)->findAll();
+        $medicine =model(DrugModel::class)->select("SUM(drugs.quantity)");
         $lowage=model(PatientModel::class)->where("DATE(created_at)",$today)
         ->where('age >=', $minAge)
         ->where('age <=', $maxAge)
@@ -76,17 +77,20 @@ class Home extends BaseController
         // dd($patienttoday);
         // dd($olders);
 
+        // dd($medicine);  
+
         $todayP=count($patienttoday);
         $female=count($femaletoday);
         $male =count($maletoday);
         $patients =count($patients);
-        $medicine=count($medicine);
         $childage=count($lowage);
         $middleage=count($middleage);
         $olders=count($olders);
         $todayappointments=count($todayappointments);
         $weeklyappointments=count($weeklyappointments);
+        $products =count($products );
 
+      
         
         
         $data = [
@@ -100,6 +104,7 @@ class Home extends BaseController
             'olders'=> $olders,
             'todayappointments'=> $todayappointments,
             'weeklyappointments'=> $weeklyappointments,
+            'products'=> $products,
         ];
     
 

@@ -5,6 +5,7 @@ use App\Controllers\AppointmentController;
 use App\Controllers\AuthController;
 use App\Controllers\ComplainController;
 use App\Controllers\DiagnosisController;
+use App\Controllers\DrugController;
 use App\Controllers\ExaminationController;
 use App\Controllers\FamilyhistorylController;
 use App\Controllers\HistoryController;
@@ -177,6 +178,8 @@ $routes->post('invest','InvestigationController::store');
 $routes->get('drugs','DrugController::index');
 $routes->post('drugscreate','DrugController::store');
 $routes->get('filter/sales','DrugController::filter_drug');
+$routes->get('empty/products','DrugController::empty_products');
+$routes->post('search/empty-drugs',[DrugController::class,'empty_search']);
 
 // $routes->get('sell','DrugController::sell');
 $routes->get('search/patient','SellController::search');
@@ -188,6 +191,7 @@ $routes->delete('sell/remove',[SellController::class, 'remove']);
 $routes->post('sell/checkout',[SellController::class, 'checkout']);
 $routes->get('today/sales','SellController::todaysales');
 $routes->get('product/sold','SellController::productsold'); 
+$routes->get('staffwise/report','SellController::staffwise'); 
   
 
 

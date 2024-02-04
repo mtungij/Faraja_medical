@@ -51,12 +51,30 @@ class DrugController extends BaseController
         
     }
 
-    public function filter_drug()
+    public function empty_products()
 
 {
+   
+
+
+    $products = model(DrugModel::class)->where("quantity",0)->get()->getResult(); 
+   $stock_limit = model(DrugModel::class)->findAll();
+
+  
+
+    return view("reports/empty_medicine",["products"=> $products]);
+    
+
   
 }
-    }
+
+
+}
+
+
+
+
+    
 
     
 

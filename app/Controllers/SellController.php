@@ -9,6 +9,9 @@ use App\Models\PaymentModel;
 use App\Models\SaleModel;
 use App\Models\TransferModel;
 use App\Models\TreatmentModel;
+use App\Models\TransferModel;
+use App\Models\SaleModel;
+use App\Models\UserModelModel;
 use App\Models\SaleItemModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -152,6 +155,7 @@ class SellController extends BaseController
         $from = $this->request->getGet('from');
         $to = $this->request->getGet('to');
         
+        
 
         // $product =model(SaleItemModel::class)->builder()->select("SUM(sale_items.quantity) as total,sale_items.created_at")->where("DATE(sale_items.created_at)",date("Y-m-d"))->get()->getResult();
 
@@ -239,6 +243,9 @@ class SellController extends BaseController
         return view("drug/drugsold",["drug" => $drug ,"total_product_sold" => $total_product_sold ,"total_sales" => $total_sales    ]);
 
         }
+
+
+      
 
 
         
