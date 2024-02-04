@@ -131,7 +131,7 @@ class SellController extends BaseController
         $patient = model('App\Models\InvoiceModel')->where('patient_id', $this->request->getPost('patient_id'))->first();
 
         if ($patient) {
-            model('App\Models\InvoiceModel')->update($patient['id'], [
+            model('App\Models\InvoiceModel')->update($patient->id, [
                 'sale_id' => $sales,
             ]);
         } else {

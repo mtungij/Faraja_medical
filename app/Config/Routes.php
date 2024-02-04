@@ -131,9 +131,10 @@ $routes->get('/', 'Home::index');
 $routes->get('login', 'Login::index');
 $routes->post('login/auth','Login::auth');
 $routes->get('/logout', [AuthController::class, 'logout']);
+$routes->patch('password/reset', [UserController::class, 'reset_password']);
 
 
-
+$routes->get('myprofile', [UserController::class, 'myprofile']);
 $routes->get('user/create','UserController::index');
 $routes->post('store_staff','UserController::create');
 $routes->get('staffs','UserController::all_staffs');

@@ -3,7 +3,6 @@ use App\Models\SettingModel;
 
 $setting = model(SettingModel::class)->first();
 
-
 function format_date($date) {
     return date('d M Y', strtotime($date));
 }
@@ -19,11 +18,19 @@ function format_datetime($date) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo base_url('css/datatable.css') ?>">
     <link href="<?php echo base_url('css/styles.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('css/quill.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('js/jquery.js')?>"></script>
+    <script src="<?php echo base_url('js/datatable.js')?>"></script>
  
 
+    <script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+
+    </script>
   
 </head>
 <body>
@@ -68,24 +75,25 @@ function format_datetime($date) {
              <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
        <span class="sr-only">Info</span>
-        <div>
-  <p> <?= session()->getFlashdata('success') ?></p> 
-  </div>
+       <div>
+         <p> <?= session()->getFlashdata('success') ?></p> 
+        </div>
 </div>
             </div>
       <?php endif?>
 
-   <?= $this->renderSection('content') ;?>
+      <?= $this->renderSection('content') ;?>
     </main>
   </div>
   <script src="<?php echo base_url('js/flowbite.js') ?>"></script>
   <script src="<?php echo base_url('js/tw-elements.umd.min.js') ?>"></script>
   <script src="<?php echo base_url('js/quill.js') ?>"></script>
-
+  
   <script type="module">
+    
     import { Select, initTE } from "tw-elements";
 initTE({ Select });
-  </script>
+</script>
 
 <script>
   var toolbarOptions = [
@@ -123,9 +131,9 @@ initTE({ Select });
   });
 </script>
 
-<script src="path/to/chartjs/dist/chart.umd.js"></script>
 <script>
     const myChart = new Chart(ctx, {...});
+
 </script>
   </body>
 
