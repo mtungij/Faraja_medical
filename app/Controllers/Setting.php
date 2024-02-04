@@ -11,7 +11,7 @@ class Setting extends BaseController
     public function index()
     {
         $setting =model(SettingModel::class);
-         $settings=$setting->find('7');
+         $settings=$setting->first();
 
          return view("setting/general",["settings"=>$settings]);
     }

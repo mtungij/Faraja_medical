@@ -19,27 +19,25 @@
 </div>
 
 <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    
-
 
     <div class="relative overflow-x-auto">
         <h2 class="text-3xl font-bold text-sky-950 my-3">Cart</h2>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-50 uppercase bg-sky-600/90 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="p-2">
                         Product name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="p-2">
                         Quantity
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="p-2">
                         Price
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="p-2">
                         Subtotal
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="p-2">
                         Cancel
                     </th>
                 </tr>
@@ -51,7 +49,7 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?= $item['name'] ?>
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="p-2">
                            <!-- quantity input -->
                             <form action="<?= site_url("sell/update") ?>" method="post" class="flex gap-1.5">
                                   <?= csrf_field() ?>
@@ -64,14 +62,14 @@
                                   </button>
                              </form>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="p-2">
                             <?= number_format($item['price']) ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="p-2"> 
                             <?php $total += $item['subtotal'] ;?>
                             <?= number_format($item["subtotal"]) ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="p-2">
                             <form action="<?= site_url("sell/remove") ?>" method="post">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="_method" value="DELETE">
@@ -103,45 +101,51 @@
             </div>
         </div>
     </div>
-
-    <div class="relative overflow-x-auto">
-        <h2 class="text-3xl font-bold text-sky-950 my-3">Drugs</h2>
-
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-50 uppercase bg-sky-600/90 dark:bg-gray-700 dark:text-gray-400">
+<div class="relative overflow-x-auto">
+        <table id="myTable" class="display">
+            <thead >
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th>
                         Product name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th>
                         Stock
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th>
                         Price
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th>
                         Sell
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($drugs as $item) : ?>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr>
+                        <th>
                             <?= $item->name ?>
                         </th>
-                        <td class="px-6 py-4">
-                           <?= $item->quantity ?>
+                        <td class="flex gap-1 items-center">
+                            <?php if($item->quantity <= $item->stock_limit): ?>
+                             <span class="flex w-3 h-3 me-3 bg-red-500 rounded-full"></span>
+                             <?php else: ?>
+                                <span class="flex w-3 h-3 me-3 bg-green-500 rounded-full"></span>
+                            <?php endif ?>
+                            <span>
+                                <?= $item->quantity ?>
+                            </span>
                         </td>
-                        <td class="px-6 py-4">
+                        <td>
                             <?= $item->sell_price ?>
                         </td>
-                        <td class="px-6 py-4">
-                            <form action="<?= site_url("sell") ?>" method="post">
-                                <?= csrf_field() ?>
-                                <input type="hidden" name="drug_id" value="<?= $item->id ?>">
-                                <button type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">Sell</button>
-                            </form>
+                        <td>
+                            <?php if($item->quantity != 0): ;?>
+                                <form action="<?= site_url("sell") ?>" method="post">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="drug_id" value="<?= $item->id ?>">
+                                    <button type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">Sell</button>
+                                </form>
+                            <?php endif ?>
                         </td>
                     </tr>
                 <?php endforeach ?>

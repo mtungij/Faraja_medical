@@ -125,5 +125,35 @@ class UserController extends BaseController
     }
  
 
+    public function myprofile() {
+        $user = model(UserModel::class)->find(session('user_id'));
+
+        return view('myprofile', [
+            'user' => $user,
+        ]);
+    }
+
+
+    public function reset_password()
+    {
+        $oldPassword = $this->request->getPost('password');
+        $newPassword = $this->request->getPost('new_password');
+        $newPasswordConfirm = $this->request->getPost('new_password_confirm');
+
+        $user = model(UserModel::class)->find(session('user_id'));
+
+        if($newPassword != $newPasswordConfirm) {
+            return redirect()->back()->with('errors' ,'Password does not match');
+        }
+
+        if(!password_verify($oldPassword, $user->password)) {
+            return redirect()->back()->with('errors', 'Incorrect old password.');
+        } else {
+            model(UserModel::class)->update($user->id, ['password' => password_hash($newPassword, PASSWORD_BCRYPT, ['cost' => 12])]);
+            return redirect()->back()->with('success', 'Password changed successfully.');
+        }
+
+
+    }
 
 }
