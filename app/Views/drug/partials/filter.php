@@ -33,7 +33,17 @@
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
-            <!-- Modal body -->
+                  
+            <!-- <div class= "px-3">
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select medicine Name</label>
+                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a country</option>
+                            <option value="US">seller one</option>
+                            <option value="US">seller two</option>
+                            <option value="US">All sellers</option>
+
+                      </select>
+                      </div> -->
             <div class="p-4 md:p-5  grid items-center gap-4 mb-4 sm:grid-cols-2">
             <div>
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">From Date:</label>

@@ -402,7 +402,7 @@
             >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
               <span class="flex-1 ml-3 text-left whitespace-nowrap"
-                >Today Sales</span
+                >Medicine Report</span
               >
               <svg
                 aria-hidden="true"
@@ -421,13 +421,30 @@
             <ul id="medicine" class="hidden py-2 space-y-2">
               <li>
                 <a
-                  href="/payment_method"
+                  href="<?= site_url("today/sales")?>"
                   
                   class="flex items-center <?= url_is('') ? "text-sky-600 font-bold": "font-medium" ?> p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Medicine Report</a
+                  >General Report</a
                 >
               </li>
              
+              <li>
+                <a
+                  href="<?= site_url("empty/products") ?>"
+                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Empty Product</a
+                >
+              </li>
+
+              <!-- <li>
+                <a
+                  href="<?= site_url("staffwise/report") ?>"
+                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Staffwise Sales</a
+                >
+              </li> -->
+
+              
               <li>
                 <a
                   href="<?= site_url("product/sold") ?>"
