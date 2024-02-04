@@ -68,6 +68,16 @@ class DrugController extends BaseController
   
 }
 
+public function edit ()
+
+{
+    $id = $this->request->uri->getSegment(2);
+    $drug = model(DrugModel::class)->find($id);
+
+    
+    return view('drug/edit',['drug'=>$drug]);
+}
+
 
 }
 
