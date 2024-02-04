@@ -178,6 +178,7 @@ $routes->post('invest','InvestigationController::store');
 
 
 $routes->get('drugs','DrugController::index');
+$routes->get('edit/drug/(:segment)','DrugController::edit');
 $routes->post('drugscreate','DrugController::store');
 $routes->get('filter/sales','DrugController::filter_drug');
 $routes->get('empty/products','DrugController::empty_products');
