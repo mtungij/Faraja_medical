@@ -13,6 +13,7 @@ use App\Controllers\InvestigationController;
 use App\Controllers\InvoiceController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
+use App\Controllers\ReportController;
 use App\Controllers\ReviewController;
 use App\Controllers\SellController;
 use App\Controllers\TransferController;
@@ -202,5 +203,7 @@ $routes->presenter('surgical',['controller' => 'SurgicalController']);
 
 // PRINTING REPORTS
 $routes->get('print_medicine','PrintController::medicine');
+
+$routes->get('reports/investigation', [ReportController::class, 'investigation']);
 
 
