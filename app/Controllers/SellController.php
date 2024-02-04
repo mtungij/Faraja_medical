@@ -9,8 +9,6 @@ use App\Models\PaymentModel;
 use App\Models\SaleModel;
 use App\Models\TransferModel;
 use App\Models\TreatmentModel;
-use App\Models\TransferModel;
-use App\Models\SaleModel;
 use App\Models\UserModelModel;
 use App\Models\SaleItemModel;
 use CodeIgniter\HTTP\ResponseInterface;
