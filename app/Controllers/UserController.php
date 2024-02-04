@@ -76,29 +76,31 @@ class UserController extends BaseController
     }
 
     public function update_staff()
-
     {
-     
        $id = $this->request->getPost('id');
+
         $name = $this->request->getPost('name');
-        $username   = $this->request->getPost('username');
-        $phone      = $this->request->getPost('phone');
-        $department  = $this->request->getPost('department');
+        $username = $this->request->getPost('username');
+        $phone = $this->request->getPost('phone');
+        $department = $this->request->getPost('department');
         $gender = $this->request->getPost('gender');
         
         $data = [
-            'name'        => $name,
-            'username'     => $username,
-            'phone'         => $phone,
-            'department'=> $department,
+            'name' => $name,
+            'username' => $username,
+            'phone' => $phone,
+            'department' => $department,
             'gender'=> $gender,
         ];
+
         $model = model(UserModel::class);
+
         $result = $model->update($id, $data);
+
         if($result) {
             return redirect('staffs')->with('success','staff updated Successfully');
         } else {
-            return redirect('')->back()->with('errors','an error occurred');
+            return redirect()->back()->with('errors','an error occurred');
         }
 
     }

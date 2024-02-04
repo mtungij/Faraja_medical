@@ -2,6 +2,7 @@
 
 use App\Controllers\ActivitiesController;
 use App\Controllers\AppointmentController;
+use App\Controllers\AuthController;
 use App\Controllers\ComplainController;
 use App\Controllers\DiagnosisController;
 use App\Controllers\ExaminationController;
@@ -128,6 +129,10 @@ $routes->get('activities', [ActivitiesController::class, 'index']);
 $routes->get('/', 'Home::index');
 $routes->get('login', 'Login::index');
 $routes->post('login/auth','Login::auth');
+$routes->get('/logout', [AuthController::class, 'logout']);
+
+
+
 $routes->get('user/create','UserController::index');
 $routes->post('store_staff','UserController::create');
 $routes->get('staffs','UserController::all_staffs');

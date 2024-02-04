@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use App\Models\DrugModel;
 use App\Models\PatientModel;
 use App\Models\PaymentModel;
+use App\Models\SaleModel;
+use App\Models\TransferModel;
 use App\Models\TreatmentModel;
 use App\Models\SaleItemModel;
 use CodeIgniter\HTTP\ResponseInterface;
