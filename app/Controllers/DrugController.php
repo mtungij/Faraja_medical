@@ -58,6 +58,8 @@ class DrugController extends BaseController
 
 
     $products = model(DrugModel::class)->where("quantity",0)->get()->getResult(); 
+   $stock_limit = model(DrugModel::class)->findAll();
+
   
 
     return view("reports/empty_medicine",["products"=> $products]);
