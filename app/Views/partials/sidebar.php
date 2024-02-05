@@ -332,7 +332,7 @@
     <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
     <ul class="space-y-2">
           
-
+     <?php if(session("department") == "admin") :?>
           <li>
             <a
               href="<?= site_url('reports/investigation')?>"
@@ -342,6 +342,7 @@
               <span class="flex-1 ml-3 whitespace-nowrap">Investigation Report</span>
             </a>
           </li>
+
 
 
           <li>
@@ -403,6 +404,7 @@
                   >Product Sold</a
                 >
               </li>
+              <?php endif ;?>
             </ul>
           </li>
         </ul>
