@@ -67,7 +67,7 @@ $setting = model(SettingModel::class)->first();
             <span class="sr-only">Open user menu</span>
             <img
               class="w-8 h-8 rounded-full"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+              src="<?= base_url('/img/user.png') ;?>"
               alt="user photo"
             />
           </button>

@@ -7,7 +7,7 @@
 
 <div class="py-8 px-4 pb-14 w-l ">
       <h2 class="mb-4 text-xl  font-bold text-gray-900 dark:text-white">UPDATE PATIENT REGISTRATION</h2>
-      <form action="<?= site_url("update_patient") ?>" method="post">
+      <form action="<?= site_url("update_patient") ;?>" method="Get">
        
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
              
