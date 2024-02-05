@@ -77,7 +77,8 @@ if($investigations) {
                     <p class="text-lg font-medium">Drug Sales</p>
                     <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalSales) ;?></p>
                 </div>
-
+        <?php endif ?>
+        <?php if(session('department') == 'receptionist'): ?>
                 <div class="p-4 border border-gray-300 rounded shadow-md">
                     <p class="text-lg font-medium">Investigation Sales</p>
                     <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalInvestigtions) ;?></p>

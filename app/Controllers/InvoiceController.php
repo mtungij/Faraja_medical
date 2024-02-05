@@ -32,7 +32,8 @@ class InvoiceController extends BaseController
 
     public function changeStatus(int $patient_id, int $invoice_id)
     {
-        $invoice = model(InvoiceModel::class)->update($invoice_id, ['status' => $this->request->getPost('status')]);
+        $userId = session('user_id');
+        $invoice = model(InvoiceModel::class)->update($invoice_id, ['status' => $this->request->getPost('status'), 'user_id' => $userId]);
         return redirect()->back()->with('success', 'Paid Successfully!');
     }
 }
