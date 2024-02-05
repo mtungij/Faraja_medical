@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2024 at 03:16 PM
+-- Generation Time: Feb 05, 2024 at 09:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -926,10 +926,11 @@ INSERT INTO `users` (`id`, `name`, `username`, `phone`, `department`, `gender`, 
 (1, 'EMMANUEL ANGUMBWIKE ', 'ema2020', 751190900, 'admin', 'male', NULL, NULL, '$2y$12$QNQYHMutHn0bpDUbMfjUYOI4u.ivwu238jpjobARZ.bJ6b/bsmPb6', '2024-01-20 21:03:21', '2024-01-24 03:13:27', 'Active'),
 (2, 'JUMA HAMISI MKANDAWA', 'JKU', 67881234, 'doctor', 'male', NULL, NULL, '$2y$12$f4sz7K2WyxPq5FcN6v0LY.qHS8xTXvchsMTeUssIApGDnGdWfiF7.', '2024-01-20 21:18:13', '2024-01-22 04:30:43', 'Active'),
 (3, 'HUBA', 'majame', 0, 'lab', 'female', NULL, NULL, '$2y$12$sBJAJCRB6tlI.EKV/gy2OOfs6XqLiyXj3CmDlYbvNA19O5l4K6Jn2', '2024-01-20 21:34:27', '2024-02-03 02:54:31', 'Active'),
-(4, 'JOHNSON JAMES JOSEPH', 'jonson20', 78899989, 'admin', 'male', NULL, NULL, '$2y$12$Lr.jNEErzc1cfAlv85q2rOYnc6uCK5jv5AnFafKGVfr0FAp2NmUq6', '2024-01-20 22:23:22', '2024-02-04 01:31:09', 'Active'),
+(4, 'JOHNSON JAMES JOSEPH', 'jonson20', 78899989, 'receptionist', 'male', NULL, NULL, '$2y$12$Lr.jNEErzc1cfAlv85q2rOYnc6uCK5jv5AnFafKGVfr0FAp2NmUq6', '2024-01-20 22:23:22', '2024-02-05 09:11:39', 'Active'),
 (5, 'JAMES JOSEPH MWAKALINGA', 'james20', 747384738, 'receptionist', 'female', NULL, NULL, '$2y$12$4BaaXjPJKXEh0KX.rfvG8e66vr7FwdvlqEl3Fmd7zjs1r59ntgida', '2024-01-21 04:01:51', '2024-01-22 04:29:26', 'Active'),
 (6, 'demo staff ', 'winnie2018', 623494912, 'doctor', 'female', NULL, NULL, '$2y$12$f5w25g2gVSVik7wVykHEBe65QUaftA3S76Q2oCKO7GQeHRh.2rxUm', '2024-01-21 06:49:45', '2024-01-24 03:47:56', 'Active'),
-(7, 'rotypos', 'gagona', 0, 'doctor', 'female', NULL, NULL, '$2y$12$N5hYQklNGytIhWZEeo9sYOZuiR6hDquM3du/CN/rhv0hTcrDsR8MS', '2024-01-26 04:55:37', '2024-01-26 04:55:37', 'Active');
+(7, 'rotypos', 'gagona', 0, 'doctor', 'female', NULL, NULL, '$2y$12$N5hYQklNGytIhWZEeo9sYOZuiR6hDquM3du/CN/rhv0hTcrDsR8MS', '2024-01-26 04:55:37', '2024-01-26 04:55:37', 'Active'),
+(8, 'juma', 'matunda', 0, 'admin', 'female', NULL, NULL, '$2y$12$CPvg2qKyjv0QiRA8Magfl.nqwueYMM1nk.Y.eXey.Z.AHgzICD.Jq', '2024-02-05 08:32:00', '2024-02-05 08:32:00', 'Active');
 
 -- --------------------------------------------------------
 
@@ -1443,7 +1444,7 @@ ALTER TABLE `treatments`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `vital_signs`
