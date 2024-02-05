@@ -68,17 +68,37 @@ class DrugController extends BaseController
   
 }
 
-public function edit ()
+public function edit ($id)
 
 {
-    $id = $this->request->uri->getSegment(2);
+   
     $drug = model(DrugModel::class)->find($id);
 
-    
+
+   
     return view('drug/edit',['drug'=>$drug]);
 }
 
+public function update()
+{
+    if( !$this->validate([
+        'name' => 'required',
+        'unit'=> 'required',
+        'quantity' => 'required',
+         'buy_price' => 'required',
+         'sell_price' => 'required',
+         'stock_limit' => 'required',
+         'drug_id'=> 'required',
+         'user_id' =>'required',
+    ])){
+                   
+        return redirect()->back()->withInput()->with('erros','please fill all field');     
+}
 
+ $validatedData = $this->validator->getValidated();
+dd($validatedData);
+
+}
 }
 
 
