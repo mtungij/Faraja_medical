@@ -5,6 +5,7 @@
 <?php
 
 $totalInvestigtions = 0;
+$totalSurgicals = 0;
 
 if($investigations) {
     foreach ($investigations as $investigation) {
@@ -18,9 +19,9 @@ if($investigations) {
 
     foreach ($investigations as $investigation) {
         if(!empty(unserialize($investigation->surgicals))) {
-            $categories = model('SurgicalModel')->find(unserialize($investigation->surgicals));
-            foreach($categories as $category) {
-                $totalInvestigtions += $category->price;
+            $surgicals = model('SurgicalModel')->find(unserialize($investigation->surgicals));
+            foreach($surgicals as $surgical) {
+                $totalSurgicals += $surgical->price;
             }
         }
     }
@@ -30,7 +31,46 @@ if($investigations) {
 
 <section>
     <div>
+        <form action="<?= base_url('reports/investigation') ?>" method="get">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div>
+                    <label for="filter_by_status" class="block text-sm font-medium text-gray-700">Filter by Status</label>
+                    <select id="filter_by_status" name="filter_by_status" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="from" class="block text-sm font-medium text-gray-700">From</label>
+                    <input type="date" name="from" id="from" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div>
+                    <label for="to" class="block text-sm font-medium text-gray-700">To</label>
+                    <input type="date" name="to" id="to" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+            </div>
+            <div class="flex justify-end">
+                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Filter</button>
+            </div>
+    </div>
+    <div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 ">
+          <div class="p-4 border border-gray-300 rounded shadow-md">
+            <p class="text-lg font-medium">Investigations Revenue </p>
+            <p class="text-3xl font-bold text-green-600"> <?= number_format($totalInvestigtions) ;?> </p>
+          </div>
 
+          <div class="p-4 border border-gray-300 rounded shadow-md">
+            <p class="text-lg font-medium">Surgicals Revenue</p>
+            <p class="text-3xl font-bold text-sky-950"><?= number_format($totalSurgicals) ;?></p>
+          </div>
+
+          <!-- <div class="p-4 border border-gray-300 rounded shadow-md">
+            <p class="text-lg font-medium">Total Patients</p>
+            <p class="text-3xl font-bold text-sky-950"><? //= '677' ;?></p>
+          </div> -->
+       </div>
     </div>
     <div>
         <table id="myTable" class="display">

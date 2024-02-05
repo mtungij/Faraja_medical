@@ -35,10 +35,13 @@ function format_datetime($date) {
 </head>
 <body>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+        @font-face {
+          font-family: hekima;
+          src: url("<?php echo base_url('css/Inter-Regular.ttf') ?>");
+        }
 
         body {
-            font-family: 'Inter', sans-serif !important;
+            font-family: 'hekima', sans-serif !important;
             
         }
 
