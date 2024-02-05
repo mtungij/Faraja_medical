@@ -62,7 +62,7 @@ class ActivitiesController extends BaseController
             $investigations = model(InvoiceModel::class)->builder()->select("inv.categories, inv.surgicals")
                                     ->join('investigatigations inv', 'invoices.investigatigation_id = inv.id')
                                     ->where('invoices.status !=', 'pending')
-                                    ->where('invoices.user_id', session('user_id'))
+                                    // ->where('invoices.user_id', session('user_id'))
                                     ->where('DATE(invoices.updated_at)', date('Y-m-d'))
                                     ->get()
                                     ->getResult();
