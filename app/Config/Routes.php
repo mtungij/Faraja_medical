@@ -13,6 +13,7 @@ use App\Controllers\InvestigationController;
 use App\Controllers\InvoiceController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
+use App\Controllers\Rches;
 use App\Controllers\ReportController;
 use App\Controllers\ReviewController;
 use App\Controllers\SellController;
@@ -21,6 +22,7 @@ use App\Controllers\TreatmentController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
 use App\Models\InvoiceModel;
+use App\Models\RchesModel;
 use App\Models\Reviews;
 use CodeIgniter\Router\RouteCollection;
 
@@ -199,14 +201,16 @@ $routes->get('product/sold','SellController::productsold');
 $routes->get('staffwise/report','SellController::staffwise'); 
   
 
-
-
 $routes->presenter('surgical',['controller' => 'SurgicalController']);
+
+$routes->post('rches/update_new', [Rches::class, 'update']);
+
+$routes->presenter('rches', ['only' => ['index', 'create']]);
+
 
 
 // PRINTING REPORTS
 $routes->get('print_medicine','PrintController::medicine');
-
 $routes->get('reports/investigation', [ReportController::class, 'investigation']);
 
 

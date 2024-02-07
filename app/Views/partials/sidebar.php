@@ -94,6 +94,16 @@
             </a>
           </li>
           <?php endif ;?>
+         
+          <li>
+            <a
+              href="<?= site_url('rches')?>"
+              class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-platter"><path d="M12 3V2"/><path d="M5 10a7.1 7.1 0 0 1 14 0"/><path d="M4 10h16"/><path d="M2 14h12a2 2 0 1 1 0 4h-2"/><path d="m15.4 17.4 3.2-2.8a2 2 0 0 1 2.8 2.9l-3.6 3.3c-.7.8-1.7 1.2-2.8 1.2h-4c-1.1 0-2.1-.4-2.8-1.2L5 18"/><path d="M5 14v7H2"/></svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">RCHS</span>
+            </a>
+          </li>
 
           <?php if(session('department')=="admin"):?>
           <li>
@@ -195,10 +205,10 @@
               </li> -->
             </ul>
           </li>
-            <?php endif  ;?>
+          <?php endif  ;?>
 
 
-            <?php if (session('department') == "receptionist" && session('department') == "admin") : ?>
+          <?php if (session('department') == "receptionist" && session('department') == "admin") : ?>
           <li>
             <button
               type="button"
@@ -296,7 +306,7 @@
               </li>
             </ul>
           </li>
-           <?php endif  ;?>
+          <?php endif  ;?>
          <li>
             <button
               type="button"
@@ -339,16 +349,12 @@
               </li>
               
             </ul>
-            
-
-          
           </li>
         </ul>
         
     </div>
     <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
     <ul class="space-y-2">
-          
      <?php if(session("department") == "admin") :?>
           <li>
             <a
@@ -359,8 +365,6 @@
               <span class="flex-1 ml-3 whitespace-nowrap">Investigation Report</span>
             </a>
           </li>
-
-
 
           <li>
             <button
