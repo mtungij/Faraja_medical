@@ -39,15 +39,15 @@ class DrugController extends BaseController
     
     //  dd($validatedData); 
     
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
+    $validatedData['buy_price'] = str_replace(',', '', $validatedData['buy_price']);
+    $validatedData['sell_price'] = str_replace(',', '', $validatedData['sell_price']);
     
     
     
      model(DrugModel::class)->insert($validatedData );
     
        
-       return redirect()->back()->with('success','data added successfully');
+       return redirect()->back()->with('success','medicine added successfully');
         
     }
 
@@ -81,24 +81,45 @@ public function edit ($id)
 
 public function update()
 {
-    if( !$this->validate([
-        'name' => 'required',
-        'unit'=> 'required',
-        'quantity' => 'required',
-         'buy_price' => 'required',
-         'sell_price' => 'required',
-         'stock_limit' => 'required',
-         'drug_id'=> 'required',
-         'user_id' =>'required',
-    ])){
-                   
-        return redirect()->back()->withInput()->with('erros','please fill all field');     
+    $id =$this->request->getPost('id');
+    $name = $this->request->getPost('name');
+    $unit = $this->request->getPost('unit');
+    $quantity = $this->request->getPost('quantity');
+    $stock_limit = $this->request->getPost('stock_limit');
+    $buy_price= $this->request->getPost('buy_price');
+    $sell_price= $this->request->getPost('sell_price');
+    $unit= $this->request->getPost('unit');
+   
+    
+    $data = [
+        'name' => $name,
+        'quantity'=> $quantity,
+        'stock_limit'=> $stock_limit,
+        'buy_price'=> $buy_price,
+        'sell_price'=> $sell_price,
+        'unit'=> $unit,
+       
+    
+    ];
+
+    $model = new DrugModel();
+    
+    $result=$model->update($id,$data);
+    if ($result) {
+        return redirect('drugs')->with('success','product updated successfully');
+    } else {
+        return redirect()->back()->withInput()->with('erros','please fill all field');
+    }
 }
 
- $validatedData = $this->validator->getValidated();
-dd($validatedData);
+public function delete($id)
+{
+    $model = new DrugModel();
+    $model->delete($id);
+    return redirect('drugs')->with('success','product deleted successfully');
 
 }
+
 }
 
 

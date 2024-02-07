@@ -40,8 +40,8 @@ class SurgicalController extends BaseController
     
    
     
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
+    
+    $validatedData['price'] = str_replace(',', '', $validatedData['price']);
     
     
     

@@ -6,10 +6,10 @@
 <section class="bg-white dark:bg-gray-900">
   <div class="w-full">
       <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Update product</h2>
-      <form action="<?= site_url("update/drug")?>">
+      <form action="<?= site_url("update/drugs")?>" method="post">
           <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
 
-                <input type="hidden" name="id" value="<?= $drug->id ?>">
+                <input type="hidden" name="id" value="<?= $drug->id?>">
                 
         
               <div class="w-full">

@@ -178,9 +178,10 @@ $routes->post('invest','InvestigationController::store');
 
 
 $routes->get('drugs','DrugController::index');
-$routes->get('edit/drug/(:segment)','DrugController::edit/$1');
-$routes->post('update/drug','DrugController::update');
+$routes->get('edit/drugs/(:segment)','DrugController::edit/$1');
+$routes->post('update/drugs','DrugController::update');
 $routes->post('drugscreate','DrugController::store');
+$routes->get('delete/drugs/(:segment)','DrugController::delete/$1');
 $routes->get('filter/sales','DrugController::filter_drug');
 $routes->get('empty/products','DrugController::empty_products');
 $routes->post('search/empty-drugs',[DrugController::class,'empty_search']);

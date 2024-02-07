@@ -19,6 +19,8 @@ function format_datetime($date) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url('css/datatable.css') ?>">
+    <script  src="<?php echo base_url('js/alpine.js') ?>"></script>
+    <script  src="<?php echo base_url('js/main.js') ?>"></script>
     <link href="<?php echo base_url('css/styles.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('css/quill.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('js/jquery.js')?>"></script>
@@ -50,6 +52,9 @@ function format_datetime($date) {
 </head>
 
 <body>
+
+
+
     
     
     <div class="antialiased bg-white dark:bg-gray-900">

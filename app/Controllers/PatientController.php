@@ -76,10 +76,10 @@ if ($search == '') {
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name'=> 'required',
-            'phone'=> 'required',
+            'phone'=> 'permit_empty',
             'illiness_status'=>'required',
             'gender'=>'required',
-            'address'=> 'required',
+            'address'=> 'permit_empty',
             'age'=> 'required',
         ])){
                        

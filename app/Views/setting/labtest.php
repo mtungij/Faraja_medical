@@ -12,12 +12,13 @@
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div class="w-full">
                   <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Investigation Name</label>
-                  <input type="text" name="name"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('name') ?>" placeholder="example Mrdt" >
+                  <input type="text" name="name"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('name') ?>" placeholder="example Mrdt" >
               </div>
                 
         <div class="w-full">        
         <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Investigation Price</label>
-        <input type="text" name="price"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('price') ?>" >
+        <input  x-data  x-mask:dynamic="$money($input)" name="price"  id="customer"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-primary-500 focus:border-primary-500"  value="<?= old('price') ?>" >
+        
         </div>
         
           </div>
@@ -35,7 +36,7 @@
 
 <div>
 <div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table id="myTable" class="w-full text-sm text-left rtl:text-right  dark:text-gray-400">
     <thead class="text-xs  uppercase bg-sky-500 dark:bg-gray-700 text-white">
             <tr>
                 <th scope="col" class="px-6 py-3">
@@ -65,7 +66,7 @@
                    <?= $test->name ;?>
                 </td>
                 <td class="px-6 py-4">
-                  <?= $test->price ;?>
+                  <?= number_format($test->price) ;?>
                
                 <td class="px-6 py-4 text-right">
                    

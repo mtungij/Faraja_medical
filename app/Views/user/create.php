@@ -5,6 +5,8 @@
 
 <section class="bg-white dark:bg-gray-900">
 
+
+
 <div class="py-8 px-4 pb-14 w-l ">
       <h2 class="mb-4 text-xl  font-bold text-gray-900 dark:text-white">STAFF REGISTRATION</h2>
       <form action="<?= site_url("store_staff") ?>" method="post">
@@ -23,6 +25,10 @@
                   <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
                   <input type="text" name="phone" id="phone"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<?= old('phone') ?>" required="">
               </div>
+
+
+
+              
               <div class="w-full">
                   <label for="order_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Position</label>
                   <select id="countries"  name="department" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-sky-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-sky-400" value="<?= old('department') ?>" required>

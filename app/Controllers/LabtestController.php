@@ -10,7 +10,7 @@ class LabtestController extends BaseController
 {
     public function index()
     {
-  $test = model("LabtestModel"::class)->orderBy('created_at', 'desc')->find();
+  $test = model(LabtestModel::class)->orderBy('created_at', 'desc')->find();
 // Replace 'column_name' with the actual column you want to use for sorting.
 // 'asc' stands for ascending order. You can also use 'desc' for descending order.
 
@@ -41,8 +41,8 @@ public function store()
 
 //  dd($validatedData); 
 
-// $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-// $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
+
+$validatedData['price'] = str_replace(',', '', $validatedData['price']);
 
 
 

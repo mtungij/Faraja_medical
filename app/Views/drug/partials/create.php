@@ -31,17 +31,31 @@ Add Medicine
 
             
                 <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
-               <?= view_cell('TextInputCell', ['type' => 'text', 'name' => 'name', 'label' => 'Drug Name']) ?>
+                <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                        <input type="text" name="name" id="name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">unit</label>
+                        <input type="text" name="unit" id="brand"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="number"  name="quantity" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
 
-               <?= view_cell('TextInputCell', ['type' => 'text', 'name' => 'unit', 'label' => 'Drug Unit']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'quantity', 'label' => 'Quantity']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'buy_price', 'label' => 'Buying Price']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'sell_price', 'label' => 'Sell Price']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'stock_limit', 'label' => 'Stock limit']) ?>
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buy Price</label>
+                        <input  x-data  x-mask:dynamic="$money($input)" name="buy_price" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sell Price</label>
+                        <input  x-data  x-mask:dynamic="$money($input)" name="sell_price" id="brand"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Limit</label>
+                        <input type="number"  name="stock_limit" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
