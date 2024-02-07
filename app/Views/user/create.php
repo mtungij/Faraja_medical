@@ -31,6 +31,7 @@
                     <option value="receptionist">Receptionist</option>
                     <option value="lab">Lab</option>
                     <option value="pharmacist'">Pharmacist</option>
+                    <option value="rch'">RCH</option>
             </select>
               </div>
               <div class="w-full">
