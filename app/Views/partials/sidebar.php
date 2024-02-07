@@ -4,34 +4,51 @@
       id="drawer-navigation"
     >
       <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
-        <form action="#" method="GET" class="md:hidden mb-2">
-          <label for="sidebar-search" class="sr-only">Search</label>
-          <div class="relative">
-            <div
-              class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+      <button
+      type="button"
+      id="user-menu-button"
+      aria-expanded="false"
+      data-dropdown-toggle="dropdown"
+       class="flex flex-wrap items-center cursor-pointer">
+    <div class="relative">
+      <img src='<?= base_url('/img/user.png') ;?>' class="w-12 h-12 rounded-full border-white" />
+      <span class="h-3 w-3 rounded-full bg-green-600 border-2 border-white block absolute bottom-0 right-0"></span>
+    </div>
+    <div class="ml-4">
+      <p class="text-sm text-[#3949ab] font-semibold"><?= session("name") ;?></p>
+      <p class="text-xs text-gray-500 mt-1"><?= session("department") ;?></p>
+    </div>
+  </button>
+
+  <div
+            class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+            id="dropdown"
+          >
+            <ul
+              class="py-1 text-gray-700 dark:text-gray-300"
+              aria-labelledby="dropdown"
             >
-              <svg
-                class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                ></path>
-              </svg>
-            </div>
-            <input
-              type="text"
-              name="search"
-              id="sidebar-search"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              placeholder="Search"
-            />
+              <li>
+                <a
+                  href="<?= site_url('myprofile') ?>"
+                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                  >My profile</a
+                >
+              </li>
+            </ul>
+            <ul
+              class="py-1 text-gray-700 dark:text-gray-300"
+              aria-labelledby="dropdown"
+            >
+              <li>
+                <a
+                  href="<?= site_url('logout') ?>"
+                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >Sign out</a
+                >
+              </li>
+            </ul>
           </div>
-        </form>
         
 
 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">

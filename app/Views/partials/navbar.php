@@ -5,7 +5,7 @@ $setting = model(SettingModel::class)->first();
 
 ;?>
 
-<nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+<nav class="bg-white border-b border-gray-200  dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
       <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
           <button
@@ -42,7 +42,7 @@ $setting = model(SettingModel::class)->first();
         </svg>
             <span class="sr-only">Toggle sidebar</span>
           </button>
-          <a href="#" class="flex items-center m-5 justify-between mr-4">
+          <a href="#" class="flex items-center m-2 justify-between mr-4">
             <img
             src="<?= base_url('/img/hospital.png') ;?>"
             class="mr-3 h-8"
@@ -52,55 +52,6 @@ $setting = model(SettingModel::class)->first();
         </a>
         
         </div>
-        <div class="flex items-center lg:order-2">
-            
-        <h3 class="text-base  leading-6 text-sky-900">WELCOME : <?= session("name") ;?></h3>
-          <!-- Dropdown menu -->
-          
-          <button
-            type="button"
-            class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-            id="user-menu-button"
-            aria-expanded="false"
-            data-dropdown-toggle="dropdown"
-          >
-            <span class="sr-only">Open user menu</span>
-            <img
-              class="w-8 h-8 rounded-full"
-              src="<?= base_url('/img/user.png') ;?>"
-              alt="user photo"
-            />
-          </button>
-          <!-- Dropdown menu -->
-          <div
-            class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
-            id="dropdown"
-          >
-            <ul
-              class="py-1 text-gray-700 dark:text-gray-300"
-              aria-labelledby="dropdown"
-            >
-              <li>
-                <a
-                  href="<?= site_url('myprofile') ?>"
-                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                  >My profile</a
-                >
-              </li>
-            </ul>
-            <ul
-              class="py-1 text-gray-700 dark:text-gray-300"
-              aria-labelledby="dropdown"
-            >
-              <li>
-                <a
-                  href="<?= site_url('logout') ?>"
-                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Sign out</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        
       </div>
     </nav>
