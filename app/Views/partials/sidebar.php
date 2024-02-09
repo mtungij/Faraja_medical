@@ -2,7 +2,10 @@
 <?php 
 use App\Models\UserModel;
 
-$userimage = model('UserModel')->find(session('user_id'))?->img;
+$userimage = null;
+if(session("user_id")) {
+  $userimage = model('UserModel')->find(session('user_id'))?->img;
+}
 
 ;?>
 
