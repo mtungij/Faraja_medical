@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class InvoiceModel extends Model
+class RchRecordModel extends Model
 {
-    protected $table            = 'invoices';
+    protected $table            = 'rch_records';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id','patient_id', 'user_id', 'investigatigation_id', 'sale_id', 'status', 'rch_record_id'];
+    protected $allowedFields    = ['patient_id', 'user_id'];
 
     // Dates
     protected $useTimestamps = true;

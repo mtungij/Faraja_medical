@@ -111,19 +111,21 @@
             </tfoot> -->
        </table>
       </div>
+
+      
       <?php if($investigations->surgicals): ?>
-         <div class="relative overflow-x-auto my-6 px-3">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 rounded-s-lg">
-                            Surgical Name
+        <div class="relative overflow-x-auto my-6 px-3">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3 rounded-s-lg">
+                  Surgical Name
                         </th>
                       
                         <th scope="col" class="px-6 py-3 rounded-e-lg">
                             Amount
                         </th>
-                    </tr>
+                      </tr>
                 </thead>
                 <tbody>
                   <?php 
@@ -145,16 +147,53 @@
               </tbody>
             </div>
             <!-- <tfoot>
-                <tr class="font-semibold text-gray-900 dark:text-white">
-                    <th scope="row" class="px-6 py-3 text-base">Total</th>
-                    <td class="px-6 py-3"><?//= number_format($totalAmount) ;?></td>
-                </tr>
+              <tr class="font-semibold text-gray-900 dark:text-white">
+                <th scope="row" class="px-6 py-3 text-base">Total</th>
+                <td class="px-6 py-3"><?//= number_format($totalAmount) ;?></td>
+              </tr>
             </tfoot> -->
-       </table>
-      </div>
-      <?php endif ?>
-      <?php endif ?>
-
+          </table>
+        </div>
+        <?php endif ?>
+        <?php endif ?>
+        
+        <?php if(count($rchesRecords) > 0): ?>
+          <div class="overflow-x-auto">
+                  <table class="w-full border border-gray-200 rounded text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs border-b border-gray-300 uppercase text-white bg-sky-700 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                              <th scope="col" class="px-4 py-3">S/N</th>
+                              <th scope="col" class="px-4 py-3">RCH NAME</th>
+                              <th scope="col" class="px-4 py-3">PRICE</th>
+                              <th scope="col" class="px-4 py-3">
+                                  <span class="sr-only">Actions</span>
+                              </th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php 
+                          $rowId = 1 ;
+                          $total = 0;
+                          ?>
+                          <?php foreach($rchesRecords as $rch): ?>
+                              <tr class="border-b dark:border-gray-700">
+                                  <th scope="row" class="px-4 py-3">
+                                      <?= $rowId++ ?>
+                                  </th>
+                                  <?php $total += $rch->price ;?>
+                                  <td class="px-4 py-3"><?= $rch->name ?></td>
+                                  <td class="px-4 py-3"><?= number_format($rch->price) ?></td>
+                              </tr>
+                          <?php endforeach ;?>
+                      </tbody>
+                      <tfoot>
+                          <td class=""></td>
+                          <th>Total Price</th>
+                          <th><?= number_format($total) ?></th>
+                      </tfoot>
+                  </table>
+          </div>
+        <?php endif ;?>
 
 
 
