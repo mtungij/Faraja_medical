@@ -16,7 +16,7 @@ $setting = model(SettingModel::class)->first();
     <style>
 
         section{
-           background-image: url('/img/back2.jpg');  
+           background-image: url('/img/b2.png');  
         }
     </style>
 
