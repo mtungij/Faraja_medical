@@ -30,7 +30,9 @@ $userimage = model('UserModel')->find(session('user_id'))?->img;
             echo "<img src='$imgUrl' alt='Profile Picture' class='$imageClasses'>";
         } else {
             echo "<img src='" . base_url('/img/user.png') . "' alt='Default Profile Picture' class='$imageClasses'>";
-        }    </div>
+        }
+        ?>
+    </div>
     <!-- Other sidebar content -->
 
 
