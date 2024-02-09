@@ -18,6 +18,7 @@ function format_datetime($date) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="<?php echo base_url('css/datatable.css') ?>">
     <script  src="<?php echo base_url('js/alpine.js') ?>"></script>
     <script  src="<?php echo base_url('js/main.js') ?>"></script>
@@ -63,6 +64,7 @@ function format_datetime($date) {
 
      <?= $this->include('partials/sidebar') ;?>
      
+     
     <main class="p-4 md:ml-64 h-auto pt-20">
 
 
@@ -78,16 +80,13 @@ function format_datetime($date) {
 </div>
         <?php endif ?>
 
-        <div class="sm:px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-          <?php if(session()->getFlashdata('success')): ?>
-             <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-       <span class="sr-only">Info</span>
-       <div>
-         <p> <?= session()->getFlashdata('success') ?></p> 
-        </div>
-</div>
-            </div>
+        <div class="font-[sans-serif] space-y-6">
+        <?php if(session()->getFlashdata('success')): ?>
+      <div class="bg-green-100 text-green-800 px-4 py-4 rounded" role="alert">
+        <strong class="font-bold text-base mr-4">Success!</strong>
+        <span class="block text-sm sm:inline max-sm:mt-1"><?= session()->getFlashdata('success') ?></span>
+      </div>
+     </div>
       <?php endif?>
 
       <?= $this->renderSection('content') ;?>

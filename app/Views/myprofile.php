@@ -1,7 +1,9 @@
 <?= $this->extend('main') ;?>
 
 <?= $this->section('content') ;?>
-
+<div class="flex justify-end">
+<a href="<?= site_url("profile-picture")?>" type="button" class="text-white bg-blue-700 w-48  hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Change Profile Picture</a>
+</div>
 <section>
     <form action="<?= site_url('password/reset') ?>" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <?= csrf_field() ?>

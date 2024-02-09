@@ -39,6 +39,7 @@ $routes->get('payment_method','Payment::index');
 $routes->post('create_payment','Payment::store');
 //labtest
 $routes->get('/edit/(:segment)','Payment::edit/$1');
+$routes->get(' delete_payment/(:segment)','Payment::delete/$1');
 
 //labtest
 
@@ -53,6 +54,7 @@ $routes->post('create_test','LabtestController::update');
 $routes->post('create_category','LabtestController::store');
 $routes->get('update_category/(:segment)','LabtestController::Update/$1');
 $routes->post('update_categor','LabtestController::insert_update');
+$routes->get('delete_category/(:segment)','LabtestController::delete/$1');
 
 //service routes
 $routes->get('services','ServiceController::index');
@@ -137,12 +139,16 @@ $routes->get('/logout', [AuthController::class, 'logout']);
 $routes->patch('password/reset', [UserController::class, 'reset_password']);
 
 
+
 $routes->get('myprofile', [UserController::class, 'myprofile']);
 $routes->get('user/create','UserController::index');
 $routes->post('store_staff','UserController::create');
 $routes->get('staffs','UserController::all_staffs');
 $routes->get('updateUser/(:segment)','UserController::update_user/$1');
 $routes->post('update_staff','UserController::update_staff');
+$routes->get('profile-picture','UserController::change_profile');
+$routes->post('upload/picture','UserController::update_profile'); 
+$routes->get('block-user/(:segment)','UserController::block_user/$1');
 
 
 

@@ -92,5 +92,15 @@ public function insert_update()
 
 
 }
+public function delete($id)
+{
+    $model = model(LabtestModel::class);
+    $result = $model->delete($id);
+    if($result) {
+        return redirect('tests_settings')->with('success','Investigation deleted Successfully');
+    } else {
+        return redirect('')->back()->with('errors','an error occurred');
+    }
 
+}
 }

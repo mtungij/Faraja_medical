@@ -57,4 +57,10 @@ class SurgicalController extends BaseController
     }
 }
 
+public function delete($id)
+{
+    model(SurgicalModel::class)->delete($id);
+    return redirect()->back()->with('success','Investigation Deleted Successfully');
+
+}
 }

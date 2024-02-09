@@ -54,9 +54,9 @@
               </div>
 
               <div class="w-full">
-                  <label for="order_type" class="block mb-2 text-sm font-medium text-red-700 dark:text-white">Illiness Status</label>
+                  <label for="order_type" class="block mb-2 text-sm font-medium text-red-700 dark:text-white">Visit Type</label>
                   <select id="countries"   name="illiness_status" class="bg-gray-50 border border-red-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-sky-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-sky-400" value="<?= old('illiness_status') ?>" required>
-                  <option value="">select Illiness Status</option>
+                  <option value="">select visit</option>
                     <option value="Normal">Normal</option>
                     <option value="Emergency">Emergency</option>
             </select>

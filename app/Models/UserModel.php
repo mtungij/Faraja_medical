@@ -13,7 +13,7 @@ class UserModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name','username','phone','department','gender','img','attachment','password'
+        'name','username','phone','department','gender','img','attachment','password','status'
     ];
 
     // Dates

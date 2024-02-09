@@ -8,6 +8,8 @@ use App\Models\UserModel;
 
 class UserController extends BaseController
 {
+
+    protected $helpers = ['form'];
     public function index()
     {
         return view("user/create");
@@ -26,7 +28,7 @@ class UserController extends BaseController
                 'conf' => 'required|matches[password]'
             ])
         ) {
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('errors', 'Please fill all the fields correctly.');
         }
 
         $user_input = $this->validator->getValidated();
@@ -53,6 +55,8 @@ class UserController extends BaseController
         }
 
 
+        //copilot are you there
+
        
     }
 
@@ -60,6 +64,7 @@ class UserController extends BaseController
     {
        $users=model(UserModel::class);
        $user=$users->findAll();
+       
 
        return view('user/all_staff',['user'=> $user]);
 
@@ -128,9 +133,12 @@ class UserController extends BaseController
     public function myprofile() {
         $user = model(UserModel::class)->find(session('user_id'));
 
+        
         return view('myprofile', [
             'user' => $user,
         ]);
+
+        
     }
 
 
@@ -156,4 +164,45 @@ class UserController extends BaseController
 
     }
 
+
+    public function change_profile()
+    {
+      $user =session()->get('user_id');
+     
+      
+        return view('user/profile_pc' ,['user' => $user]);
+
+    }
+
+    public function update_profile()
+    {
+        $file = $this->request->getFile('img');
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+
+            
+            $file->move('public/img', $newName);
+            $user = model(UserModel::class)->find(session('user_id'));
+            model(UserModel::class)->update($user->id, ['img' => $newName]);
+            return redirect()->back()->with('success', 'Profile picture updated successfully.');
+        } else {
+            return redirect()->back()->with('errors', 'An error occurred while uploading the file.');
+        }
+   
 }
+
+// public function block_user($id)
+// {
+//     $user = model(UserModel::class)->find($id);
+//     if($user->status == 'active') {
+//         model(UserModel::class)->update($id, ['status' => 'blocked']);
+//         return redirect()->back()->with('success', 'User blocked successfully.');
+//     } else {
+//         model(UserModel::class)->update($id, ['status' => 'active']);
+//         return redirect()->back()->with('success', 'User unblocked successfully.');
+//     }
+
+// }
+} 
+

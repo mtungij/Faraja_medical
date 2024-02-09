@@ -1,3 +1,6 @@
+
+
+
 <aside
       class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidenav"
@@ -11,7 +14,28 @@
       data-dropdown-toggle="dropdown"
        class="flex flex-wrap items-center cursor-pointer">
     <div class="relative">
-      <img src='<?= base_url('/img/user.png') ;?>' class="w-12 h-12 rounded-full border-white" />
+
+    
+    <div class="profile-picture">
+        <?php
+        $imageClasses = 'sm:w-14 sm:h-14 md:w-16 md:h-16'; // Your specified class
+
+        if (!empty($user->img)) {
+            $imgUrl = base_url('public/img/' . $user->img);
+            echo "<img src='$imgUrl' alt='Profile Picture' class='$imageClasses'>";
+        } else {
+            echo "<img src='" . base_url('/img/user.png') . "' alt='Default Profile Picture' class='$imageClasses'>";
+        }
+        ?>
+    </div>
+    <!-- Other sidebar content -->
+
+
+    <!-- Other sidebar content -->
+
+
+
+     
       <span class="h-3 w-3 rounded-full bg-green-600 border-2 border-white block absolute bottom-0 right-0"></span>
     </div>
     <div class="ml-4">
@@ -27,7 +51,17 @@
             <ul
               class="py-1 text-gray-700 dark:text-gray-300"
               aria-labelledby="dropdown"
-            >
+            > 
+            <?php  if(session("department") == "admin") :?>  
+            
+              <li>
+                <a
+                  href="<?= site_url('General_setting') ?>"
+                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                  >Office Settings</a
+                >
+              </li>
+               <?php endif ;?>
               <li>
                 <a
                   href="<?= site_url('myprofile') ?>"
@@ -100,8 +134,8 @@
               href="<?= site_url('rches')?>"
               class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-platter"><path d="M12 3V2"/><path d="M5 10a7.1 7.1 0 0 1 14 0"/><path d="M4 10h16"/><path d="M2 14h12a2 2 0 1 1 0 4h-2"/><path d="m15.4 17.4 3.2-2.8a2 2 0 0 1 2.8 2.9l-3.6 3.3c-.7.8-1.7 1.2-2.8 1.2h-4c-1.1 0-2.1-.4-2.8-1.2L5 18"/><path d="M5 14v7H2"/></svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">RCHS</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plug-2"><path d="M9 2v6"/><path d="M15 2v6"/><path d="M12 17v5"/><path d="M5 8h14"/><path d="M6 11V8h12v3a6 6 0 1 1-12 0v0Z"/></svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">RCH</span>
             </a>
           </li>
 
