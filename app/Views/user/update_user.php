@@ -32,6 +32,7 @@
                     <option <?= $user->department == "receptionist" ? "selected" : "" ?> value="receptionist">receptionist</option>
                     <option <?= $user->department == "lab" ? "selected" : ""?> value="lab">Lab</option>
                     <option <?= $user->department == "pharmacist" ? "selected" : ""?> value="pharmacist">Pharmacist</option>
+                    <option <?= $user->department == "rch" ? "selected" : ""?> value="rch">RCH</option>
                 </select>
               </div>
               <div class="w-full">

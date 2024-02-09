@@ -31,17 +31,74 @@ Add Medicine
 
             
                 <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
-               <?= view_cell('TextInputCell', ['type' => 'text', 'name' => 'name', 'label' => 'Drug Name']) ?>
+                <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                        <input type="text" name="name" id="name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit</label>
+                   <select id="countries" name="unit"  data-te-select-placeholder="select unit"   data-te-select-init data-te-select-filter="true" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="capsule">Capsule (Cap)</option>
+                        <option value="syrup">Syrup (Syr)</option>
+                        <option value="suspension">Suspension (Susp)</option>
+                        <option value="solution">Solution (Sol)</option>
+                        <option value="drops">Drops (gtt)</option>
+                        <option value="cream">Cream (Cr)</option>
+                        <option value="ointment">Ointment (Oint)</option>
+                        <option value="gel">Gel (Gel)</option>
+                        <option value="patch">Patch (Pch)</option>
+                        <option value="inhaler">Inhaler (Inh)</option>
+                        <option value="injection">Injection (Inj)</option>
+                        <option value="suppository">Suppository (Supp)</option>
+                        <option value="lotion">Lotion (Lotion)</option>
+                        <option value="powder">Powder (Pdr)</option>
+                        <option value="dentalPaste">Dental Paste (Dent)</option>
+                        <option value="lozenge">Lozenge (Loz)</option>
+                        <option value="nasalSpray">Nasal Spray (Nasal)</option>
+                        <option value="eyeDrops">Eye Drops (Eyedrops)</option>
+                        <option value="ampoule">Ampoule (Amp)</option>
+                        <option value="tabs">Tabs</option>
+                        <option value="each">Each</option>
+                        <option value="tube">Tube</option>
+                        <option value="caps">Caps</option>
+                        <option value="pc">Pc</option>
+                        <option value="bottle">Bottle</option>
+                        <option value="tablet">Tablet (Tab)</option>
+                        <option value="milligram">Milligram (mg)</option>
+                        <option value="gram">Gram (g)</option>
+                        <option value="milliliter">Milliliter (ml)</option>
+                        <option value="unit">Unit (U)</option>
+                        <option value="milliequivalent">Milliequivalent (mEq)</option>
+                        <option value="microgram">Microgram (mcg or µg)</option>
+                        <option value="millimeter">Millimeter (mm)</option>
+                        <option value="centimeter">Centimeter (cm)</option>
+                        <option value="liter">Liter (L)</option>
+                        <option value="teaspoon">Teaspoon (tsp)</option>
+                        <option value="tablespoon">Tablespoon (tbsp)</option>
+                        <option value="ampule">Ampule (Amp)</option>
+                        <option value="vial">Vial (Vial)</option>
+                        <option value="dropperful">Dropperful (Dropperful)</option>
+                        <option value="puff">Puff (for inhalers)</option>
+                        <option value="mmHg">Millimeter of Mercury (mmHg)</option>
+                    </select>
+                    </div>
+                    <div>
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="number"  name="quantity" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
 
-               <?= view_cell('TextInputCell', ['type' => 'text', 'name' => 'unit', 'label' => 'Drug Unit']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'quantity', 'label' => 'Quantity']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'buy_price', 'label' => 'Buying Price']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'sell_price', 'label' => 'Sell Price']) ?>
-
-               <?= view_cell('TextInputCell', ['type' => 'number', 'name' => 'stock_limit', 'label' => 'Stock limit']) ?>
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buy Price</label>
+                        <input  x-data  x-mask:dynamic="$money($input)" name="buy_price" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sell Price</label>
+                        <input  x-data  x-mask:dynamic="$money($input)" name="sell_price" id="brand"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Limit</label>
+                        <input type="number"  name="stock_limit" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">

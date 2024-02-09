@@ -40,8 +40,8 @@ class SurgicalController extends BaseController
     
    
     
-    // $validatedData['expenses'] = str_replace(',', '', $validatedData['expenses']);
-    // $validatedData['amount'] = str_replace(',', '', $validatedData['amount']);
+    
+    $validatedData['price'] = str_replace(',', '', $validatedData['price']);
     
     
     
@@ -57,4 +57,10 @@ class SurgicalController extends BaseController
     }
 }
 
+public function delete($id)
+{
+    model(SurgicalModel::class)->delete($id);
+    return redirect()->back()->with('success','Investigation Deleted Successfully');
+
+}
 }

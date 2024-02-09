@@ -94,5 +94,16 @@ class Payment extends BaseController
 
     }
 
+    public function delete($id)
+    {
+        $model = model(PaymentModel::class);
+        $result = $model->delete($id);
+        if($result) {
+            return redirect('payment_method')->with('success','payment deleted Successfully');
+        } else {
+            return redirect('')->back()->with('errors','an error occurred');
+        }
+
     }
 
+}

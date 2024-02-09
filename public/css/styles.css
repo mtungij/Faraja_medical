@@ -2194,16 +2194,16 @@ input[type="range"]:active::-webkit-slider-thumb {
   margin: 0.25rem;
 }
 
-.m-2 {
-  margin: 0.5rem;
-}
-
 .m-3 {
   margin: 0.75rem;
 }
 
 .m-auto {
   margin: auto;
+}
+
+.m-4 {
+  margin: 1rem;
 }
 
 .\!my-0 {
@@ -2392,10 +2392,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .ml-3 {
   margin-left: 0.75rem;
-}
-
-.ml-4 {
-  margin-left: 1rem;
 }
 
 .ml-6 {
@@ -4006,6 +4002,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   border-style: solid;
 }
 
+.border-dashed {
+  border-style: dashed;
+}
+
 .border-none {
   border-style: none;
 }
@@ -4161,6 +4161,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 .border-gray-900 {
   --tw-border-opacity: 1;
   border-color: rgb(17 24 39 / var(--tw-border-opacity));
+}
+
+.border-blue-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(195 221 253 / var(--tw-border-opacity));
 }
 
 .border-r-transparent {
@@ -4562,6 +4567,14 @@ input[type="range"]:active::-webkit-slider-thumb {
   fill: #ffffff;
 }
 
+.fill-blue-500 {
+  fill: #3F83F8;
+}
+
+.fill-red-500 {
+  fill: #F05252;
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -4937,6 +4950,14 @@ input[type="range"]:active::-webkit-slider-thumb {
   padding-top: 6px;
 }
 
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pt-7 {
+  padding-top: 1.75rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -4959,6 +4980,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .align-\[-0\.125em\] {
   vertical-align: -0.125em;
+}
+
+.font-\[sans-serif\] {
+  font-family: sans-serif;
 }
 
 .text-2xl {
@@ -5509,6 +5534,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(114 59 19 / var(--tw-text-opacity));
+}
+
+.text-\[\#333\] {
+  --tw-text-opacity: 1;
+  color: rgb(51 51 51 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -6449,6 +6479,14 @@ input[type="range"]:active::-webkit-slider-thumb {
   fill: #8b8b8b;
 }
 
+.hover\:fill-blue-700:hover {
+  fill: #1A56DB;
+}
+
+.hover\:fill-red-700:hover {
+  fill: #C81E1E;
+}
+
 .hover\:text-\[\#3b71ca\]:hover {
   --tw-text-opacity: 1;
   color: rgb(59 113 202 / var(--tw-text-opacity));
@@ -6522,6 +6560,16 @@ input[type="range"]:active::-webkit-slider-thumb {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-blue-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(26 86 219 / var(--tw-text-opacity));
+}
+
+.hover\:text-red-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(200 30 30 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -7082,6 +7130,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 .group\/y:hover .group-hover\/y\:bg-\[\#999\] {
   --tw-bg-opacity: 1;
   background-color: rgb(153 153 153 / var(--tw-bg-opacity));
+}
+
+.group:hover .group-hover\:text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .group\/ps:hover .group-hover\/ps\:opacity-60 {
@@ -8352,6 +8405,12 @@ input[type="range"]:active::-webkit-slider-thumb {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+@media not all and (min-width: 640px) {
+  .max-sm\:mt-1 {
+    margin-top: 0.25rem;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:col-span-1 {
     grid-column: span 1 / span 1;
@@ -8386,6 +8445,10 @@ input[type="range"]:active::-webkit-slider-thumb {
     margin-top: auto;
   }
 
+  .sm\:inline {
+    display: inline;
+  }
+
   .sm\:flex {
     display: flex;
   }
@@ -8396,6 +8459,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 
   .sm\:h-32 {
     height: 8rem;
+  }
+
+  .sm\:h-14 {
+    height: 3.5rem;
   }
 
   .sm\:w-32 {
@@ -8413,6 +8480,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 
   .sm\:w-full {
     width: 100%;
+  }
+
+  .sm\:w-14 {
+    width: 3.5rem;
   }
 
   .sm\:min-w-0 {
@@ -8582,12 +8653,20 @@ input[type="range"]:active::-webkit-slider-thumb {
     height: 100vh;
   }
 
+  .md\:h-16 {
+    height: 4rem;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-16 {
+    width: 4rem;
   }
 
   .md\:max-w-sm {

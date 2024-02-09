@@ -2,8 +2,23 @@
 
 <?= $this->section('content') ;?>
 
-
 <section class="bg-white dark:bg-gray-900">
+
+
+<div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+  <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Angalizo kabla hujabonyeza button ya kudelete :</span>
+      <ul class="mt-1.5 list-disc list-inside">
+      <li>kwa usalama wa taarifa za nyuma za wateja </li>
+        <li>button ya kudelete itumike muda mchache baada ya kugundulika malipo yaliyoingizwa muda huo huo kimakosa </li>
+        <li>kabla ya watumiaji wa mfumo kutumia malipo(payment settings) uliyoyasajili</li>
+    </ul>
+  </div>
+  </div>
 
 <div class="py-8 px-4 pb-14 w-l ">
       <h2 class="mb-4 text-xl  font-bold text-gray-900 dark:text-white">PAYMENT SETTINGS</h2>
@@ -42,22 +57,21 @@
 </section>
 
 
-<div>
-<div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs  uppercase bg-sky-500 dark:bg-gray-700 text-white">
+<div class="w-full">
+    <table id="myTable"   class="display">
+    <thead>
             <tr>
-                <th scope="col" class="px-6 py-3">
+                <th >
                    S/No
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th >
                 ACCOUNT Number
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th >
                     ACCOUNT NAME
                 </th>
               
-                <th scope="col" class="px-6 py-3">
+                <th >
                     Action
                 </th>
             </tr>
@@ -66,28 +80,27 @@
             <?php  $i=1;   ?>
             <?php foreach ($payment as $item) : ?>
                 
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr>
+                <th>
                 <?= $i ++ ?>
                 </th>
-                <td class="px-6 py-4">
+                <td>
                    <?= $item->number ;?>
                 </td>
-                <td class="px-6 py-4">
-                  <?= $item->name ;?>
-               
-                <td class="px-6 py-4 text-right">
+              
+               <td>
+               <?= $item->name ;?>
+               </td>
+                
                    
-                <a  href="<?= site_url("update_payment/$item->id") ?>">
-                            <button class="flex space-x-2 items-center px-3 py-2 bg-sky-500 rounded-md drop-shadow-md">
-                           
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil">
-                              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-                              <path d="m15 5 4 4"/>
-                            </svg>
-                          </button>
-                        </a>
-                </td>
+                
+
+
+                        <td class="px-6 py-4 text-sm text-[#333]">
+          <a href="<?= site_url("update_payment/$item->id") ?>" class="text-blue-500 hover:text-blue-700 mr-4">Edit</a>
+          <a href="<?= site_url("delete_payment/$item->id")?>" class="text-red-500 hover:text-red-700">Delete</a>
+        </td>
+                
                     
                
             </tr>

@@ -4,6 +4,8 @@
 <div class="grid grid-cols-3 gap-4">
 <?php foreach ($user as $item) : ?>
 
+   
+    
 <!-- https://gist.github.com/goodreds/5b8a4a2bf11ff67557d38c5e727ea86c -->
 
 <div class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
@@ -15,7 +17,7 @@
     </div>
     <div class="text-center mt-2">
         <h2 class="font-semibold uppercase"><?= $item->name ;?></h2>
-        <h2 class="text-sky-500 font-semibold"><?= $item->department ;?></h2>
+        <h2 class="text-sky-500 font-semibold"><?= strtoupper($item->department) ;?></h2>
     </div>
     <ul class=" text-gray-700  items-center justify-around">
         

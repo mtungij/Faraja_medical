@@ -48,7 +48,7 @@ $setting = model(SettingModel::class)->first();
             class="mr-3 h-8"
             alt="Flowbite Logo"
             />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-sky-400"><?= $setting->center_name ;?></span>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-sky-400"><?= strtoupper($setting->center_name) ;?></span>
         </a>
         
         </div>
