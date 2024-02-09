@@ -1,5 +1,10 @@
 
+<?php 
+use App\Models\UserModel;
 
+$userimage = model('UserModel')->find(session('user_id'))->img;
+
+;?>
 
 <aside
       class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
@@ -20,8 +25,8 @@
         <?php
         $imageClasses = 'sm:w-14 sm:h-14 md:w-16 md:h-16'; // Your specified class
 
-        if (!empty($user->img)) {
-            $imgUrl = base_url('public/img/' . $user->img);
+        if ($userimage) {
+            $imgUrl = base_url('public/img/' . $userimage);
             echo "<img src='$imgUrl' alt='Profile Picture' class='$imageClasses'>";
         } else {
             echo "<img src='" . base_url('/img/user.png') . "' alt='Default Profile Picture' class='$imageClasses'>";

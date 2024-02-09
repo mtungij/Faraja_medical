@@ -169,7 +169,7 @@ class UserController extends BaseController
     {
       $user =session()->get('user_id');
      
-      
+    
         return view('user/profile_pc' ,['user' => $user]);
 
     }

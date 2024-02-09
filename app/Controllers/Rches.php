@@ -18,14 +18,39 @@ class Rches extends BaseController
 
     public function create()
     {
-        model('RchesModel')->insert([
-            'name' => $this->request->getPost('name'),
-            'price' => $this->request->getPost('price')
-        ]);
 
-        return redirect()->back()->with('success', 'Data has been saved');
+        if( !$this->validate([
+            'name' => 'required',
+            'price' => 'required',
+        
+    
+        ])){
+                       
+            return redirect()->back()->withInput()->with('erros','please fill all field');     
     }
+    
+     $validatedData = $this->validator->getValidated();
+    
+    
+     $rch = model(RchesModel::class)->where('name',$validatedData['name'])->first();
+    
+     if(!$rch){
+    
+    //  dd($validatedData); 
+    
+    
+    $validatedData['price'] = str_replace(',', '', $validatedData['price']);
+    
+    
+    
+     model(RchesModel::class)->insert($validatedData );
+    
+       
+       return redirect()->back()->with('success','Rch added successfully');
 
+
+    }
+    }
     public function update()
     {
         model('RchesModel')->save([
