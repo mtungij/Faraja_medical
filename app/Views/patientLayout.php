@@ -115,6 +115,9 @@
             <li class="class='<?= url_is("/patients/$patient->id/examinations") ? "border-b-2 border-sky-600": "" ?> font-medium'">
                 <a href="<?= site_url("patients/$patient->id/examinations") ?>" class="py-6">Examination</a>
             </li>
+             <li class="class='<?= url_is("/patients/$patient->id/rches") ? "border-b-2 border-sky-600": "" ?> font-medium'">
+                <a href="<?= site_url("patients/$patient->id/rches") ?>" class="py-6">RCH</a>
+            </li>
             <li class='<?= url_is("/patients/$patient->id/diagnosis") ? "border-b-2 border-sky-600": "" ?> font-medium'>
                 <a href="<?= site_url("patients/$patient->id/diagnosis") ?>" class="py-6">Diagnosis</a>
             </li>

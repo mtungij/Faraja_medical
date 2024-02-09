@@ -26,8 +26,23 @@ class InvoiceController extends BaseController
         $invoiceItems = model(InvoiceModel::class)->builder()->select("*")->join('sales s', 's.id = invoices.sale_id')->join('sale_items si', 'si.sale_id = s.id')->join('drugs d', 'd.id = si.drug_id')->where('invoices.patient_id', $id)->get()->getResult();
         $investigations = model(InvestigationModel::class)->where('patient_id', $id)->orderBy('created_at', 'desc')->first();
 
+        $rchesRecords = model(InvoiceModel::class)->builder()
+                            ->select("*")
+                            ->join('rch_records rr', 'invoices.rch_record_id = rr.id')
+                            ->join('rch_record_items rri', 'rr.id = rri.rch_record_id')
+                            ->join('rches r', 'rri.rch_id = r.id')
+                            ->where('invoices.patient_id', $id)
+                            ->get()
+                            ->getResult();
+
         // dd($investigations);
-        return view("patient/invoice", ["patient"=> $patient, 'invoiceItems' => $invoiceItems, 'investigations' => $investigations, 'invoice' => $invoice]);
+        return view("patient/invoice", [
+            "patient"=> $patient, 
+            'invoiceItems' => $invoiceItems, 
+            'investigations' => $investigations, 
+            'invoice' => $invoice,
+            'rchesRecords' =>$rchesRecords
+        ]);
     }
 
     public function changeStatus(int $patient_id, int $invoice_id)

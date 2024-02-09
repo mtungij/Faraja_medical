@@ -125,6 +125,9 @@ $routes->group('patients', static function ($routes) {
     $routes->get('edit/(:segment)','PatientController::editpage/$1');
     $routes->post('update',[PatientController::class, 'update_patient']);
     $routes->post('store_patient',[PatientController::class, 'store']);
+
+    $routes->get('(:num)/rches', [Rches::class, 'patientRches']);
+    $routes->post('(:num)/rches', [Rches::class, 'store']);
 });
 
 
@@ -212,7 +215,6 @@ $routes->presenter('surgical',['controller' => 'SurgicalController']);
 $routes->post('rches/update_new', [Rches::class, 'update']);
 
 $routes->presenter('rches', ['only' => ['index', 'create']]);
-
 
 
 // PRINTING REPORTS
