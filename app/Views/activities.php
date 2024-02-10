@@ -49,9 +49,11 @@ if($investigations) {
         }
     }
 
+    if($rchesRecords) {
     foreach ($rchesRecords as $rch) {
         $totalRches += $rch->price;
     }
+}
 }
 ?>
    <section>
