@@ -182,7 +182,7 @@ class UserController extends BaseController
             $newName = $file->getRandomName();
 
             
-            $file->move('public/img', $newName);
+            $file->move('public/img/', $newName);
             $user = model(UserModel::class)->find(session('user_id'));
             model(UserModel::class)->update($user->id, ['img' => $newName]);
             return redirect()->back()->with('success', 'Profile picture updated successfully.');

@@ -220,5 +220,6 @@ $routes->presenter('rches', ['only' => ['index', 'create']]);
 // PRINTING REPORTS
 $routes->get('print_medicine','PrintController::medicine');
 $routes->get('reports/investigation', [ReportController::class, 'investigation']);
+$routes->get('reports/rch', [ReportController::class, 'rch']);
 
 

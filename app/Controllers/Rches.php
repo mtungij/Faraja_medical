@@ -12,7 +12,7 @@ class Rches extends BaseController
     public function index()
     {
         return view('rches/index', [
-            'rches' => model(RchesModel::class)->paginate(10),
+            'rches' => model(RchesModel::class)->findAll(),
         ]);
     }
 
