@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 use App\Models\InvoiceModel;
 use App\Models\SaleModel;
 use App\Models\TransferModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class ActivitiesController extends BaseController
 {
@@ -24,7 +23,8 @@ class ActivitiesController extends BaseController
                             ->like('p.first_name', $search)
                             ->orLike('p.middle_name', $search)
                             ->orLike('p.last_name', $search)
-                            ->paginate(10);
+                            ->get()
+                            ->getResult();
            
         } else {
             $patients = model(TransferModel::class)
@@ -33,7 +33,8 @@ class ActivitiesController extends BaseController
                             ->join('users f', 'transfers.from = f.id')
                             ->join('patients p', 'transfers.patient_id = p.id')
                             ->orderBy('created_at', 'desc')
-                            ->paginate(10);
+                            ->get()
+                            ->getResult();
         }
 
         $staffSales = null;
@@ -58,21 +59,32 @@ class ActivitiesController extends BaseController
         }
 
         $investigations = [];
+        $rchesRecords = [];
         if(session('department') == 'receptionist') {
             $investigations = model(InvoiceModel::class)->builder()->select("inv.categories, inv.surgicals")
                                     ->join('investigatigations inv', 'invoices.investigatigation_id = inv.id')
                                     ->where('invoices.status !=', 'pending')
-                                    // ->where('invoices.user_id', session('user_id'))
+                                    ->where('invoices.user_id', session('user_id'))
+                                    ->where('DATE(invoices.updated_at)', date('Y-m-d'))
+                                    ->get()
+                                    ->getResult();
+
+            $rchesRecords = model(InvoiceModel::class)->builder()->select("r.name, r.price")
+                                    ->join('rch_records rr', 'invoices.rch_record_id = rr.id')
+                                    ->join('rch_record_items rri', 'rr.id = rri.rch_record_id')
+                                    ->join('rches r', 'rri.rch_id = r.id')
+                                    ->where('invoices.status !=', 'pending')
+                                    ->where('invoices.user_id', session('user_id'))
                                     ->where('DATE(invoices.updated_at)', date('Y-m-d'))
                                     ->get()
                                     ->getResult();
         }
 
-
         return view('activities', [
             'patients' => $patients,
             'staffSales' => $staffSales,
             'investigations' => $investigations,
+            'rchesRecords' => $rchesRecords,
         ]);
     }
 }

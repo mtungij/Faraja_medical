@@ -4,7 +4,7 @@
 
 <!-- component -->
 <section class="">
-  <?php if($invoice && $invoice->investigatigation_id): ?>
+  <?php if($invoice && ($invoice->investigatigation_id || $invoice->rch_record_id || $invoice->sale_id)): ?>
     <div class="flex justify-between p-4 bg-sky-200 rounded-lg">
       <p class="flex gap-2">
         <span class="text-base text-sky-950">STATUS</span>
@@ -71,25 +71,25 @@
 
         <?php $totalAmount = 0 ;?>
         <?php if($investigations): ?>
+          <?php 
+          $investigationsIds = unserialize($investigations->categories) ?? [];
+          ?>
+
+          <?php if(count($investigationsIds) > 0): ?>
          <div class="relative overflow-x-auto my-6 px-3">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 rounded-s-lg">
-                            Investigation Name
-                        </th>
-                      
-                        <th scope="col" class="px-6 py-3 rounded-e-lg">
-                            Amount
-                        </th>
-                    </tr>
+            <table class="w-full border border-gray-200 rounded text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs border-b border-gray-300 uppercase text-white bg-sky-700 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                              <th scope="col" class="px-4 py-3">IVESTIGATION NAME</th>
+                              <th scope="col" class="px-4 py-3">PRICE</th>
+                          </tr>
                 </thead>
                 <tbody>
-                  <?php 
-                  $investigationsIds = unserialize($investigations->categories);
-
+                  <?php
                   $invests = model('LabtestModel')->find($investigationsIds);
-                  ;?>
+
+                   $totalCategories = 0 ;
+                   ?>
                 <?php foreach ($invests as $item) : ?>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -97,63 +97,67 @@
                     </th>
                     <td class="px-6 py-4">
                       <?php $totalAmount += ($item->price) ;?>
+                      <?php $totalCategories += ($item->price) ;?>
                       <?= number_format($item->price) ;?>
                     </td>
                 </tr>
                 <?php endforeach ?>
               </tbody>
             </div>
-            <!-- <tfoot>
+            <tfoot>
                 <tr class="font-semibold text-gray-900 dark:text-white">
                     <th scope="row" class="px-6 py-3 text-base">Total</th>
-                    <td class="px-6 py-3"><?//= number_format($totalAmount) ;?></td>
+                    <td class="px-6 py-3"><?= number_format($totalCategories) ;?></td>
                 </tr>
-            </tfoot> -->
+            </tfoot>
        </table>
       </div>
+      <?php endif ;?>
 
       
       <?php if($investigations->surgicals): ?>
+        <?php 
+        $surgicalIds = unserialize($investigations->surgicals) ?? [];
+        ?>
+
+        <?php if(count($surgicalIds) > 0): ?>
         <div class="relative overflow-x-auto my-6 px-3">
-          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" class="px-6 py-3 rounded-s-lg">
-                  Surgical Name
-                        </th>
-                      
-                        <th scope="col" class="px-6 py-3 rounded-e-lg">
-                            Amount
-                        </th>
-                      </tr>
+           <table class="w-full border border-gray-200 rounded text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs border-b border-gray-300 uppercase text-white bg-sky-700 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                              <th scope="col" class="px-4 py-3">SURGICAL NAME</th>
+                              <th scope="col" class="px-4 py-3">PRICE</th>
+                          </tr>
                 </thead>
                 <tbody>
-                  <?php 
-                  $surgicalIds = unserialize($investigations->surgicals);
-
-                  $surgicals = model('SurgicalModel')->find($surgicalIds);
-                  ;?>
-                <?php foreach ($surgicals as $item) : ?>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?= $item->name ;?>
-                    </th>
-                    <td class="px-6 py-4">
-                      <?php $totalAmount += ($item->price) ;?>
-                      <?= number_format($item->price) ;?>
-                    </td>
-                </tr>
-                <?php endforeach ?>
-              </tbody>
-            </div>
-            <!-- <tfoot>
-              <tr class="font-semibold text-gray-900 dark:text-white">
-                <th scope="row" class="px-6 py-3 text-base">Total</th>
-                <td class="px-6 py-3"><?//= number_format($totalAmount) ;?></td>
-              </tr>
-            </tfoot> -->
+                    <?php
+                     $totalSurgicals1 = 0;
+                     $surgicals = model('SurgicalModel')->find($surgicalIds);
+                     ?>
+                    <?php foreach ($surgicals as $item) : ?>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <?= $item->name ;?>
+                        </th>
+                        <td class="px-6 py-4">
+                          <?php $totalAmount += ($item->price) ;?>
+                          <?php $totalSurgicals1 += ($item->price) ;?>
+                          <?= number_format($item->price) ;?>
+                        </td>
+                    </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </div>
+                <tfoot>
+                  <tr class="font-semibold text-gray-900 dark:text-white">
+                    <th scope="row" class="px-6 py-3 text-base">Total</th>
+                    <td class="px-6 py-3"><?= number_format($totalSurgicals1) ;?></td>
+                  </tr>
+                </tfoot>
           </table>
         </div>
+        <?php endif ;?>
+        
         <?php endif ?>
         <?php endif ?>
         
@@ -196,21 +200,17 @@
         <?php endif ;?>
 
 
-
+        <?php if($invoiceItems): ?>
         <div class="relative overflow-x-auto px-3">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 rounded-s-lg">
-                            DRUG NAME
-                        </th>
-                      
-                        <th scope="col" class="px-6 py-3 rounded-e-lg">
-                            AMOUNT
-                        </th>
-                    </tr>
+             <table class="w-full border border-gray-200 rounded text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs border-b border-gray-300 uppercase text-white bg-sky-700 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                              <th scope="col" class="px-4 py-3">DRUG NAME</th>
+                              <th scope="col" class="px-4 py-3">AMOUNT</th>
+                          </tr>
                 </thead>
                 <tbody>
+                <?php $totalSales = 0 ;?>
                 <?php foreach ($invoiceItems as $item) : ?>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -218,6 +218,8 @@
                     </th>
                     <td class="px-6 py-4">
                       <?php $totalAmount += ($item->price * $item->quantity) ;?>
+                      <?php $totalSales += ($item->price * $item->quantity) ;?>
+
                         <?= number_format($item->price * $item->quantity) ;?>
                     </td>
                 </tr>
@@ -227,13 +229,22 @@
             <tfoot>
                 <tr class="font-semibold text-gray-900 dark:text-white">
                     <th scope="row" class="px-6 py-3 text-base">Total</th>
-                    <td class="px-6 py-3"><?= number_format($totalAmount) ;?></td>
+                    <td class="px-6 py-3"><?= number_format($totalSales) ;?></td>
                 </tr>
             </tfoot>
        </table>
-      
       </div>
-    </article>
+      <?php endif ;?>
+
+      <div class="flex justify-between px-10 my-6">
+         <div class="text-xl ">
+           Total Amount
+         </div>
+         <div class="text-xl font-bold">
+           <?= number_format($totalAmount) ;?>
+         </div>
+      </div>
+    </article>  
   </div>
 </section>
 

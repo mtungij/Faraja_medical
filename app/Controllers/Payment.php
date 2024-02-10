@@ -14,8 +14,7 @@ class Payment extends BaseController
         $pager = \Config\Services::pager();
         $setting =model(PaymentModel::class);
         $data = [
-            'payment' =>  $setting->paginate(10),
-            'pager' =>  $setting->pager,
+            'payment' =>  $setting->findAll(),
         ];
        
         // dd($data);

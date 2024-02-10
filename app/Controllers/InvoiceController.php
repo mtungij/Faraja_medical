@@ -15,7 +15,7 @@ class InvoiceController extends BaseController
     {
         if(session('department') != "admin") {
             $transfer = model(TransferModel::class)->where('patient_id', $id)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
-            if($transfer->status == 'new') {
+            if($transfer && $transfer->status == 'new') {
                 model(TransferModel::class)->update((int) $transfer->id, ['status' => 'done']);
             }
         }

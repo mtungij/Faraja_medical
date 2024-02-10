@@ -18,6 +18,8 @@ foreach ($patients as $patient) {
 $totalQuantity = 0;
 $totalSales = 0;
 
+$totalRches = 0;
+
 if($staffSales) {
     foreach ($staffSales as $drug) {
             $totalQuantity += $drug->quantity;
@@ -45,6 +47,10 @@ if($investigations) {
                 $totalInvestigtions += $category->price;
             }
         }
+    }
+
+    foreach ($rchesRecords as $rch) {
+        $totalRches += $rch->price;
     }
 }
 ?>
@@ -83,8 +89,13 @@ if($investigations) {
                     <p class="text-lg font-medium">Investigation Sales</p>
                     <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalInvestigtions) ;?></p>
                 </div>
-            </div>
+
+                <div class="p-4 border border-gray-300 rounded shadow-md">
+                    <p class="text-lg font-medium">Rches Sales</p>
+                    <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalRches) ;?></p>
+                </div>
         <?php endif ?>
+            </div>
 
 
        <div class="grid grid-cols-1 py-4 bg-gray-100 rounded ">

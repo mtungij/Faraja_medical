@@ -39,8 +39,8 @@ class PatientController extends BaseController
 
 if ($search == '') {
     $paginateData = $users->orderBy('created_at', 'DESC')  // Order by created_at in descending order
-
-                         ->paginate(10);
+                         ->get()
+                         ->getResult();
 } else {
     $paginateData = $users->select('*')
         ->orLike('first_name', $search)
@@ -49,7 +49,8 @@ if ($search == '') {
         ->orLike('illiness_status', $search)
         ->orLike('gender', $search)
         ->orderBy('created_at', 'DESC')  // Order by created_at in descending order
-        ->paginate();
+        ->get()
+        ->getResult();
 }
 
 // ...
@@ -109,7 +110,7 @@ if ($search == '') {
         $service=model(ServiceModel::class);
         $tests=model(LabtestModel::class);
         $vital=model(VitalModel::class);
-        $vitals =$vital->where('patient_id',$id)->orderBy('created_at','desc')->paginate(10);
+        $vitals =$vital->where('patient_id',$id)->orderBy('created_at','desc')->get()->getResult();
         $service=$service->findAll();
         $test=$tests->findAll();
        
