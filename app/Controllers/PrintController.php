@@ -15,7 +15,7 @@ class PrintController extends BaseController
      
        
        
-        
+      return view('report/all_medicine');      
         
     }
 

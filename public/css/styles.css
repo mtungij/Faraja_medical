@@ -2194,10 +2194,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   margin: 0.25rem;
 }
 
-.m-2 {
-  margin: 0.5rem;
-}
-
 .m-3 {
   margin: 0.75rem;
 }
@@ -3000,6 +2996,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   min-width: 100px;
 }
 
+.min-w-\[120px\] {
+  min-width: 120px;
+}
+
 .min-w-\[310px\] {
   min-width: 310px;
 }
@@ -3012,8 +3012,28 @@ input[type="range"]:active::-webkit-slider-thumb {
   min-width: 64px;
 }
 
+.min-w-\[80px\] {
+  min-width: 80px;
+}
+
 .min-w-full {
   min-width: 100%;
+}
+
+.min-w-\[0px\] {
+  min-width: 0px;
+}
+
+.min-w-\[50px\] {
+  min-width: 50px;
+}
+
+.min-w-24 {
+  min-width: 6rem;
+}
+
+.min-w-32 {
+  min-width: 8rem;
 }
 
 .max-w-2xl {
@@ -3520,6 +3540,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
+.grid-cols-8 {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
 .\!flex-row {
   flex-direction: row !important;
 }
@@ -3629,6 +3653,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
+}
+
+.gap-y-2 {
+  row-gap: 0.5rem;
 }
 
 .-space-x-px > :not([hidden]) ~ :not([hidden]) {
@@ -4161,6 +4189,16 @@ input[type="range"]:active::-webkit-slider-thumb {
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-gray-900 {
+  --tw-border-opacity: 1;
+  border-color: rgb(17 24 39 / var(--tw-border-opacity));
+}
+
+.border-blue-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(195 221 253 / var(--tw-border-opacity));
 }
 
 .border-r-transparent {
@@ -4771,11 +4809,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   padding-bottom: 1.25rem;
 }
 
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -4974,6 +5007,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .font-\[sans-serif\] {
   font-family: sans-serif;
+}
+
+.font-sans {
+  font-family: Roboto, sans-serif;
 }
 
 .text-2xl {
@@ -6346,6 +6383,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .hover\:rounded-\[50\%\]:hover {
   border-radius: 50%;
+}
+
+.hover\:border-blue-600:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(28 100 242 / var(--tw-border-opacity));
 }
 
 .hover\:border-gray-300:hover {
