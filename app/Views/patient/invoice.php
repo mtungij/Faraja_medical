@@ -1,7 +1,12 @@
 <?= $this->extend('patientLayout') ;?>
 
 <?= $this->section('patient') ;?>
+<?php 
+use App\Models\SettingModel;
 
+$setting = model(SettingModel::class)->first();
+
+;?>
 <!-- component -->
 <section class="">
   <?php if($invoice && ($invoice->investigatigation_id || $invoice->rch_record_id || $invoice->sale_id)): ?>
@@ -32,6 +37,11 @@
   <div class="w-2xl mx-auto py-0 md:py-6">
     <article class="shadow-none md:shadow-md md:rounded-md overflow-hidden">
       <div class="md:rounded-b-md  bg-white">
+            <!-- <div class ="flex justify-center">
+               <?= $setting->center_name ;?>
+               <br><br>
+               <?= $setting->location ;?>
+            </div> -->
         <div class="p-9 border-b border-gray-200">
           <div class="space-y-6">
             <div class="flex justify-between items-top">
@@ -41,7 +51,7 @@
                 </div>
                 <div>
                   <p class="font-medium text-sm text-gray-400"> Billed To </p>
-                  <p> <?= $patient->first_name ." ". $patient->middle_name ." ". $patient->last_name ;?> </p>
+                  <p style="text-transform: uppercase; font-weight: bold;"><?= $patient->first_name ." ". $patient->middle_name ." ". $patient->last_name ;?></p>
                   <p><?= $patient->phone ?> </p>
                   <p><?= $patient->address ;?></p>
                 </div>
@@ -57,10 +67,7 @@
                 </div>
                
                 <div>
-                  <a href="#" target="_blank" class="inline-flex items-center text-sm font-medium text-blue-500 hover:opacity-75 "> Download PDF <svg class="ml-0.5 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
-                      <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-                    </svg>
+                  <a href="#" target="_blank" class="inline-flex items-center text-sm font-bold text-blue-500 hover:opacity-75 "> PRINT RECEIPT 
                   </a>
                 </div>
                 
@@ -92,7 +99,7 @@
                    ?>
                 <?php foreach ($invests as $item) : ?>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-6 py-4 font-bold text-red-700  whitespace-nowrap dark:text-white">
                         <?= $item->name ;?>
                     </th>
                     <td class="px-6 py-4">
@@ -136,7 +143,7 @@
                      ?>
                     <?php foreach ($surgicals as $item) : ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row" class="px-6 py-4 font-medium text-red-700 whitespace-nowrap dark:text-white">
                             <?= $item->name ;?>
                         </th>
                         <td class="px-6 py-4">
@@ -185,7 +192,7 @@
                                       <?= $rowId++ ?>
                                   </th>
                                   <?php $total += $rch->price ;?>
-                                  <td class="px-4 py-3"><?= $rch->name ?></td>
+                                  <td class="px-4 py-3 text-red-700"><?= $rch->name ?></td>
                                   <td class="px-4 py-3"><?= number_format($rch->price) ?></td>
                               </tr>
                           <?php endforeach ;?>
