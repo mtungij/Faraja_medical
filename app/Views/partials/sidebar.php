@@ -106,6 +106,7 @@ if(session("user_id")) {
 <div id="default-tab-content">
     <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <ul class="space-y-2">
+     <?php if(session("department") == "admin" ) :?>  
           <li>
             <a
               href="/"
@@ -115,7 +116,7 @@ if(session("user_id")) {
               <span class="ml-3">Overview</span>
             </a>
           </li>
-
+      <?php endif ;?>
           <li>
             <a
               href="<?= site_url('activities') ?>"
@@ -137,15 +138,7 @@ if(session("user_id")) {
           </li>
           <?php endif ;?>
          
-          <li>
-            <a
-              href="<?= site_url('rches')?>"
-              class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-            >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plug-2"><path d="M9 2v6"/><path d="M15 2v6"/><path d="M12 17v5"/><path d="M5 8h14"/><path d="M6 11V8h12v3a6 6 0 1 1-12 0v0Z"/></svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">RCH</span>
-            </a>
-          </li>
+         
 
           <?php if(session('department')=="admin"):?>
           <li>
@@ -189,6 +182,15 @@ if(session("user_id")) {
                   >Investigation Setup</a
                 >
               </li>
+              <li>
+            <a
+              href="<?= site_url('rches')?>"
+              class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plug-2"><path d="M9 2v6"/><path d="M15 2v6"/><path d="M12 17v5"/><path d="M5 8h14"/><path d="M6 11V8h12v3a6 6 0 1 1-12 0v0Z"/></svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">RCH</span>
+            </a>
+          </li>
               <li>
                 <a
                   href="<?= site_url("surgical") ?>"
