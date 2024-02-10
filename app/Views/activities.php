@@ -92,10 +92,10 @@ if($investigations) {
                     <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalInvestigtions) ;?></p>
                 </div>
 
-                <div class="p-4 border border-gray-300 rounded shadow-md">
+                <!-- <div class="p-4 border border-gray-300 rounded shadow-md">
                     <p class="text-lg font-medium">Rches Sales</p>
-                    <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalRches) ;?></p>
-                </div>
+                    <p class="text-3xl font-bold text-sky-950"><?//= "Tsh " . number_format($totalRches) ;?></p>
+                </div> -->
         <?php endif ?>
             </div>
 
