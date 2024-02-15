@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\InvoiceModel;
+use App\Models\PatientModel;
 use App\Models\RchesModel;
+use App\Models\RchRecordItemModel;
 use App\Models\RchRecordModel;
 
 class Rches extends BaseController
@@ -22,11 +24,9 @@ class Rches extends BaseController
         if( !$this->validate([
             'name' => 'required',
             'price' => 'required',
-        
-    
         ])){
                        
-            return redirect()->back()->withInput()->with('erros','please fill all field');     
+            return redirect()->back()->withInput()->with('errors','please fill all field');     
     }
     
      $validatedData = $this->validator->getValidated();
@@ -37,20 +37,17 @@ class Rches extends BaseController
      if(!$rch){
     
     //  dd($validatedData); 
-    
-    
     $validatedData['price'] = str_replace(',', '', $validatedData['price']);
     
-    
-    
      model(RchesModel::class)->insert($validatedData );
-    
        
        return redirect()->back()->with('success','Rch added successfully');
 
 
     }
     }
+
+
     public function update()
     {
         model('RchesModel')->save([
@@ -64,23 +61,34 @@ class Rches extends BaseController
 
     public function patientRches($id)
     {
-        $rchesRecords = model(RchRecordModel::class)->builder()
-                            ->select("*")
-                            ->join('rch_record_items ri', 'rch_records.id = ri.rch_record_id')
-                            ->join('rches r', 'ri.rch_id = r.id')
+        $rchesRecords = model(RchRecordModel::class)
                             ->where('patient_id', $id)
                             ->get()
                             ->getResult();
 
-        $rchesRecordInvoiceStatus = model(InvoiceModel::class)
-                                        ->where('patient_id', $id)
-                                        ->first()?->status;
+        $patient = model(PatientModel::class)->where('id', $id)->first();
+
+        $rchesRecordInvoiceStatus = 'No invoice yet.';
+
+        foreach ($rchesRecords as $rchRecord) {
+            $rchRecord->items = model(RchRecordItemModel::class)->builder()
+                                ->select('rch_record_items.*, rches.name, rches.price')
+                                ->join('rches', 'rches.id = rch_record_items.rch_id')
+                                ->where('rch_record_id', $rchRecord->id)
+                                ->get()
+                                ->getResult();
+            
+            $rchRecord->invoice = model(InvoiceModel::class)->where('invoiceable_id', $rchRecord->id)->where('invoiceable_type', 'App\Models\RchRecordModel')->first();
+            if ($rchRecord->invoice) {
+                $rchesRecordInvoiceStatus = $rchRecord->invoice->status;
+            }
+        }
 
         return view('patient/rches', [
             'rches' => model(RchesModel::class)->findAll(),
-            'patient' => model('PatientModel')->find($id),
+            'patient' => $patient,
             'rchesRecords' => $rchesRecords,
-            'invoiceStatus' => $rchesRecordInvoiceStatus ?? "No invoice yet",
+            'invoiceStatus' => $rchesRecordInvoiceStatus,
         ]);
     }
 
@@ -98,22 +106,6 @@ class Rches extends BaseController
                 'user_id' => $user_id,
             ]);
 
-            //if patient is available to invoices table update the invoice table with rch_record_id and status to pending otherwise create new invoice
-            $invoice = model('InvoiceModel')->where('patient_id', $patient_id)->first();
-
-            if ($invoice) {
-                model(InvoiceModel::class)->update($invoice->id,[
-                    'rch_record_id' => $rchRecordId,
-                    'status' => 'pending',
-                ]);
-            } else {
-                model('InvoiceModel')->insert([
-                    'patient_id' => $patient_id,
-                    'rch_record_id' => $rchRecordId,
-                    'status' => 'pending',
-                ]);
-            }
-
             //save rch record items
             foreach ($rches as $rch) {
                 model('RchRecordItemModel')->insert([
@@ -122,6 +114,15 @@ class Rches extends BaseController
                     'desc' => $desc,
                 ]);
             }
+
+            //save to invoice
+            model('InvoiceModel')->insert([
+                'invoice_number' => 'INV' . random_int(100_000_000, 999_999_999),
+                'invoiceable_id' => $rchRecordId,
+                'patient_id' => $patient_id,
+                'invoiceable_type' => 'App\Models\RchRecordModel',
+                'status' => 'pending',
+            ]);
 
         return redirect()->back()->with('success', 'Rches has been saved');
     }

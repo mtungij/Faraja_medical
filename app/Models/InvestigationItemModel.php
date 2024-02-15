@@ -12,7 +12,7 @@ class InvestigationItemModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["investigation_id"];
+    protected $allowedFields    = ["investigation_id", "category_id"];
 
     // Dates
     protected $useTimestamps = true;
