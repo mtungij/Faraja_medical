@@ -14,46 +14,6 @@ foreach ($patients as $patient) {
     if($patient->badge == 'new') {
         $newPatients++;
 }
-
-$totalQuantity = 0;
-$totalSales = 0;
-
-$totalRches = 0;
-
-if($staffSales) {
-    foreach ($staffSales as $drug) {
-            $totalQuantity += $drug->quantity;
-            $totalSales += ($drug->quantity * $drug->price);
-        }
-    }
-}
-
-$totalInvestigtions = 0;
-
-if($investigations) {
-    foreach ($investigations as $investigation) {
-        if(!empty(unserialize($investigation->categories))) {
-            $categories = model('LabtestModel')->find(unserialize($investigation->categories));
-            foreach($categories as $category) {
-                $totalInvestigtions += $category->price;
-            }
-        }
-    }
-
-    foreach ($investigations as $investigation) {
-        if(!empty(unserialize($investigation->surgicals))) {
-            $categories = model('SurgicalModel')->find(unserialize($investigation->surgicals));
-            foreach($categories as $category) {
-                $totalInvestigtions += $category->price;
-            }
-        }
-    }
-
-    if($rchesRecords) {
-    foreach ($rchesRecords as $rch) {
-        $totalRches += $rch->price;
-    }
-}
 }
 ?>
    <section>
@@ -74,29 +34,6 @@ if($investigations) {
           </div>
        </div>
 
-       <?php if($staffSales): ?>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 ">
-                <div class="p-4 border border-gray-300 rounded shadow-md">
-                    <p class="text-lg font-medium">Total Drugs Sold</p>
-                    <p class="text-3xl font-bold text-green-600"> <?= $totalQuantity ;?> </p>
-                </div>
-
-                <div class="p-4 border border-gray-300 rounded shadow-md">
-                    <p class="text-lg font-medium">Drug Sales</p>
-                    <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalSales) ;?></p>
-                </div>
-        <?php endif ?>
-        <?php if(session('department') == 'receptionist'): ?>
-                <div class="p-4 border border-gray-300 rounded shadow-md">
-                    <p class="text-lg font-medium">Investigation Sales</p>
-                    <p class="text-3xl font-bold text-sky-950"><?= "Tsh " . number_format($totalInvestigtions) ;?></p>
-                </div>
-
-                <!-- <div class="p-4 border border-gray-300 rounded shadow-md">
-                    <p class="text-lg font-medium">Rches Sales</p>
-                    <p class="text-3xl font-bold text-sky-950"><?//= "Tsh " . number_format($totalRches) ;?></p>
-                </div> -->
-        <?php endif ?>
             </div>
 
 
@@ -199,7 +136,7 @@ if($investigations) {
        </div>
 
 
-       <?php if($staffSales): ?>
+       <?php if($invoices): ?>
         <div class="grid grid-cols-1 py-4 bg-gray-100 rounded my-4">
                 <div class="relative overflow-x-auto whitespace-nowrap">
 
@@ -211,32 +148,38 @@ if($investigations) {
                                     S/N
                                 </th>
                                 <th scope="col" class="px-3 py-3">
-                                    Drug Name
+                                    Patient Name
                                 </th>
                                 <th scope="col" class="px-3 py-3">
-                                    Quantity
+                                    Invoice
                                 </th>
                                 <th scope="col" class="px-3 py-3">
-                                    Price
+                                    Date
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Action
                                 </th>
                             
                             </tr>
                         </thead>
                         <tbody>
                             <?php $rowId = 1 ;?>
-                            <?php foreach ($staffSales as $drug) : ?>
+                            <?php foreach ($invoices as $invoice) : ?>
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <?= $rowId++ ;?>
                                     </td>
                                     <td class="px-3 py-4">
-                                        <?= $drug->name ?>
+                                        <?= $invoice->first_name . " " . $invoice->middle_name . " " . $invoice->last_name ?>
                                     </td>
                                     <td class="px-3 py-3">
-                                        <?= $drug->quantity ?>
+                                        <?= $invoice->invoice_number ?>
                                     </td>
                                     <td class="px-3 py-3">
-                                        <?= number_format($drug->price * $drug->quantity) ?>
+                                        <?= date('d/m/y H:i:s', strtotime($invoice->created_at)) ?>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <a href="<?= site_url('invoices/'.$invoice->patient_id.'/'.$invoice->id) ?>" class="text-sky-600 font-semibold">Confirm Payments</a>
                                     </td>
                                     
                                 </tr>

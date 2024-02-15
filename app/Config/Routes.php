@@ -113,11 +113,6 @@ $routes->group('patients', static function ($routes) {
     $routes->get('(:num)/appointments', [AppointmentController::class, 'index']);
     $routes->post('(:num)/appointments', [AppointmentController::class, 'store']);
 
-
-    $routes->get('(:num)/invoice', [InvoiceController::class, 'index']);
-    $routes->patch('(:num)/(:num)/invoice_status', [InvoiceController::class, 'changeStatus']);
-    
-
     $routes->post('(:num)/complains', [ComplainController::class, 'store']);
     $routes->get('show','PatientController::show');
     $routes->get('edit/(:segment)','PatientController::editpage/$1');
@@ -132,6 +127,8 @@ $routes->group('patients', static function ($routes) {
 
 $routes->post('investigation/result', [InvestigationController::class, 'storeResult']);
 $routes->post('surgicals', [SurgicalRecordController::class, 'store']);
+
+$routes->get('invoices/(:num)/(:num)', [InvoiceController::class, 'index']);
 
 
 $routes->get('activities', [ActivitiesController::class, 'index']);

@@ -120,8 +120,7 @@ class Rches extends BaseController
                 'invoice_number' => 'INV' . random_int(100_000_000, 999_999_999),
                 'invoiceable_id' => $rchRecordId,
                 'patient_id' => $patient_id,
-                'invoiceable_type' => 'App\Models\RchRecordModel',
-                'status' => 'pending',
+                'invoiceable_type' => 'rches',
             ]);
 
         return redirect()->back()->with('success', 'Rches has been saved');

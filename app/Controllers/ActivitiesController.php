@@ -37,54 +37,17 @@ class ActivitiesController extends BaseController
                             ->getResult();
         }
 
-        $staffSales = null;
-        if(session('department') == 'pharmacist') {
-            $staffSales = model(SaleModel::class)->builder()->select('SUM(si.quantity) as quantity, SUM(si.price) as price, d.name')
-                                ->join('sale_items si', 'sales.id = si.sale_id')
-                                ->join('drugs d', 'si.drug_id = d.id')
-                                ->where('sales.user_id', session('user_id'))
-                                ->where('DATE(sales.created_at)', date('Y-m-d'))
-                                ->groupBy('si.drug_id')
-                                ->get()
-                                ->getResult();
-                                
-        } elseif(session('department') == 'receptionist') {
-            $staffSales = model(SaleModel::class)->builder()->select('SUM(si.quantity) as quantity, SUM(si.price) as price, d.name')
-                                ->join('sale_items si', 'sales.id = si.sale_id')
-                                ->join('drugs d', 'si.drug_id = d.id')
-                                ->where('DATE(sales.created_at)', date('Y-m-d'))
-                                ->groupBy('si.drug_id')
-                                ->get()
-                                ->getResult();
-        }
-
-        $investigations = [];
-        $rchesRecords = [];
-        if(session('department') == 'receptionist') {
-            $investigations = model(InvoiceModel::class)->builder()->select("inv.categories, inv.surgicals")
-                                    ->join('investigatigations inv', 'invoices.investigatigation_id = inv.id')
-                                    ->where('invoices.status !=', 'pending')
-                                    ->where('invoices.user_id', session('user_id'))
-                                    ->where('DATE(invoices.updated_at)', date('Y-m-d'))
-                                    ->get()
-                                    ->getResult();
-
-            $rchesRecords = model(InvoiceModel::class)->builder()->select("r.name, r.price")
-                                    ->join('rch_records rr', 'invoices.rch_record_id = rr.id')
-                                    ->join('rch_record_items rri', 'rr.id = rri.rch_record_id')
-                                    ->join('rches r', 'rri.rch_id = r.id')
-                                    ->where('invoices.status !=', 'pending')
-                                    ->where('invoices.user_id', session('user_id'))
-                                    ->where('DATE(invoices.updated_at)', date('Y-m-d'))
-                                    ->get()
-                                    ->getResult();
-        }
-
+        $invoices = model(InvoiceModel::class)
+                    ->select('invoices.id, invoices.invoice_number, invoices.status, invoices.created_at, patients.id as patient_id, patients.first_name, patients.middle_name, patients.last_name')
+                    ->join('patients', 'patients.id = invoices.patient_id')
+                    ->where('invoices.status', 'pending')
+                    ->orderBy('created_at', 'desc')
+                    ->get()
+                    ->getResult();
+        
         return view('activities', [
             'patients' => $patients,
-            'staffSales' => $staffSales,
-            'investigations' => $investigations,
-            'rchesRecords' => $rchesRecords,
+            'invoices' => $invoices,
         ]);
     }
 }

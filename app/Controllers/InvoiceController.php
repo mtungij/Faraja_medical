@@ -11,37 +11,19 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class InvoiceController extends BaseController
 {
-    public function index($id)
+    public function index($id, $invoice_id)
     {
-        if(session('department') != "admin") {
-            $transfer = model(TransferModel::class)->where('patient_id', $id)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
-            if($transfer && $transfer->status == 'new') {
-                model(TransferModel::class)->update((int) $transfer->id, ['status' => 'done']);
-            }
-        }
+        $invoice = model(InvoiceModel::class)->find($invoice_id);
 
+        $invoiceType = model($invoice->invoiceable_type)->find($invoice->invoiceable_id);
 
-        $invoice = model(InvoiceModel::class)->where('patient_id', $id)->first();
-        $patient = model(PatientModel::class)->find($id);
-        $invoiceItems = model(InvoiceModel::class)->builder()->select("*")->join('sales s', 's.id = invoices.sale_id')->join('sale_items si', 'si.sale_id = s.id')->join('drugs d', 'd.id = si.drug_id')->where('invoices.patient_id', $id)->get()->getResult();
-        $investigations = model(InvestigationModel::class)->where('patient_id', $id)->orderBy('created_at', 'desc')->first();
+        $invoiceType->items = model($invoice->invoiceable_type . 'ItemModel')->where($invoice->invoiceable_type . '_id', $invoice->invoiceable_id)->get()->getResult();
 
-        $rchesRecords = model(InvoiceModel::class)->builder()
-                            ->select("*")
-                            ->join('rch_records rr', 'invoices.rch_record_id = rr.id')
-                            ->join('rch_record_items rri', 'rr.id = rri.rch_record_id')
-                            ->join('rches r', 'rri.rch_id = r.id')
-                            ->where('invoices.patient_id', $id)
-                            ->get()
-                            ->getResult();
+        dd($invoiceType);
 
-        // dd($investigations);
         return view("patient/invoice", [
-            "patient"=> $patient, 
-            'invoiceItems' => $invoiceItems, 
-            'investigations' => $investigations, 
-            'invoice' => $invoice,
-            'rchesRecords' =>$rchesRecords
+            'patient' => model(PatientModel::class)->find($id),
+            'setting' => model('App\Models\SettingModel')->first(),
         ]);
     }
 
@@ -50,5 +32,15 @@ class InvoiceController extends BaseController
         $userId = session('user_id');
         $invoice = model(InvoiceModel::class)->update($invoice_id, ['status' => $this->request->getPost('status'), 'user_id' => $userId]);
         return redirect()->back()->with('success', 'Paid Successfully!');
+    }
+
+    public function show($id, $invoice_id)
+    {
+        $this->request->setHeader('Content-Type', 'application/pdf');
+        $invoiceName = "invoice" . $invoice_id . ".pdf";
+        $pdf = new \Mpdf\Mpdf();
+
+        $pdf->WriteHTML(view('patient_receipt'));
+        $pdf->Output('invoice123.pdf', 'D');
     }
 }

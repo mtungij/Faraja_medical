@@ -81,7 +81,7 @@ class InvestigationController extends BaseController
             }
 
             //save investigationId to invoice
-            model(InvoiceModel::class)->insert(['patient_id' => $validatedData['patient_id'], 'user_id' => $validatedData['user_id'], 'invoice_number' => 'INV'. random_int(100_000_000, 999999999), 'invoiceable_type' => 'App\Models\InvestigationModel', 'invoiceable_id' => $investigationId]);
+            model(InvoiceModel::class)->insert(['patient_id' => $validatedData['patient_id'], 'user_id' => $validatedData['user_id'], 'invoice_number' => 'INV'. random_int(100_000_000, 999999999), 'invoiceable_type' => 'investigations', 'invoiceable_id' => $investigationId]);
             
             return redirect()->back()->with('success','data added successfully');
 
