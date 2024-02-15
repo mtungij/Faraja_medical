@@ -35,7 +35,7 @@ class InvoiceController extends BaseController
                             ->get()
                             ->getResult();
 
-        // dd($investigations);
+        // dd($transfer);
         return view("patient/invoice", [
             "patient"=> $patient, 
             'invoiceItems' => $invoiceItems, 
