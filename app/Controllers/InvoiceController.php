@@ -11,22 +11,6 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class InvoiceController extends BaseController
 {
-    public function index($id, $invoice_id)
-    {
-        $invoice = model(InvoiceModel::class)->find($invoice_id);
-
-        $invoiceType = model($invoice->invoiceable_type)->find($invoice->invoiceable_id);
-
-        $invoiceType->items = model($invoice->invoiceable_type . 'ItemModel')->where($invoice->invoiceable_type . '_id', $invoice->invoiceable_id)->get()->getResult();
-
-        dd($invoiceType);
-
-        return view("patient/invoice", [
-            'patient' => model(PatientModel::class)->find($id),
-            'setting' => model('App\Models\SettingModel')->first(),
-        ]);
-    }
-
     public function changeStatus(int $patient_id, int $invoice_id)
     {
         $userId = session('user_id');

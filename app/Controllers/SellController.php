@@ -143,6 +143,10 @@ class SellController extends BaseController
 
         $cart->destroy();
 
+        // print receipt 
+        $receipt = "Receipt content goes here";
+        echo $receipt;
+
         return redirect()->back()->with('success', 'Checkout successful');
     }
 

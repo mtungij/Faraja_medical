@@ -306,7 +306,7 @@ if(session("user_id")) {
           <?php endif ;?>
           </li>
 
-          <?php if(session("department")== "admin") :?>
+         
           <li>
             <button
               type="button"
@@ -350,7 +350,7 @@ if(session("user_id")) {
               </li>
             </ul>
           </li>
-          <?php endif  ;?>
+      
          <li>
             <button
               type="button"
