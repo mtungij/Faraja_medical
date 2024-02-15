@@ -3,12 +3,15 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\InvestigationItemModel;
 use App\Models\InvestigationModel;
+use App\Models\InvestigationResultModel;
+use App\Models\InvoiceModel;
 use App\Models\LabtestModel;
 use App\Models\PatientModel;
 use App\Models\SurgicalModel;
 use App\Models\TransferModel;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\UserModel;
 
 class InvestigationController extends BaseController
 {
@@ -21,30 +24,44 @@ class InvestigationController extends BaseController
             }
         }
         $categories = model(LabtestModel::class)->findAll();
-        $surgicals = model(SurgicalModel::class)->findAll();
         $patient = model(PatientModel::class)->find($id);
+        
         $investigations = model(InvestigationModel::class)->builder()
-                                ->select("investigatigations.*, users.name")
-                                ->join("users", 'users.id = investigatigations.user_id')
-                                // ->join('users r', 'r.id = investigatigations.replied_by')
-                                ->where('patient_id', $id)
-                                ->orderBy('created_at', 'desc')
+                                ->select("investigations.id,investigations.user_id, investigations.patient_id, investigations.created_at")
+                                ->where('investigations.patient_id', $id)
                                 ->get()
                                 ->getResult();
+
+        foreach($investigations as $investigation) {
+            $investigation->items = model(InvestigationItemModel::class)->builder()
+                                    ->select('categories.*')
+                                    ->join('categories', 'categories.id = investigation_items.category_id')
+                                    ->where('investigation_id', $investigation->id)
+                                    ->get()
+                                    ->getResult();
+
+            $investigation->invoice = model(InvoiceModel::class)->where('invoiceable_type', 'App\Models\InvestigationModel')->where('invoiceable_id', $investigation->id)->first();
+
+            $investigation->user = model(UserModel::class)->find($investigation->user_id);
+
+            $investigation->result = model(InvestigationResultModel::class)->where('investigation_id', $investigation->id)->first();
+
+            if ($investigation->result) {
+                $investigation->result->user = model(UserModel::class)->find($investigation->result->user_id);
+            }
+        }
+
+        // dd($investigations);
 
         return view('patient/investigation', [
             'patient' => $patient,
             'investigations' => $investigations,
             'categories' => $categories,
-            'surgicals' => $surgicals,
         ]);
     }
 
     public function store()
     {
-        $comment = $this->request->getPost('desc');
-        $surgicals = $this->request->getPost('surgicals');
-        $result = $this->request->getPost('result');
         $categories = $this->request->getPost('categories');
 
         if( !$this->validate([
@@ -57,32 +74,14 @@ class InvestigationController extends BaseController
         
            $validatedData = $this->validator->getValidated();
             
-           $investigation= model(InvestigationModel::class)->insert([
-                ...$validatedData, 
-                'comment' => $comment, 
-                'result' => $result,
-                'surgicals' => serialize($surgicals), 
-                'categories' => serialize($categories)
-            ]);
+           $investigationId = model(InvestigationModel::class)->insert($validatedData);
 
-            //if patient_id is available to invoice table then update else insert
+            foreach($categories as $category) {
+            model(InvestigationItemModel::class)->insert(['investigation_id' => $investigationId, 'category_id' => $category]);
+            }
 
-        $patient = model('App\Models\InvoiceModel')->where('patient_id', $this->request->getPost('patient_id'))->first();
-
-        if ($patient) {
-            model('App\Models\InvoiceModel')->update($patient->id, [
-                'investigatigation_id' => $investigation,
-                'status' => 'pending',
-            ]);
-        } else {
-            model('App\Models\InvoiceModel')->insert([
-                'patient_id' => $this->request->getPost('patient_id'),
-                'investigatigation_id' => $investigation,
-            ]);
-        }
-
-
-
+            //save investigationId to invoice
+            model(InvoiceModel::class)->insert(['patient_id' => $validatedData['patient_id'], 'user_id' => $validatedData['user_id'], 'invoice_number' => 'INV'. random_int(100_000_000, 999999999), 'invoiceable_type' => 'App\Models\InvestigationModel', 'invoiceable_id' => $investigationId]);
             
             return redirect()->back()->with('success','data added successfully');
 
@@ -115,5 +114,23 @@ class InvestigationController extends BaseController
             model(InvestigationModel::class)->update((int) $investigationId, ['result' => $validatedData['result'], 'replied_by' => $validatedData['replied_by']]);
 
             return redirect()->to("patients/$patientId/investigations")->with('success', "Investigation updated successfully");
+        }
+
+
+        public function storeResult()
+        {
+            if(! $this->validate([
+                'investigation_id' => 'required',
+                'user_id' => 'required',
+                'desc' => 'required',
+            ])){
+                return redirect()->back()->withInput()->with('errors', "Please fill all inputs");
+            }
+
+            $validatedData = $this->validator->getValidated();
+
+            model(InvestigationResultModel::class)->insert($validatedData);
+
+            return redirect()->back()->with('success', "Result added successfully");
         }
 }

@@ -17,13 +17,11 @@ use App\Controllers\Rches;
 use App\Controllers\ReportController;
 use App\Controllers\ReviewController;
 use App\Controllers\SellController;
+use App\Controllers\SurgicalRecordController;
 use App\Controllers\TransferController;
 use App\Controllers\TreatmentController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
-use App\Models\InvoiceModel;
-use App\Models\RchesModel;
-use App\Models\Reviews;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -128,7 +126,12 @@ $routes->group('patients', static function ($routes) {
 
     $routes->get('(:num)/rches', [Rches::class, 'patientRches']);
     $routes->post('(:num)/rches', [Rches::class, 'store']);
+
+    $routes->get('(:num)/surgicals', [SurgicalRecordController::class, 'index']);
 });
+
+$routes->post('investigation/result', [InvestigationController::class, 'storeResult']);
+$routes->post('surgicals', [SurgicalRecordController::class, 'store']);
 
 
 $routes->get('activities', [ActivitiesController::class, 'index']);

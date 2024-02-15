@@ -186,7 +186,10 @@ if($investigations) {
                                         <a class="text-sky-700 font-medium hover:underline active:text-green-700" href="<?= site_url("patients/$patient->patientId/invoice") ?>">open</a>
                                     <?php elseif(session('department') == 'lab'): ?>
                                         <a class="text-sky-700 font-medium hover:underline active:text-green-700" href="<?= site_url("patients/$patient->patientId/investigations") ?>">open</a>
+                                    <?php elseif(session('department') == 'rch'): ?>
+                                        <a class="text-sky-700 font-medium hover:underline active:text-green-700" href="<?= site_url("patients/$patient->patientId/rches") ?>">open</a>
                                     <?php endif ?>
+
                                 </td>
                             </tr>
                         <?php endforeach ?>

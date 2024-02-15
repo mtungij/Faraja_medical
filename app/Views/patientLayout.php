@@ -128,8 +128,10 @@
 
       <?php if(session('department') == 'doctor' || session('department') == 'admin' || session('department') == 'lab'): ?>
       <li class="flex flex-col justify-center items-center border-2 hover:border-blue-600 rounded-md bg-gray-100 text-sm font-semibold text-gray-500 hover:text-blue-600 py-4 px-4 min-w-[120px] cursor-pointer transition-all">
-       
         <a href="<?= site_url("patients/$patient->id/investigations") ?>">Investigation</a>
+      </li>
+      <li class="flex flex-col justify-center items-center border-2 hover:border-blue-600 rounded-md bg-gray-100 text-sm font-semibold text-gray-500 hover:text-blue-600 py-4 px-4 min-w-[120px] cursor-pointer transition-all">
+        <a href="<?= site_url("patients/$patient->id/surgicals") ?>">Surgicals</a>
       </li>
       <?php endif ?>
 

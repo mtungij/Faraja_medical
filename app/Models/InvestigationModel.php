@@ -6,16 +6,16 @@ use CodeIgniter\Model;
 
 class InvestigationModel extends Model
 {
-    protected $table            = 'investigatigations';
+    protected $table            = 'investigations';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['patient_id','user_id', 'categories', 'surgicals', 'comment', 'replied_by', 'result'];
+    protected $allowedFields    = ['user_id', 'patient_id', 'desc'];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

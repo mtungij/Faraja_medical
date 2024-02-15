@@ -5,7 +5,7 @@
 
 <section class="bg-gray-50 dark:bg-gray-900">
     <header>
-        <h2 class="text-2xl font-bold my-3">Investigations</h2>
+        <h2 class="text-2xl font-bold my-3">Surgicals</h2>
     </header>
     <?php if(session('val_errors')): ?>
         <ul>
@@ -33,48 +33,26 @@
                     </form>
                 </div>
                 <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                    <?= $this->include('patient/partials/createInvestigation') ;?>
+                    <?= $this->include('patient/partials/createSurgical') ;?>
                 </div>
             </div>
             
         <ol class="mx-4 relative border-s border-gray-300 dark:border-gray-700"> 
-            <?php foreach ($investigations as $investigation):?>  
+            <?php foreach ($surgicalRecords as $surgical):?>  
                 <li class="mb-4 ms-4">
                     <div class="absolute w-3 h-3 bg-gray-300 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                     <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-                        <?= date('d M Y H:i', strtotime($investigation->created_at))  ;?>
+                        <?= date('d M Y H:i', strtotime($surgical->created_at))  ;?>
                     </time>
-                    <h3 class="font-medium text-sky-950 mb-3">Investigation by <?= $investigation->user->name ?></h3>
+                    <h3 class="font-medium text-sky-950 mb-3">surgical by <?= $surgical->user->name ?></h3>
                     <div class="border border-gray-300 rounded-md my-3 p-3">
-                        <h3 class="font-medium text-sky-950 mb-3">Investigations</h3>
+                        <h3 class="font-medium text-sky-950 mb-3">surgicals</h3>
                         <ul role="list" class="marker:text-sky-400 list-disc pl-5 space-y-3 text-sky-950/60">
-                            <?php foreach($investigation->items as $item): ?>
+                            <?php foreach($surgical->items as $item): ?>
                                <li><?= $item->name ?></li>
                             <?php endforeach ;?>
                         </ul>
                     </div>
-
-                    <?php if(session('department')): ?>
-                        <div class="border border-sky-300 rounded-md my-3 p-3 ml-10">
-                            <h3 class="font-medium text-sky-950 mb-3">
-                                <span>Result </span>
-                                <?php if($investigation->result): ;?>
-                                    <span class="text-sky-500">by <?= $investigation->result->user->name ?></span>
-                                <?php endif ;?>
-                            </h3>
-                            <div class="text-sky-950/60"><?= $investigation->result?->desc ?? "No results yet." ?></div>
-                        </div>
-                    <?php endif ;?>
-                    
-                    <!-- write result(text area) -->
-                    <?php if(session('department') == 'lab' && !$investigation->result): ?>
-                        <form action="<?= base_url('investigation/result') ?>" method="post" class="mt-3 grid">
-                            <input type="hidden" name="user_id" value="<?= session('user_id') ?>">
-                            <input type="hidden" name="investigation_id" value="<?= $investigation->id ?>">
-                            <textarea name="desc" class="w-full border border-gray-300 rounded-md p-3 justify-end" placeholder="Write result here"></textarea>
-                            <button type="submit" class="bg-sky-500 w-fit text-white px-4 py-2 rounded-md mt-3">Submit</button>
-                        </form>
-                    <?php endif ;?>
                 </li>
                 <?php endforeach ;?>
             </ol>

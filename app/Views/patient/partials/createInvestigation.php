@@ -40,19 +40,6 @@ Add investigation
                     </div>
                 </div>
 
-                <div>
-                    <label class="block font-medium">Surgicals</label>
-                    <div class="grid grid-cols-2 lg:grid-cols-3 border border-gray-200 p-3 rounded-md gap-4 my-4">
-                        <?php foreach($surgicals as $surgical): ?>
-                            <div class="flex items-center">
-                                <input id="checked-checkbox" name="surgicals[]" type="checkbox" value="<?= $surgical->id ?>" class="w-4 h-4 text-skay-600 bg-gray-100 border-gray-300 rounded focus:ring-skay-500 dark:focus:ring-skay-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $surgical->name . " . " . number_format($surgical->price) ?></label>
-                            </div>
-                        <?php endforeach ?>
-                    </div>
-                </div>
-
-                <div id="editor"></div>
                 <input type="hidden" name="desc" value="" id="editorContent">
                 <input type="hidden" name="patient_id" value="<?= $patient->id ?>">
                 <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">

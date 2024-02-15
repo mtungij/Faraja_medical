@@ -12,7 +12,7 @@ class SurgicalRecordItemModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['surgical_record_id'];
+    protected $allowedFields    = ['surgical_record_id', 'surgical_id'];
 
     // Dates
     protected $useTimestamps = true;
