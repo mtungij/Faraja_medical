@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\DrugModel;
+use App\Models\InvoiceModel;
 use App\Models\PatientModel;
 use App\Models\PaymentModel;
 use App\Models\SaleModel;
@@ -126,26 +127,14 @@ class SellController extends BaseController
             model(DrugModel::class)->save($drug);
         }
 
-        //if patient_id is available to invoice table then update else insert
-
-        $patient = model('App\Models\InvoiceModel')->where('patient_id', $this->request->getPost('patient_id'))->first();
-
-        if ($patient) {
-            model('App\Models\InvoiceModel')->update($patient->id, [
-                'sale_id' => $sales,
-            ]);
-        } else {
-            model('App\Models\InvoiceModel')->insert([
-                'patient_id' => $this->request->getPost('patient_id'),
-                'sale_id' => $sales,
-            ]);
-        }
+        model(InvoiceModel::class)->insert([
+            'patient_id' => $this->request->getPost('patient_id'),
+            'invoice_number' => random_int(1000, 99_999_999),
+            'invoiceable_type' => 'drugs',
+            'invoiceable_id' => $sales,
+        ]);
 
         $cart->destroy();
-
-        // print receipt 
-        $receipt = "Receipt content goes here";
-        echo $receipt;
 
         return redirect()->back()->with('success', 'Checkout successful');
     }

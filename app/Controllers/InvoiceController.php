@@ -80,11 +80,18 @@ class InvoiceController extends BaseController
 
     public function print_invoice($id, $invoice_id)
     {
+
+        //update invoice status to paid and user_id to current user
+        $invoice = model(InvoiceModel::class)->update($invoice_id, [
+            'status' => 'paid',
+            'user_id' => session()->get('user_id')
+        ]);
+
         $this->request->setHeader('Content-Type', 'application/pdf');
         $invoiceName = "invoice" . $invoice_id . ".pdf";
         $pdf = new \Mpdf\Mpdf();
 
         $pdf->WriteHTML(view('patient_receipt'));
-        $pdf->Output('invoice123.pdf', 'D');
+        $pdf->Output($invoiceName, 'D');
     }
 }

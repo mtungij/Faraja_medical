@@ -60,7 +60,7 @@ class SurgicalRecordController extends BaseController
 
         //save surgicalRecordId to invoice
         $invoiceData = [
-            'invoice_number' => 'INV'. random_int(100_000_000, 999_999_999),
+            'invoice_number' => random_int(1000, 99_999_999),
             'invoiceable_type' => 'surgicals',
             'invoiceable_id' => $surgicalRecordId,
             'patient_id' => $validatedData['patient_id'],
