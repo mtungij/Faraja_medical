@@ -7,8 +7,8 @@
         <div class="flex justify-between items-center">
           <h1 class="text-2xl font-semibold">Invoice</h1>
           <div class="flex items-center">
-            <a href="invoice/1" class="bg-sky-700 text-white px-4 py-2 rounded-lg">Print</a>
-            <a href="" class="bg-sky-700 text-white px-4 py-2 rounded-lg ms-2">Download</a>
+            <a href="<?= site_url('invoices/'.$patient->id.'/'.$invoice->id.'/print') ?>" class="bg-sky-700 text-white px-4 py-2 rounded-lg">Print</a>
+            <a href="<?= site_url('invoices/'.$patient->id.'/'.$invoice->id.'/print') ?>" class="bg-sky-700 text-white px-4 py-2 rounded-lg ms-2">Download</a>
           </div>
         </div>
       </div>

@@ -57,7 +57,7 @@ class InvoiceController extends BaseController
                                         ->get()
                                         ->getResult();
                                         
-        } elseif($invoice->invoiceable_type == 'sales') {
+        } elseif($invoice->invoiceable_type == 'drugs') {
             $invoiceType = model(SaleModel::class)->find($invoice->invoiceable_id);
             $invoiceType->name = $invoice->invoiceable_type;
             $invoiceType->number = $invoice->invoice_number;
@@ -73,11 +73,12 @@ class InvoiceController extends BaseController
             'patient' => model(PatientModel::class)->find($id),
             'setting' => model('App\Models\SettingModel')->first(),
             'invoiceType' => $invoiceType,
+            'invoice' => $invoice,
         ]);
     }
 
 
-    public function show($id, $invoice_id)
+    public function print_invoice($id, $invoice_id)
     {
         $this->request->setHeader('Content-Type', 'application/pdf');
         $invoiceName = "invoice" . $invoice_id . ".pdf";

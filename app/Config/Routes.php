@@ -129,6 +129,7 @@ $routes->post('investigation/result', [InvestigationController::class, 'storeRes
 $routes->post('surgicals', [SurgicalRecordController::class, 'store']);
 
 $routes->get('invoices/(:num)/(:num)', [InvoiceController::class, 'index']);
+$routes->get('invoices/(:num)/(:num)/print', [InvoiceController::class, 'print_invoice']);
 
 
 $routes->get('activities', [ActivitiesController::class, 'index']);
