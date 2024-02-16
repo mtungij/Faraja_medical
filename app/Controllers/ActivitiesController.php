@@ -38,7 +38,7 @@ class ActivitiesController extends BaseController
         }
 
         $invoices = model(InvoiceModel::class)
-                    ->select('invoices.id, invoices.invoice_number, invoices.status, invoices.created_at, patients.id as patient_id, patients.first_name, patients.middle_name, patients.last_name')
+                    ->select('invoices.id, invoices.invoice_number, invoices.invoiceable_type, invoices.status, invoices.created_at, patients.id as patient_id, patients.first_name, patients.middle_name, patients.last_name')
                     ->join('patients', 'patients.id = invoices.patient_id')
                     ->where('invoices.status', 'pending')
                     ->orderBy('created_at', 'desc')

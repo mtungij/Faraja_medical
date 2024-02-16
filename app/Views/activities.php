@@ -154,6 +154,9 @@ foreach ($patients as $patient) {
                                     Invoice
                                 </th>
                                 <th scope="col" class="px-3 py-3">
+                                    Category
+                                </th>
+                                <th scope="col" class="px-3 py-3">
                                     Date
                                 </th>
                                 <th scope="col" class="px-3 py-3">
@@ -174,6 +177,9 @@ foreach ($patients as $patient) {
                                     </td>
                                     <td class="px-3 py-3">
                                         <?= $invoice->invoice_number ?>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <?= $invoice->invoiceable_type ?>
                                     </td>
                                     <td class="px-3 py-3">
                                         <?= date('d/m/y H:i:s', strtotime($invoice->created_at)) ?>

@@ -26,13 +26,13 @@
                 </div>
               </div>
               <div class="text-right">
-                  <h1 class="text-2xl font-semibold">Invoice #0472</h1>
-                  <p class="text-sm">August 1, 2021</p>
+                  <h1 class="text-2xl font-semibold">Invoice #<?= $invoiceType->number ?></h1>
+                  <p class="text-sm"><?= date('d M Y H:i', strtotime($invoiceType->created_at)) ?></p>
               </div>
           </header>
           <div class="mb-6">
               <h2 class="text-xl font-semibold">BILL TO</h2>
-              <p class="text-sm "><?= ucfirst($patient->first_name) . " " . ucfirst($patient->last_name) . "." ;?></p>
+              <p class="text-sm "><?= ucfirst($patient->first_name) . " " . ucfirst($patient->middle_name) . " " . ucfirst($patient->last_name) . "." ;?></p>
               <p class="text-sm"><?= $setting->address ?></p>
               <p class="text-sm"><?= $patient?->phone ?></p>
           </div>
@@ -42,46 +42,27 @@
                       <th class="p-2 border border-gray-600">ITEM</th>
                       <th class="p-2 border border-gray-600">PRICE</th>
                       <th class="p-2 border border-gray-600">QTY</th>
-                      <th class="p-2 border border-gray-600">DISC</th>
                       <th class="p-2 border border-gray-600">TOTAL</th>
                   </tr>
               </thead>
               <tbody>
+                <?php $total = 0; ?>
+                <?php foreach($invoiceType->items as $item): ?>
                   <tr>
-                      <td class="p-2 border border-gray-600">Pixel Design System</td>
-                      <td class="p-2 border border-gray-600">$128.00</td>
-                      <td class="p-2 border border-gray-600">1</td>
-                      <td class="p-2 border border-gray-600">50%</td>
-                      <td class="p-2 border border-gray-600">$64.00</td>
+                      <td class="p-2 border border-gray-600"><?= strtoupper($item->name) ?></td>
+                      <td class="p-2 border border-gray-600"><?= number_format($item->price) ?></td>
+                      <td class="p-2 border border-gray-600"><?= $item->quantity ?></td>
+                      <?php $total += ($item->price * $item->quantity) ;?>
+                      <td class="p-2 border border-gray-600"><?= number_format($item->price * $item->quantity) ?></td>
                   </tr>
-                  <tr>
-                      <td class="p-2 border border-gray-600">Volt Dashboard Template</td>
-                      <td class="p-2 border border-gray-600">$69.00</td>
-                      <td class="p-2 border border-gray-600">1</td>
-                      <td class="p-2 border border-gray-600">0%</td>
-                      <td class="p-2 border border-gray-600">$69.00</td>
-                  </tr>
-                  <tr>
-                      <td class="p-2 border border-gray-600">Neumorphism UI</td>
-                      <td class="p-2 border border-gray-600">$89.00</td>
-                      <td class="p-2 border border-gray-600">1</td>
-                      <td class="p-2 border border-gray-600">0%</td>
-                      <td class="p-2 border border-gray-600">$89.00</td>
-                  </tr>
-                  <tr>
-                      <td class="p-2 border border-gray-600">Glassmorphism UI</td>
-                      <td class="p-2 border border-gray-600">$149.00</td>
-                      <td class="p-2 border border-gray-600">1</td>
-                      <td class="p-2 border border-gray-600">0%</td>
-                      <td class="p-2 border border-gray-600">$149.00</td>
-                  </tr>
+                <?php endforeach; ?>
               </tbody>
           </table>
           <div class="mt-6 text-right">
-              <p class="text-sm">SUBTOTAL: $415.00</p>
-              <p class="text-sm">TAX RATE: 5%</p>
-              <p class="text-sm">DISCOUNT: -$64.00</p>
-              <p class="text-xl font-semibold mt-2">TOTAL: $351.00</p>
+              <p class="text-sm">SUBTOTAL TSH: <?= number_format($total) ?></p>
+              <p class="text-sm">TAX RATE: 0%</p>
+              <p class="text-sm">DISCOUNT: 0%</p>
+              <p class="text-xl font-semibold mt-2">TOTAL TSH:  <?= number_format($total) ?></p>
           </div>
       </div>
     </div>

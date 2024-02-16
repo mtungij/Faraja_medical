@@ -15,7 +15,7 @@ class InvestigationModel extends Model
     protected $allowedFields    = ['user_id', 'patient_id', 'desc'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
