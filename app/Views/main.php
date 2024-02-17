@@ -92,6 +92,7 @@ function format_datetime($date) {
       <?= $this->renderSection('content') ;?>
     </main>
   </div>
+ 
   <script src="<?php echo base_url('js/flowbite.js') ?>"></script>
   <script src="<?php echo base_url('js/tw-elements.umd.min.js') ?>"></script>
   <script src="<?php echo base_url('js/quill.js') ?>"></script>

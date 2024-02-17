@@ -108,7 +108,8 @@ $routes->group('patients', static function ($routes) {
     $routes->patch('(:num)/investigations/(:num)/update', [InvestigationController::class, 'update']);
 
     $routes->get('(:num)/treatments', [TreatmentController::class, 'index']);
-    $routes->post('(:num)/treatments', [TreatmentController::class, 'store']);
+  
+    
 
     $routes->get('(:num)/appointments', [AppointmentController::class, 'index']);
     $routes->post('(:num)/appointments', [AppointmentController::class, 'store']);
@@ -153,6 +154,8 @@ $routes->post('update_staff','UserController::update_staff');
 $routes->get('profile-picture','UserController::change_profile');
 $routes->post('upload/picture','UserController::update_profile'); 
 $routes->get('block-user/(:segment)','UserController::block_user/$1');
+$routes->get('patient_treatments/(:segment)', 'TreatmentController::show/$1');
+$routes->post('medicine/add', 'TreatmentController::store');
 
 
 

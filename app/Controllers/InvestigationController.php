@@ -32,6 +32,8 @@ class InvestigationController extends BaseController
                                 ->get()
                                 ->getResult();
 
+                              
+
         foreach($investigations as $investigation) {
             $investigation->items = model(InvestigationItemModel::class)->builder()
                                     ->select('categories.*')
@@ -40,12 +42,15 @@ class InvestigationController extends BaseController
                                     ->get()
                                     ->getResult();
 
+                                 
+
             $investigation->invoice = model(InvoiceModel::class)->where('invoiceable_type', 'App\Models\InvestigationModel')->where('invoiceable_id', $investigation->id)->first();
 
             $investigation->user = model(UserModel::class)->find($investigation->user_id);
 
             $investigation->result = model(InvestigationResultModel::class)->where('investigation_id', $investigation->id)->first();
 
+         
             if ($investigation->result) {
                 $investigation->result->user = model(UserModel::class)->find($investigation->result->user_id);
             }

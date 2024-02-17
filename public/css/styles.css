@@ -4237,6 +4237,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-color: #000000e6;
 }
 
+.bg-\[\#001d6d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 29 109 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#3b71ca\] {
   --tw-bg-opacity: 1;
   background-color: rgb(59 113 202 / var(--tw-bg-opacity));
@@ -4548,6 +4553,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 .bg-zinc-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
+}
+
+.bg-green-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(4 108 78 / var(--tw-bg-opacity));
 }
 
 .bg-clip-padding {
@@ -6379,6 +6389,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-color: #00000026;
 }
 
+.hover\:bg-\[\#001d5d\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 29 93 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-\[unset\]:hover {
   background-color: unset;
 }
@@ -6471,6 +6486,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-green-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 84 63 / var(--tw-bg-opacity));
 }
 
 .hover\:fill-\[\#8b8b8b\]:hover {
@@ -6883,6 +6903,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 .focus\:ring-sky-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(2 132 199 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-green-300:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(132 225 188 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-offset-2:focus {
@@ -7914,6 +7939,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-color: rgb(39 39 42 / var(--tw-bg-opacity));
 }
 
+:is(.dark .dark\:bg-green-600) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 122 85 / var(--tw-bg-opacity));
+}
+
 :is(.dark .dark\:fill-gray-400) {
   fill: #9CA3AF;
 }
@@ -8146,6 +8176,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-color: rgb(255 255 255 / 0.1);
 }
 
+:is(.dark .dark\:hover\:bg-green-700:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(4 108 78 / var(--tw-bg-opacity));
+}
+
 :is(.dark .dark\:hover\:fill-gray-100:hover) {
   fill: #F3F4F6;
 }
@@ -8295,6 +8330,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 :is(.dark .dark\:focus\:ring-sky-800:focus) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(7 89 133 / var(--tw-ring-opacity));
+}
+
+:is(.dark .dark\:focus\:ring-green-800:focus) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(3 84 63 / var(--tw-ring-opacity));
 }
 
 :is(.dark .dark\:focus\:ring-offset-gray-800:focus) {
