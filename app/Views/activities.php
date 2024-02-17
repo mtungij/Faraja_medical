@@ -34,8 +34,16 @@ foreach ($patients as $patient) {
           </div>
        </div>
 
+       <?php if(session('department') == 'admin' || session('department') == 'receptionist'): ?>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 ">
+            <?php foreach($sales as $key => $sale): ?>
+            <div class="p-4 border border-gray-300 rounded shadow-md">
+                <p class="text-lg font-medium"> <?= $key ;?> </p>
+                <p class="text-3xl font-bold text-green-600"> <?= number_format($sale) ;?> </p>
             </div>
-
+            <?php endforeach ;?>
+        </div>
+       <?php endif ;?>
 
        <div class="grid grid-cols-1 py-4 bg-gray-100 rounded ">
             <div class="relative overflow-x-auto whitespace-nowrap">
@@ -136,8 +144,11 @@ foreach ($patients as $patient) {
        </div>
 
 
-       <?php if($invoices): ?>
+       <?php if(session('departiment') == 'admin' || session('departiment') == 'receptionist'): ?>
         <div class="grid grid-cols-1 py-4 bg-gray-100 rounded my-4">
+            <div class="my-3">
+                <h2 class="text-2xl text-sky-950 font-semibold">Pending Invoices</h2>
+            </div>
                 <div class="relative overflow-x-auto whitespace-nowrap">
 
                    <h2 class="text-2xl text-sky-950 font-semibold px-2 my-2">Sale Items</h2>
@@ -195,6 +206,68 @@ foreach ($patients as $patient) {
                 </div>
         </div>
        <?php endif ?>
+
+       <!-- list of today sold medications, table headers is S/N, drug name(name), quantity, total price -->
+       <?php if(session('department') == 'pharmacist' || session('department') == 'receptionist'): ?>
+        <div class="grid grid-cols-1 py-4 bg-gray-100 rounded my-4">
+                <div class="relative overflow-x-auto whitespace-nowrap">
+
+                   <h2 class="text-2xl text-sky-950 font-semibold px-2 my-2">Today Sold Medications</h2>
+                    <table class="w-full text-sm border border-gray-200 rounded text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-sky-600/60 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-3 py-3">
+                                    S/N
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Drug Name
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Quantity
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Total Price
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $total = 0;
+                            $rowId = 1 ;?>
+                            <?php foreach ($medications as $medication) : ?>
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <?= $rowId++ ;?>
+                                    </td>
+                                    <td class="px-3 py-4">
+                                        <?= $medication->name ?>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <?= $medication->quantity ?>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <?= number_format($medication->price * $medication->quantity) ?>
+                                    </td>
+                                    <?php $total += ($medication->price * $medication->quantity) ;?>
+                                    <td class="px-3 py-3">
+                                        <?= date('d/m/y H:i:s', strtotime($medication->created_at)) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                        <tfoot>
+                            <td class=""></td>
+                            <th>Total Sales</th>
+                            <td></td>
+                            <th><?= number_format($total) ?></th>
+                    </table>
+                </div>
+        </div>
+         <?php endif ?>
+        </div>
 
    </section>
 <?= $this->endSection() ;?>

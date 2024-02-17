@@ -61,15 +61,15 @@ class Rches extends BaseController
 
     public function patientRches($id)
     {
+        $patient = model(PatientModel::class)->where('id', $id)->first();
+
         $rchesRecords = model(RchRecordModel::class)
                             ->where('patient_id', $id)
                             ->get()
                             ->getResult();
 
-        $patient = model(PatientModel::class)->where('id', $id)->first();
 
-        $rchesRecordInvoiceStatus = 'No invoice yet.';
-
+                            
         foreach ($rchesRecords as $rchRecord) {
             $rchRecord->items = model(RchRecordItemModel::class)->builder()
                                 ->select('rch_record_items.*, rches.name, rches.price')
@@ -78,17 +78,13 @@ class Rches extends BaseController
                                 ->get()
                                 ->getResult();
             
-            $rchRecord->invoice = model(InvoiceModel::class)->where('invoiceable_id', $rchRecord->id)->where('invoiceable_type', 'App\Models\RchRecordModel')->first();
-            if ($rchRecord->invoice) {
-                $rchesRecordInvoiceStatus = $rchRecord->invoice->status;
-            }
+            $rchRecord->invoice = model(InvoiceModel::class)->where('invoiceable_id', $rchRecord->id)->where('invoiceable_type', 'rches')->first();
         }
 
         return view('patient/rches', [
             'rches' => model(RchesModel::class)->findAll(),
             'patient' => $patient,
             'rchesRecords' => $rchesRecords,
-            'invoiceStatus' => $rchesRecordInvoiceStatus,
         ]);
     }
 

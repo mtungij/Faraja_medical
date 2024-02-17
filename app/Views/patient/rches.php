@@ -44,10 +44,10 @@
                     </button>
                     <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                        
-                        <?php if($invoiceStatus == 'pending'): ?>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300"> <?= $invoiceStatus ?></span>
+                        <?php if($rchesRecord->invoice->status == 'pending'): ?>
+                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300"> <?= $rchesRecord->invoice->status ?></span>
                         <?php else: ?>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"> <?= $invoiceStatus ?></span>
+                            <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"> <?= $rchesRecord->invoice->status ?></span>
                         <?php endif ?>
                     </button>
                 </div>

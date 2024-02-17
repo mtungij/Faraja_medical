@@ -53,7 +53,7 @@ class InvoiceController extends BaseController
             $invoiceType->items = model(RchRecordItemModel::class)->builder()
                                         ->select('rches.name, rches.price, rch_record_items.*')
                                         ->join('rches', 'rches.id = rch_record_items.rch_id')
-                                        ->where('rch_record_id', $invoiceType->id)
+                                        ->where('rch_record_items.rch_record_id', $invoiceType->id)
                                         ->get()
                                         ->getResult();
                                         
@@ -62,12 +62,13 @@ class InvoiceController extends BaseController
             $invoiceType->name = $invoice->invoiceable_type;
             $invoiceType->number = $invoice->invoice_number;
             $invoiceType->items = model(SaleItemModel::class)->builder()
-                                    ->select('drugs.name, drugs.price, sale_items.*')
+                                    ->select('drugs.name, drugs.sell_price as price, sale_items.*')
                                     ->join('drugs', 'drugs.id = sale_items.drug_id')
                                     ->where('sale_id', $invoiceType->id)
                                     ->get()
                                     ->getResult();
         }
+
 
         return view("patient/invoice", [
             'patient' => model(PatientModel::class)->find($id),

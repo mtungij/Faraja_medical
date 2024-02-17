@@ -9,7 +9,7 @@ class SaleModel extends Model
     protected $table            = 'sales';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = ['patient_id', 'payment_id', 'user_id'];
