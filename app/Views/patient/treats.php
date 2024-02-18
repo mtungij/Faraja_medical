@@ -104,7 +104,7 @@
                                         </p>
                                        
                                         <p class="text-sm mt-1">
-                                        <?= $investigation->result?->desc ?? "Nothing replied yet." ?>
+                                        <?= $investigation->result->desc ?? "Nothing replied yet." ?>
                                         </p>
                                         <?php endif ;?>
                                         <!-- <p class="text-right text-xs text-grey-dark mt-1">
@@ -145,14 +145,13 @@
     </div>
 
         
-
-        <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="<?php echo base_url('js/jquery.min.js') ?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         .form-container {
             display: grid;
@@ -167,13 +166,11 @@
                     '<div class="px-6 py-4 text-sm">' +
                     '<label for="medicine_name">Medicine Name:</label>' +
                     '<select name="medicine_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">' +
-    '<option selected>select medicine</option>' +
-    '<?php foreach ($drugs as $drug) : ?>' +
-        '<?php $color = ($drug->quantity == 0) ? "color: red;" : ""; ?>' +
-        '<option value="<?= $drug->name . " " . $drug->quantity ?>" style="<?= $color ?>"><?= $drug->name . " " . $drug->quantity ?></option>' +
-    '<?php endforeach ?>' +
-'</select>'
-
+                    '<option selected>select medicine</option>' +
+                    '<?php foreach ($drugs as $drug) : ?>' +
+                    '<option value="<?= $drug->name . " " . $drug->quantity ?>"><?= $drug->name . " " . $drug->quantity ?></option>' +
+                    '<?php endforeach ?>' +
+                    '</select>' +
                     '</div>' +
                     '<div class="px-6 py-4 text-sm">' +
                     '<label for="quantity">Quantity:</label>' +
@@ -228,20 +225,17 @@
 </head>
 <body>
     <div class="overflow-x-auto">
-        <form  method="post" action="<?= base_url('medicine/add') ?>" >
+        <form method="post" action="<?= base_url('medicine/add') ?>" >
             <div id="dynamicadd">
                 <div class="form-container">
                     <div class="px-6 py-4 text-sm">
                         <label for="medicine_name">Medicine Name:</label>
-                <select id="countries"  name="medicine_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                     <option selected>select medicine</option>
-                    <?php foreach ($drugs as $drug) : ?>
-                        <?php $color = ($drug->quantity == 0) ? 'color: red;' : ''; ?>
-                        <option value="<?= $drug->name . " " . $drug->quantity ?>" style="<?= $color ?>">
-                            <?= $drug->name . " " . $drug->quantity ?>
-                        </option>
-                    <?php endforeach ?>
-                </select>
+                        <select id="countries" name="medicine_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>select medicine</option>
+                            <?php foreach ($drugs as $drug) : ?>
+                                <option value="<?= $drug->name . " " . $drug->quantity ?>"><?= $drug->name . " " . $drug->quantity ?></option>
+                            <?php endforeach ?>
+                        </select>
                     </div>
                     <div class="px-6 py-4 text-sm">
                         <label for="quantity">Quantity:</label>
@@ -249,7 +243,7 @@
                     </div>
                     <div class="px-6 py-4 text-sm">
                         <label for="route">Route:</label>
-                        <select id="countries" name="route" data-te-select-init data-te-select-filter="true"  data-te-select-placeholder="select route" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="inj">inj</option>
                             <option value="Po">Po</option>
                             <option value="Pv">Pv</option>
@@ -259,7 +253,7 @@
                     </div>
                     <div class="px-6 py-4 text-sm">
                         <label for="frequency">Frequency:</label>
-                        <select id="countries" name="frequency" data-te-select-init data-te-select-filter="true"  data-te-select-placeholder="select frequency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="countries" name="frequency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <?php for ($i = 1; $i <= 6; $i++) : ?>
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php endfor ?>
@@ -267,21 +261,14 @@
                     </div>
                     <div class="px-6 py-4 text-sm">
                         <label for="duration">Duration:</label>
-                        <select id="countries" name="duration" data-te-select-init data-te-select-filter="true"  data-te-select-placeholder="select duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="countries" name="duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <?php for ($i = 1; $i <= 100; $i++) : ?>
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php endfor ?>
                         </select>
                     </div>
-                  
-
-
-
-
-                    <input type="hidden" name="patient_id" value="<?= $patient->id ?>">
-                     <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
                     <div class="px-6 py-4">
-                    <button type="button" class="delete-row text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove Form</button>
+                        <button type="button" class="delete-row">-</button>
                     </div>
                 </div>
             </div>
@@ -291,6 +278,8 @@
     </div>
 </body>
 </html>
+
+
 
 
 <?= $this->endSection() ;?>
