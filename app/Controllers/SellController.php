@@ -40,7 +40,8 @@ class SellController extends BaseController
                 model(TransferModel::class)->update((int) $transfer->id, ['status' => 'done']);
             }
         }
-      
+    //   dd($treatment);
+        
         return view('drug/sell', [
             'cart' => $cart->contents(),
             'treatment' => $treatment,

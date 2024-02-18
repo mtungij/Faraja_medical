@@ -4,18 +4,27 @@
 
 
 
-
-<div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-    <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Associated Medicines</h5>
-   
-    <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-      
-    <article class="prose lg:prose-xl">
-
-        <?= $treatment ? $treatment->desc : "No treatment available for this patient" ?>
-    </article>
-
+<!-- Toast -->
+<div class="w-full bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700" role="alert">
+  <div class="flex p-4">
+    <div class="flex-shrink-0">
+      <svg class="flex-shrink-0 size-4 text-teal-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </svg>
     </div>
+    <div class="ms-3">
+        
+      <p class="text-sm text-gray-700 dark:text-gray-400">
+      <?= $treatment ? '<strong style="font-size: 16px;">Medicine Name:</strong> ' . $treatment->medicine_name ."<br>".
+                  '<strong style="font-size: 16px;">Quantity:</strong> ' . $treatment->quantity ."<br>".
+                  '<strong style="font-size: 16px;">Route:</strong> ' . $treatment->route ."<br>".
+                  '<strong style="font-size: 16px;">Frequency:</strong> ' . $treatment->frequency ."<br>".
+                  '<strong style="font-size: 16px;">Duration:</strong> ' . $treatment->duration : "No treatment available for this patient" ?>
+
+      </p>
+     
+    </div>
+  </div>
 </div>
 
 <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
