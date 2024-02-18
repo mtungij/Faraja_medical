@@ -81,14 +81,16 @@ class TreatmentController extends BaseController
         }
 
         $drugs=model(DrugModel::class)->findAll();
+        $treatments = model(TreatmentModel::class)->where('patient_id', $id)->findAll();
 
-        // dd($investigations);
+    //    dd($patient);
 
         return view('patient/treats', [
             'patient' => $patient,
             'investigations' => $investigations,
             'categories' => $categories,
-            'drugs' => $drugs
+            'drugs' => $drugs,
+            'treatments' => $treatments
         ]);
 }
 
