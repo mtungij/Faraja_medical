@@ -7,6 +7,7 @@ use App\Models\InvestigationItemModel;
 use App\Models\InvoiceModel;
 use App\Models\RchRecordItemModel;
 use App\Models\RchRecordModel;
+use App\Models\SurgicalRecordItemModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class ReportController extends BaseController
@@ -234,4 +235,111 @@ class ReportController extends BaseController
         ]);
 
 }
+
+public function surgical() 
+{
+    $date_from = $this->request->getGet('from');
+    $date_to = $this->request->getGet('to');
+    $status = $this->request->getGet('status');
+    
+    $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+
+    if($date_from && $date_to && !$status) {
+        $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->where('DATE(invoices.created_at) >=', $date_from)
+                        ->where('DATE(invoices.created_at) <=', $date_to)
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+    } elseif($date_from && !$date_to && !$status) {
+        $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->where('DATE(invoices.created_at) >=', $date_from)
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+    } elseif($date_to && !$date_from && !$status) {
+        $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->where('DATE(invoices.created_at) <=', $date_to)
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+    } elseif($status && !$date_from && !$date_to) {
+        $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->where('invoices.status', $status)
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+    } elseif($status && $date_from && !$date_to) {
+        $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->where('invoices.status', $status)
+                        ->where('DATE(invoices.created_at) >=', $date_from)
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+    } elseif($status && $date_to && !$date_from) {
+        $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->where('invoices.status', $status)
+                        ->where('DATE(invoices.created_at) <=', $date_to)
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+    } elseif($status && $date_from && $date_to) {
+        $surgicalInvoices = model(InvoiceModel::class)->builder()
+                        ->select('invoices.*, patients.first_name, patients.middle_name, patients.last_name, users.name as staff')
+                        ->join('patients', 'patients.id = invoices.patient_id')
+                        ->join('users', 'users.id = invoices.user_id')
+                        ->where('invoiceable_type', 'surgicals')
+                        ->where('invoices.status', $status)
+                        ->where('DATE(invoices.created_at) >=', $date_from)
+                        ->where('DATE(invoices.created_at) <=', $date_to)
+                        ->orderBy('invoices.created_at', 'DESC')
+                        ->get()
+                        ->getResult();
+    }
+
+    foreach($surgicalInvoices as $invoice) {
+        $invoice->items = model(SurgicalRecordItemModel::class)->builder()
+                            ->select('surgicals.name, surgicals.price, surgical_record_items.*')
+                            ->join('surgicals', 'surgicals.id = surgical_record_items.surgical_id')
+                            ->where('surgical_record_items.surgical_record_id', $invoice->invoiceable_id)
+                            ->get()
+                            ->getResult();
+    }
+
+    return view('reports/surgical', [
+        'surgicalInvoices' => $surgicalInvoices,
+    ]);
+}
+
 }
