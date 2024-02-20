@@ -5,31 +5,19 @@
 <?php
 
 $totalInvestigtions = 0;
-$totalSurgicals = 0;
 
-if($investigations) {
-    foreach ($investigations as $investigation) {
-        if(!empty(unserialize($investigation->categories))) {
-            $categories = model('LabtestModel')->find(unserialize($investigation->categories));
-            foreach($categories as $category) {
-                $totalInvestigtions += $category->price;
-            }
-        }
-    }
-
-    foreach ($investigations as $investigation) {
-        if(!empty(unserialize($investigation->surgicals))) {
-            $surgicals = model('SurgicalModel')->find(unserialize($investigation->surgicals));
-            foreach($surgicals as $surgical) {
-                $totalSurgicals += $surgical->price;
-            }
-        }
+foreach($investigationInvoices as $investigation){
+    foreach($investigation->items as $item){
+        $totalInvestigtions += $item->price;
     }
 }
 
 ?>
 
 <section>
+    <div class="py-3">
+        <h1 class="text-2xl font-semibold text-sky-950">INVESTIGATION REPORT</h1>
+    </div>
     <div>
         <form action="<?= base_url('reports/investigation') ?>" method="get">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -61,11 +49,6 @@ if($investigations) {
             <p class="text-3xl font-bold text-green-600"> <?= number_format($totalInvestigtions) ;?> </p>
           </div>
 
-          <div class="p-4 border border-gray-300 rounded shadow-md">
-            <p class="text-lg font-medium">Surgicals Revenue</p>
-            <p class="text-3xl font-bold text-sky-950"><?= number_format($totalSurgicals) ;?></p>
-          </div>
-
           <!-- <div class="p-4 border border-gray-300 rounded shadow-md">
             <p class="text-lg font-medium">Total Patients</p>
             <p class="text-3xl font-bold text-sky-950"><? //= '677' ;?></p>
@@ -80,47 +63,23 @@ if($investigations) {
                     <th>PATIENT NAME</th>
                     <th>STAFF NAME</th>
                     <th>INVESTIGATIONS</th>
-                    <th>SURGICALS</th>
                     <th>STATUS</th>
                     <th>DATE</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $rowId = 1 ;?>
-                <?php foreach ($investigations as $investigation) : ?>
+                <?php foreach ($investigationInvoices as $investigation) : ?>
                     <tr>
                         <td><?= $rowId++ ;?></td>
                         <td><?= $investigation->first_name . " " . $investigation->middle_name . " " . $investigation->last_name ?></td>
                         <td><?= $investigation->staff ?></td>
                         <td>
-                            <?php
-                            $categoriesIds = unserialize($investigation->categories) ;
-                            ?>
-                            <?php if(!empty($categoriesIds)): ?>
-                                <?php
-                                $categories = model('LabtestModel')->find($categoriesIds);
-                                ?>
                                 <ul>
-                                    <?php foreach($categories as $category): ?>
+                                    <?php foreach($investigation->items as $category): ?>
                                         <li> - <?= $category->name ?></li>
                                     <?php endforeach ?>
                                 </ul>
-                            <?php endif ;?>
-                        </td>
-                        <td>
-                            <?php
-                            $surgicalIds = unserialize($investigation->surgicals);
-                            ?>
-                            <?php if(!empty($surgicalIds)): ?>
-                                <?php
-                                $surgicals= model('SurgicalModel')->find($surgicalIds);
-                                ?>
-                                <ol class="lis list-item">
-                                    <?php foreach($surgicals as $surgical): ?>
-                                        <li> - <?= $surgical->name ?></li>
-                                    <?php endforeach ?>
-                                </ol>
-                            <?php endif ;?>
                         </td>
                         <td>
                             <?php if($investigation->status == 'pending'): ?>

@@ -1,6 +1,7 @@
 <?= $this->extend('main') ?>
 
 <?= $this->section('content') ;?>
+
 <?php
 $totalPatients = 0;
 $todayPatients = 0;
@@ -13,7 +14,7 @@ foreach ($patients as $patient) {
     }
     if($patient->badge == 'new') {
         $newPatients++;
-}
+ }
 }
 ?>
    <section>
@@ -144,14 +145,13 @@ foreach ($patients as $patient) {
        </div>
 
 
-       <?php if(session('departiment') == 'admin' || session('departiment') == 'receptionist'): ?>
+       <?php if(session('department') == 'admin' || session('department') == 'receptionist'): ?>
         <div class="grid grid-cols-1 py-4 bg-gray-100 rounded my-4">
             <div class="my-3">
                 <h2 class="text-2xl text-sky-950 font-semibold">Pending Invoices</h2>
             </div>
                 <div class="relative overflow-x-auto whitespace-nowrap">
 
-                   <h2 class="text-2xl text-sky-950 font-semibold px-2 my-2">Sale Items</h2>
                     <table class="w-full text-sm border border-gray-200 rounded text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-sky-600/60 dark:bg-gray-700 dark:text-gray-400">
                             <tr>

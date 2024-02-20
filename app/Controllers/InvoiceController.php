@@ -93,6 +93,6 @@ class InvoiceController extends BaseController
         $pdf = new \Mpdf\Mpdf();
 
         $pdf->WriteHTML(view('patient_receipt'));
-        $pdf->Output($invoiceName, 'D');
+        return $pdf->Output($invoiceName, 'D');
     }
 }
