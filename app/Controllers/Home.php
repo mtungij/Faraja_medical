@@ -5,6 +5,7 @@ use App\Models\DrugModel;
 use App\Models\AppointmentModel;
 use App\Models\PatientModel;
 use App\Models\SaleItemModel;
+use App\Models\UserModel;
 
 class Home extends BaseController
 {
@@ -70,6 +71,10 @@ class Home extends BaseController
         $olders=model(PatientModel::class)->where("DATE(created_at)",$today)->where('age >=', $oldage)->where('age <=',$olderage)
         ->findAll();
 
+        $users =model(UserModel::class)->findAll();
+
+        // dd($users);
+
         // dd($todayappointments);
         // dd($middleage);
         // dd($femaletoday);
@@ -89,6 +94,7 @@ class Home extends BaseController
         $todayappointments=count($todayappointments);
         $weeklyappointments=count($weeklyappointments);
         $products =count($products );
+        $user=count($users);
 
       
         
@@ -105,6 +111,7 @@ class Home extends BaseController
             'todayappointments'=> $todayappointments,
             'weeklyappointments'=> $weeklyappointments,
             'products'=> $products,
+            'user' =>$user,
         ];
     
 
