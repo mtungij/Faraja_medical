@@ -41,6 +41,9 @@ class TreatmentController extends BaseController
 
     public function show($id)
     {
+       
+
+
         if(session('department') != "admin") {
             $transfer = model(TransferModel::class)->where('patient_id', $id)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
             if($transfer && $transfer->status == 'new') {
@@ -81,9 +84,9 @@ class TreatmentController extends BaseController
         }
 
         $drugs=model(DrugModel::class)->findAll();
-        $treatments = model(TreatmentModel::class)->where('patient_id', $id)->findAll();
+        $treatments = model(TreatmentModel::class)->where('patient_id', $id)->where('DATE(created_at)', date('Y-m-d'))->findAll();
 
-    //    dd($patient);
+    //    dd($treatments);
 
         return view('patient/treats', [
             'patient' => $patient,
@@ -98,7 +101,6 @@ class TreatmentController extends BaseController
     {
         $rules = [
             'medicine_name' => 'required',
-            'quantity' => 'required',
             'route' => 'required',
             'frequency' => 'required',
             'duration' => 'required',
@@ -117,5 +119,11 @@ class TreatmentController extends BaseController
         model(TreatmentModel::class)->insert($validatedData );
 
         return redirect()->back()->with("success","data saved successfully");
+    }
+
+    public function delete($id)
+    {
+        model(TreatmentModel::class)->delete($id);
+        return redirect()->back()->with('success', 'Treatment deleted successfully');
     }
 }

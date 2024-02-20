@@ -28,11 +28,13 @@ class SellController extends BaseController
 
     public function index()
     {
+         $today = date('Y-m-d');
+        
         $cart = \Config\Services::cart();
         $patientId = $this->request->getGet('patient_id');
         $payments = model(PaymentModel::class)->findAll();
         $patient = model(PatientModel::class)->find($patientId);
-        $treatment = model(TreatmentModel::class)->where('patient_id', $patientId)->orderBy('created_at','DESC')->first();
+        $treatment = model(TreatmentModel::class)->where('patient_id', $patientId)->where('DATE(created_at)',"$today")->find();
 
         if(session('department') != "admin") {
             $transfer = model(TransferModel::class)->where('patient_id', $patientId)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();

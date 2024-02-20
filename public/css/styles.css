@@ -2469,6 +2469,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   margin-top: 0px;
 }
 
+.mt-0\.5 {
+  margin-top: 0.125rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -2511,10 +2515,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .mt-\[2px\] {
   margin-top: 2px;
-}
-
-.mt-0\.5 {
-  margin-top: 0.125rem;
 }
 
 .box-border {
@@ -2567,11 +2567,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .hidden {
   display: none;
-}
-
-.size-12 {
-  width: 3rem;
-  height: 3rem;
 }
 
 .size-4 {
@@ -3078,10 +3073,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .max-w-screen-xl {
   max-width: 1280px;
-}
-
-.max-w-xs {
-  max-width: 20rem;
 }
 
 .flex-1 {
@@ -4489,11 +4480,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-color: rgb(200 30 30 / var(--tw-bg-opacity));
 }
 
-.bg-red-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(155 28 28 / var(--tw-bg-opacity));
-}
-
 .bg-sky-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(56 189 248 / var(--tw-bg-opacity));
@@ -5542,6 +5528,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   color: rgb(20 164 77 / var(--tw-text-opacity));
 }
 
+.text-teal-500 {
+  --tw-text-opacity: 1;
+  color: rgb(6 148 162 / var(--tw-text-opacity));
+}
+
 .text-warning {
   --tw-text-opacity: 1;
   color: rgb(228 161 27 / var(--tw-text-opacity));
@@ -5560,11 +5551,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(114 59 19 / var(--tw-text-opacity));
-}
-
-.text-teal-500 {
-  --tw-text-opacity: 1;
-  color: rgb(6 148 162 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -6491,6 +6477,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-color: rgb(217 228 243 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-red-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-red-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(155 28 28 / var(--tw-bg-opacity));
@@ -6509,11 +6500,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-red-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
 }
 
 .hover\:fill-\[\#8b8b8b\]:hover {
