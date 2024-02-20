@@ -40,7 +40,11 @@ class Login extends BaseController
                 session()->set('username', $user->username);
                 session()->set('name', $user->name);
                 session()->set('department', $user->department);
-                return redirect()->to('/');
+
+                if($user->department == 'admin') {
+                    return redirect()->to('/');
+                }
+                return redirect()->to('activities');
                 
             } {
                 session()->setFlashdata("login_error", "Incorrect username or password");
