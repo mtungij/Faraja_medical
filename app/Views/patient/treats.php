@@ -194,9 +194,9 @@
         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
           date
         </th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
           Actions
-        </th>
+        </th> -->
       </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
@@ -217,9 +217,9 @@
         <td class="px-6 py-4 text-sm text-[#333]">
           <?= date('d M Y H:i', strtotime($item->created_at)) ;?>
         </td>
-        <td class="px-6 py-4 text-sm text-[#333]">
+        <!-- <td class="px-6 py-4 text-sm text-[#333]">
           <a href="<?=site_url("medicine/delete/$item->id")?>" class="text-red-500 hover:text-red-700">Delete</a>
-        </td>
+        </td> -->
       </tr>
       <?php endforeach ;?>
     </tbody>
@@ -335,29 +335,15 @@
 
                 <div class="px-6 py-4 text-sm">
                     <label for="route">Route:</label>
-                    <select id="route" data-te-select-init data-te-select-filter="true" data-te-select-placeholder="select route" name="route" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="inj">inj</option>
-                        <option value="Po">Po</option>
-                        <option value="Pv">Pv</option>
-                        <option value="Tropical">Tropical</option>
-                        <option value="Pr">Pr</option>
-                    </select>
+                    <input type="text" name="route" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Route" required="">
                 </div>
                 <div class="px-6 py-4 text-sm">
                     <label for="frequency">Frequency:</label>
-                    <select id="frequency" name="frequency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <?php for ($i = 1; $i <= 6; $i++) : ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <?php endfor ?>
-                    </select>
+                    <input type="text" name="frequency" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Frequency" required="">
                 </div>
                 <div class="px-6 py-4 text-sm">
                     <label for="duration">Duration:</label>
-                    <select id="duration" name="duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <?php for ($i = 1; $i <= 100; $i++) : ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <?php endfor ?>
-                    </select>
+                    <input type="text" name="duration" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Duration" required="">
                 </div>
 
                 <input type="hidden" name="patient_id" value="<?= $patient->id ?>">
