@@ -158,6 +158,7 @@ $routes->post('upload/picture','UserController::update_profile');
 $routes->get('block-user/(:segment)','UserController::block_user/$1');
 $routes->get('patient_treatments/(:segment)', 'TreatmentController::show/$1');
 $routes->post('medicine/add', 'TreatmentController::store');
+$routes->get('medicine/delete/(:segment)', 'TreatmentController::delete/$1');
 
 
 

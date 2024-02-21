@@ -12,17 +12,16 @@
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
       </svg>
     </div>
-    <div class="ms-3">
-        
+    <div class="grid grid-cols-4 gap-4">
+        <?php foreach ($treatment as $treatments) : ?>
       <p class="text-sm text-gray-700 dark:text-gray-400">
-      <?= $treatment ? '<strong style="font-size: 16px;">Medicine Name:</strong> ' . $treatment->medicine_name ."<br>".
-                  '<strong style="font-size: 16px;">Quantity:</strong> ' . $treatment->quantity ."<br>".
-                  '<strong style="font-size: 16px;">Route:</strong> ' . $treatment->route ."<br>".
-                  '<strong style="font-size: 16px;">Frequency:</strong> ' . $treatment->frequency ."<br>".
-                  '<strong style="font-size: 16px;">Duration:</strong> ' . $treatment->duration : "No treatment available for this patient" ?>
+      <?= $treatment ? '<strong style="font-size: 16px; ">Medicine Name:</strong> <span style ="font-weight:800">' . $treatments->medicine_name ."</span><br>".
+                  '<strong style="font-size: 16px;">Route:</strong> ' . $treatments->route ."<br>".
+                  '<strong style="font-size: 16px;">Frequency:</strong> ' . $treatments->frequency ."<br>".
+                  '<strong style="font-size: 16px;">Duration:</strong> ' . $treatments->duration : "No treatment available for this patient" ?>
 
       </p>
-     
+      <?php endforeach ?>
     </div>
   </div>
 </div>

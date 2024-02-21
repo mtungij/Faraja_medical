@@ -165,21 +165,65 @@
                                     </div>
                                 </div>
 
+  
+
+
+
+
+
+
 
                                 <div class="w-full">
-                                    <div class="rounded py-2 px-3" style="background-color: #E2F7CB">
-                                    <?php foreach($treatments as $item): ?>
-                                        <p class="text-sm mt-1">
-                                        <li><?= "<strong>Medicine Name:</strong> " . $item->medicine_name . ", <strong>Quantity:</strong> " . $item->quantity . ", <strong>Frequency:</strong> " . $item->frequency . ", <strong>Route:</strong> " . $item->route . ", <strong>Duration:</strong> " . $item->duration ?></li>
-                                        </p>
-                                        <p class="text-sm mt-1">
-                                        <?= date('d M Y H:i', strtotime($item->created_at))  ;?>
-                                        </p>
-                                        <?php endforeach ;?>
-                                         
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                       
-                                        </p>
+        <div class="rounded py-2 px-3" style="background-color: #E2F7CB">
+                                                                 
+  <table class="w-full divide-y  font-[sans-serif]">
+    <thead class="bg-gray-100 whitespace-nowrap">
+      <tr>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          Medicine Name
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          frequency
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          Route
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          duration
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          date
+        </th>
+        <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          Actions
+        </th> -->
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
+    <?php foreach($treatments as $item): ?> 
+      <tr>
+        <td class="px-6 py-4 text-sm text-[#333]">
+          <?=  $item->medicine_name ;?>
+        </td>
+        <td class="px-6 py-4 text-sm text-[#333]">
+         <?= $item->frequency ;?>
+        </td>
+        <td class="px-6 py-4 text-sm text-[#333]">
+          <?=  $item->route  ;?>
+        </td>
+        <td class="px-6 py-4 text-sm text-[#333]">
+          <?= $item->duration ;?>
+        </td>
+        <td class="px-6 py-4 text-sm text-[#333]">
+          <?= date('d M Y H:i', strtotime($item->created_at)) ;?>
+        </td>
+        <!-- <td class="px-6 py-4 text-sm text-[#333]">
+          <a href="<?=site_url("medicine/delete/$item->id")?>" class="text-red-500 hover:text-red-700">Delete</a>
+        </td> -->
+      </tr>
+      <?php endforeach ;?>
+    </tbody>
+  </table>
                                         
                                     </div>
                                 </div>
@@ -276,58 +320,43 @@
     </script>
 </head>
 <body>
-    <div class="overflow-x-auto">
-        <form method="post" action="<?= base_url('medicine/add') ?>" >
-            <div id="dynamicadd">
-                <div class="form-container">
-                    <div class="px-6 py-4 text-sm">
-                        <label for="medicine_name">Medicine Name:</label>
-                        <select id="countries" name="medicine_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>select medicine</option>
-                            <?php foreach ($drugs as $drug) : ?>
-                                <option value="<?= $drug->name . " " . $drug->quantity ?>"><?= $drug->name . " " . $drug->quantity ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
-                    <div class="px-6 py-4 text-sm">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" name="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quantity" required />
-                    </div>
-                    <div class="px-6 py-4 text-sm">
-                        <label for="route">Route:</label>
-                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="inj">inj</option>
-                            <option value="Po">Po</option>
-                            <option value="Pv">Pv</option>
-                            <option value="Tropical">Tropical</option>
-                            <option value="Pr">Pr</option>
-                        </select>
-                    </div>
-                    <div class="px-6 py-4 text-sm">
-                        <label for="frequency">Frequency:</label>
-                        <select id="countries" name="frequency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <?php for ($i = 1; $i <= 6; $i++) : ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
-                            <?php endfor ?>
-                        </select>
-                    </div>
-                    <div class="px-6 py-4 text-sm">
-                        <label for="duration">Duration:</label>
-                        <select id="countries" name="duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <?php for ($i = 1; $i <= 100; $i++) : ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
-                            <?php endfor ?>
-                        </select>
-                    </div>
-                    <div class="px-6 py-4">
-                        <button type="button" class="delete-row">-</button>
-                    </div>
+    <d<div class="overflow-x-auto">
+    <form method="post" action="<?= base_url('medicine/add') ?>">
+        <div id="dynamicadd">
+            <div class="form-container">
+                <div class="px-6 py-4 text-sm">
+                    <label for="medicine_name">Medicine Name:</label>
+                    <select id="medicine_name" data-te-select-init data-te-select-filter="true" data-te-select-placeholder="select drug" name="medicine_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <?php foreach ($drugs as $drug) : ?>
+                            <option value="<?= $drug->name ?>"><?= $drug->name ?></option>
+                        <?php endforeach ?>
+                    </select>
                 </div>
+
+                <div class="px-6 py-4 text-sm">
+                    <label for="route">Route:</label>
+                    <input type="text" name="route" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Route" required="">
+                </div>
+                <div class="px-6 py-4 text-sm">
+                    <label for="frequency">Frequency:</label>
+                    <input type="text" name="frequency" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Frequency" required="">
+                </div>
+                <div class="px-6 py-4 text-sm">
+                    <label for="duration">Duration:</label>
+                    <input type="text" name="duration" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Duration" required="">
+                </div>
+
+                <input type="hidden" name="patient_id" value="<?= $patient->id ?>">
+                <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
             </div>
-            <button type="button" class="add-row text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Form</button>
-        <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-3 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
-        </form>
-    </div>
+        </div>
+
+        <div class="w-full flex justify-center col-span-2">
+            <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-3 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
+        </div>
+    </form>
+</div>
+
 </body>
 </html>
 
