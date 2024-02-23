@@ -9,12 +9,12 @@
 </head>
 <body>
 
- <div class="w-fit h-fit p-10">
+ <div class="w-fit h-fit  p-10">
       <div class="p-10 m-10 bg-slate-100">
           <header class="flex justify-between items-center mb-6">
               <div>
-                <div class="text-left">
-                  <p><?= strtoupper( $setting->center_name) ;?></p>
+                <div class="text-center">
+                  <p class="font-bold"><?= strtoupper( $setting->center_name) ;?></p>
                   <address>
                     <?= $setting->address ;?> <br />
                     <?= $setting->phone ;?> <br />
@@ -41,7 +41,7 @@
               <tbody>
                 <?php $total = 0; ?>
                 <?php foreach($invoiceType->items as $item): ?>
-                  <tr class="border-b border-gray-200">
+                  <tr class="border-b font-semibold border-gray-200">
                       <td class="p-2"><?= strtoupper($item->name) ?></td>
                       <td class="p-2"><?= number_format($item->price) ?></td>
                       <td class="p-2"><?= $item->quantity ?></td>
@@ -56,6 +56,9 @@
               <p class="text-sm">TAX RATE: 0%</p>
               <p class="text-sm">DISCOUNT: 0%</p>
               <p class="text-xl font-semibold mt-2">TOTAL TSH:  <?= number_format($total) ?></p>
+          </div>
+          <div class="my-3 text-center">
+            <i>God will heal you!</i>
           </div>
       </div>
     </div>
