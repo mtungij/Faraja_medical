@@ -126,7 +126,8 @@ if(session("user_id")) {
               <span class="ml-3">Activities</span>
             </a>
           </li>
-             <?php if(session("department") == "pharmacist") :?>
+             <?php if(session("department") == 'pharmacist' && session("department") == 'admin' ) :?>
+              
           <li>
             <a
               href="<?= site_url('search/patient')?>"
@@ -392,8 +393,64 @@ if(session("user_id")) {
                   >Weekly Appointments</a
                 >
               </li>
+        
               
             </ul>
+
+            <li>
+            <button
+              type="button"
+              class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              aria-controls="drop"
+              data-collapse-toggle="drop"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+              <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                >Price list</span
+              >
+              <svg
+                aria-hidden="true"
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <ul id="drop" class="hidden py-2 space-y-2">
+              <li>
+                <a
+                  href="<?= site_url('surgical-price')?>"
+                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Surgicals</a
+                >
+              </li>
+              <li>
+                <a
+                  href="<?= site_url("investigation-price") ?>"
+                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Investigations</a
+                >
+              </li>
+              <li>
+                <a
+                  href="<?= site_url("rch/price") ?>"
+                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Rch</a
+                >
+              </li>
+              <li>
+                <a
+                  href="<?= site_url("medicine/price") ?>"
+                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Medicine</a
+                >
+              </li>
           </li>
         </ul>
         

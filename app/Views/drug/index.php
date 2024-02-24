@@ -86,10 +86,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <?php  $j = 1 ;?> 
+                       <?php  $i = 1 ;?> 
                        <?php foreach ($drug as $value) : ?>
                         <tr>
-                            <th><?= $j ++ ;?></th>
+                            <th><?= $i ++ ;?></th>
                             <td><?= $value->name ;?></td>
                             <td><?= $value->unit ;?></td>
                             <td><?= $value->quantity ;?></td>

@@ -21,6 +21,7 @@ use App\Controllers\SellController;
 use App\Controllers\SurgicalRecordController;
 use App\Controllers\TransferController;
 use App\Controllers\TreatmentController;
+use App\Controllers\PriceNoticeController;
 use App\Controllers\UserController;
 use App\Controllers\VitalController;
 use CodeIgniter\Router\RouteCollection;
@@ -229,5 +230,14 @@ $routes->get('print_medicine','PrintController::medicine');
 $routes->get('reports/investigation', [ReportController::class, 'investigation']);
 $routes->get('reports/rch', [ReportController::class, 'rch']);
 $routes->get('reports/surgical', [ReportController::class, 'surgical']);
+
+
+//price notice
+
+$routes->get('surgical-price',[PriceNoticeController::class, 'surgical']);
+$routes->get('investigation-price',[PriceNoticeController::class, 'investigation']);
+$routes->get('rch/price',[PriceNoticeController::class, 'rch']);
+$routes->get('medicine/price',[PriceNoticeController::class, 'medicine']);
+
 
 

@@ -12,13 +12,15 @@ $setting = model(SettingModel::class)->first();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?php echo base_url('css/styles.css') ?>" rel="stylesheet">
     <title> <?= $setting->center_name ;?></title>
-
     <style>
+    section {
+        background-image: url(<?= site_url('/img/b2.png') ?>);
+        background-size: cover;
+        width: 100%;
+        height: 100vh; /* 100% of the viewport height */
+    }
+</style>
 
-        section{
-           background-image: url(<?= site_url('/img/b2.png') ?>);  
-        }
-    </style>
 
 </head>
 <body>
