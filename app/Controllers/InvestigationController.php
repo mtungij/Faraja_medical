@@ -36,13 +36,11 @@ class InvestigationController extends BaseController
 
         foreach($investigations as $investigation) {
             $investigation->items = model(InvestigationItemModel::class)->builder()
-                                    ->select('categories.*')
+                                    ->select('categories.*, investigation_items.id as item_id, investigation_items.status')
                                     ->join('categories', 'categories.id = investigation_items.category_id')
                                     ->where('investigation_id', $investigation->id)
                                     ->get()
                                     ->getResult();
-
-                                 
 
             $investigation->invoice = model(InvoiceModel::class)->where('invoiceable_type', 'App\Models\InvestigationModel')->where('invoiceable_id', $investigation->id)->first();
 
@@ -137,5 +135,12 @@ class InvestigationController extends BaseController
             model(InvestigationResultModel::class)->insert($validatedData);
 
             return redirect()->back()->with('success', "Result added successfully");
+        }
+
+
+        public function cancel_item($id)
+        {
+            model(InvestigationItemModel::class)->update($id, ['status' => 'cancelled']);
+            return redirect()->back()->with('success', 'cancelled successfully!');
         }
 }

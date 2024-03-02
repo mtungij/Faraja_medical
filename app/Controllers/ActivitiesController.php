@@ -71,6 +71,7 @@ class ActivitiesController extends BaseController
                                 ->join('investigation_items', 'investigation_items.investigation_id = investigations.id')
                                 ->join('categories', 'categories.id = investigation_items.category_id')
                                 ->where('investigations.id', $invoice->invoiceable_id)
+                                ->where('investigation_items.status', 'seen')
                                 ->get()
                                 ->getResult();
                 foreach($investigations as $investigation) {

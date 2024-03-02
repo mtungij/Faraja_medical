@@ -77,7 +77,12 @@ foreach($investigationInvoices as $investigation){
                         <td>
                                 <ul>
                                     <?php foreach($investigation->items as $category): ?>
-                                        <li> - <?= $category->name ?></li>
+                                        <li class="flex gap-3">
+                                             <span>- <?= $category->name ?> </span>
+                                            <?php if($category->status == 'cancelled'): ?>
+                                                <a class="text-red-800 text-xs border-red-200 bg-red-100 rounded p-1"><?= $category->status ;?></a>
+                                            <?php endif ;?>
+                                            </li>
                                     <?php endforeach ?>
                                 </ul>
                         </td>

@@ -129,6 +129,7 @@ $routes->group('patients', static function ($routes) {
 });
 
 $routes->post('investigation/result', [InvestigationController::class, 'storeResult']);
+$routes->get('investigation/cancel/(:num)', [InvestigationController::class, 'cancel_item']);
 $routes->post('surgicals', [SurgicalRecordController::class, 'store']);
 
 $routes->get('invoices/(:num)/(:num)', [InvoiceController::class, 'index']);
