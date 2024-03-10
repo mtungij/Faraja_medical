@@ -10,7 +10,7 @@ if(session("user_id")) {
 ;?>
 
 <aside
-      class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+      class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 dark transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidenav"
       id="drawer-navigation"
     >
@@ -26,7 +26,7 @@ if(session("user_id")) {
     
     <div class="profile-picture">
         <?php
-        $imageClasses = 'sm:w-14 sm:h-14 md:w-16 md:h-16'; // Your specified class
+        $imageClasses = 'sm:w-14 sm:h-14 md:w-16 md:h-16'; 
 
         if ($userimage) {
             $imgUrl = base_url('public/img/' . $userimage);
@@ -47,8 +47,8 @@ if(session("user_id")) {
       <span class="h-3 w-3 rounded-full bg-green-600 border-2 border-white block absolute bottom-0 right-0"></span>
     </div>
     <div class="ml-4">
-      <p class="text-sm text-[#3949ab] font-semibold"><?= session("name") ;?></p>
-      <p class="text-xs text-gray-500 mt-1"><?= session("department") ;?></p>
+      <p class="text-sm text-white font-semibold"><?= session("name") ;?></p>
+      <p class="text-xs text-white mt-1"><?= session("department") ;?></p>
     </div>
   </button>
 

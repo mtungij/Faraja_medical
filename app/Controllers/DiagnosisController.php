@@ -35,7 +35,7 @@ class DiagnosisController extends BaseController
     
      model(DiagnosisModel::class)->insert($validatedData );
 
-    return redirect()->back()->with("success","data saved successfully");
+    return redirect()->back()->with("success","diagnosis successfully saved");
 
     }
 }

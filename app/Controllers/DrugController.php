@@ -36,6 +36,17 @@ class DrugController extends BaseController
     }
     
      $validatedData = $this->validator->getValidated();
+
+     $drugExist = model(DrugModel::class)->where(['name' => $validatedData['name']])->first();
+
+     if($drugExist)
+     {
+        return redirect()->back()->withInput()->with('errors', $validatedData['name'] . '  is already exist');
+
+         
+         
+
+     }
     
     //  dd($validatedData); 
     
@@ -47,7 +58,8 @@ class DrugController extends BaseController
      model(DrugModel::class)->insert($validatedData );
     
        
-       return redirect()->back()->with('success','medicine added successfully');
+     return redirect()->back()->with('success', $validatedData['name'] . ' added successfully');
+
         
     }
 

@@ -41,7 +41,7 @@
             <?php foreach ($investigations as $investigation):?>  
                 <li class="mb-4 ms-4">
                     <div class="absolute w-3 h-3 bg-gray-300 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                    <time class="mb-1 text-lg font-normal leading-none text-cyan-500 dark:text-gray-500">
                         <?= date('d M Y H:i', strtotime($investigation->created_at))  ;?>
                     </time>
                     <h3 class="font-medium text-sky-950 mb-3">Investigation by <?= $investigation->user->name ?></h3>

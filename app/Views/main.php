@@ -25,6 +25,8 @@ function format_datetime($date) {
     <link href="<?php echo base_url('css/styles.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('css/quill.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('js/jquery.js')?>"></script>
+    <script src="<?php echo base_url('js/sweetalert2.min.js') ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/sweetalert2.min.css') ?>">
     <script src="<?php echo base_url('js/datatable.js')?>"></script>
  
 
@@ -48,6 +50,12 @@ function format_datetime($date) {
             
         }
 
+
+        .swal2-popup {
+  font-size: 1rem !important;
+  font-family:  mainda;
+}
+
     </style>
     <title><?= $setting->center_name ;?> </title>
 </head>
@@ -69,23 +77,37 @@ function format_datetime($date) {
 
 
     <?php if(session()->has('errors')): ?>
-        <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
-     <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-     </svg>
-    <span class="sr-only">Info</span>
-     <div>
-     <p> <?= session()->getFlashdata('errors') ?></p> 
-     </div>
-</div>
+    
+      <script>
+$(function(){
+    <?php if(session()->has("errors")) { ?>
+      Swal.fire({
+  icon: "warning",
+  title: "<?= session()->getFlashdata('errors') ?>",
+  showConfirmButton: true,
+  
+});
+    <?php } ?>
+});
+</script>
+
         <?php endif ?>
 
         <div class="font-[sans-serif] space-y-6">
         <?php if(session()->getFlashdata('success')): ?>
-      <div class="bg-green-100 text-green-800 px-4 py-4 rounded" role="alert">
-        <strong class="font-bold text-base mr-4">Success!</strong>
-        <span class="block text-sm sm:inline max-sm:mt-1"><?= session()->getFlashdata('success') ?></span>
-      </div>
+     
+          <script>
+$(function(){
+    <?php if(session()->has("success")) { ?>
+      Swal.fire({
+  icon: "success",
+  title: "<?= session()->getFlashdata('success') ?>",
+  showConfirmButton: false,
+  timer: 1500
+});
+    <?php } ?>
+});
+</script>
      </div>
       <?php endif?>
 
