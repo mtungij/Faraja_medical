@@ -36,6 +36,7 @@
                       <th class="p-2">PRICE</th>
                       <th class="p-2">QTY</th>
                       <th class="p-2">TOTAL</th>
+                      <th class="p-2">STATUS</th>
                   </tr>
               </thead>
               <tbody>
@@ -45,8 +46,17 @@
                       <td class="p-2"><?= strtoupper($item->name) ?></td>
                       <td class="p-2"><?= number_format($item->price) ?></td>
                       <td class="p-2"><?= $item->quantity ?></td>
-                      <?php $total += ($item->price * $item->quantity) ;?>
+                      <?php 
+                      if($item->status == "seen") {
+                        $total += ($item->price * $item->quantity) ;
+                      }
+                      ?>
                       <td class="p-2"><?= number_format($item->price * $item->quantity) ?></td>
+                      <?php if($item->status == 'seen'):?>
+                       <td class="p-2 border text-green-600"><?= $item->status ?></td>
+                      <?php else: ?>
+                        <td class="p-2 border text-red-600"><?= $item->status ?></td>
+                      <?php endif ?>
                   </tr>
                 <?php endforeach; ?>
               </tbody>

@@ -130,7 +130,7 @@ foreach ($patients as $patient) {
                                         <a class="text-sky-700 font-medium hover:underline active:text-green-700" href="<?= site_url("sell?patient_id=$patient->patientId") ?>">open</a>
                                     <?php elseif(session('department') == 'receptionist'): ?>
                                         <a class="text-sky-700 font-medium hover:underline active:text-green-700" href="<?= site_url("patients/$patient->patientId/invoice") ?>">open</a>
-                                    <?php elseif(session('department') == 'lab'): ?>
+                                    <?php elseif(session('department') == 'lab' || session('department') == 'admin'): ?>
                                         <a class="text-sky-700 font-medium hover:underline active:text-green-700" href="<?= site_url("patients/$patient->patientId/investigations") ?>">open</a>
                                     <?php elseif(session('department') == 'rch'): ?>
                                         <a class="text-sky-700 font-medium hover:underline active:text-green-700" href="<?= site_url("patients/$patient->patientId/rches") ?>">open</a>
