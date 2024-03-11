@@ -32,26 +32,24 @@
           </header>
           <div class="mb-6">
               <h2 class="text-xl font-semibold">BILL TO</h2>
-              <p class="text-sm "><?= ucfirst($patient->first_name) . " " . ucfirst($patient->middle_name) . " " . ucfirst($patient->last_name) . "." ;?></p>
-              <p class="text-sm"><?= $setting->address ?></p>
-              <p class="text-sm"><?= $patient?->phone ?></p>
+              <p class="text-sm"><?= ucfirst($patient->first_name) . " " . ucfirst($patient->middle_name) . " " . ucfirst($patient->last_name) . "." ;?></p>
           </div>
-          <table class="w-full border-collapse border border-gray-600">
-              <thead>
+          <table class="w-full border-gray-400">
+              <thead class="">
                   <tr>
-                      <th class="p-2 border border-gray-600">ITEM</th>
-                      <th class="p-2 border border-gray-600">PRICE</th>
-                      <th class="p-2 border border-gray-600">QTY</th>
-                      <th class="p-2 border border-gray-600 text-left" colspan="2">TOTAL</th>
+                      <th class="p-2 text-left">ITEM</th>
+                      <th class="p-2 text-left">PRICE</th>
+                      <th class="p-2 text-left">QTY</th>
+                      <th class="p-2 text-left" colspan="2">TOTAL</th>
                   </tr>
               </thead>
               <tbody>
                 <?php $total = 0; ?>
                 <?php foreach($invoiceType->items as $item): ?>
-                  <tr>
-                      <td class="p-2 border border-gray-600"><?= strtoupper($item->name) ?></td>
-                      <td class="p-2 border border-gray-600"><?= number_format($item->price) ?></td>
-                      <td class="p-2 border border-gray-600"><?= $item->quantity ?></td>
+                  <tr class="">
+                      <td class="p-2"><?= strtoupper($item->name) ?></td>
+                      <td class="p-2"><?= number_format($item->price) ?></td>
+                      <td class="p-2"><?= $item->quantity ?></td>
                       <?php 
                       if($invoice->invoiceable_type == 'investigations' && $item->status == "seen") {
                         $total += ($item->price * $item->quantity) ;
@@ -59,12 +57,12 @@
                         $total += ($item->price * $item->quantity) ;
                       }
                       ?>
-                      <td class="p-2 border border-gray-600"><?= number_format($item->price * $item->quantity) ?></td>
+                      <td class="p-2"><?= number_format($item->price * $item->quantity) ?></td>
                       <?php if($invoice->invoiceable_type == 'investigations'): ?>
                         <?php if($item->status == 'seen'):?>
-                        <td class="p-2 border border-gray-600 text-green-600"><?= $item->status ?></td>
+                        <td class="p-2 text-green-600"><?= $item->status ?></td>
                         <?php else: ?>
-                          <td class="p-2 border border-gray-600 text-red-600"><?= $item->status ?></td>
+                          <td class="p-2 text-red-600"><?= $item->status ?></td>
                         <?php endif ?>
                       <?php endif ;?>
                   </tr>
@@ -73,8 +71,6 @@
           </table>
           <div class="mt-6 text-right">
               <p class="text-sm">SUBTOTAL TSH: <?= number_format($total) ?></p>
-              <p class="text-sm">TAX RATE: 0%</p>
-              <p class="text-sm">DISCOUNT: 0%</p>
               <p class="text-xl font-semibold mt-2">TOTAL TSH:  <?= number_format($total) ?></p>
           </div>
       </div>

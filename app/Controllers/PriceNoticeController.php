@@ -9,22 +9,17 @@ use App\Models\LabtestModel;
 use App\Models\DrugModeL;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class PricenoticeController extends BaseController
+class PriceNoticeController extends BaseController
 {
     public function surgical()
     {
           $surgical = model(SurgicalModel::class)->paginate(10);
-
-        //   dd($surgical);
-
           return view('pricenotice/surgical',['surgical'=> $surgical]);
     }
 
     public function investigation()
     {
         $investigation = model(LabtestModel::class)->paginate(10);
-
-      
         return view('pricenotice/investigation',['investigation'=> $investigation]);
     }
 
@@ -38,10 +33,6 @@ class PricenoticeController extends BaseController
     public function medicine()
     {
         $medicine = model(DrugModel::class)->paginate(10);
-
-
-      
-
         return view('pricenotice/medicine',['medicine'=> $medicine]);
     }
 }

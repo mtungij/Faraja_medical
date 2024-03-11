@@ -25,12 +25,11 @@
                 </div>
             </header>
             <div class="mb-6">
-                <h2 class="text-xl font-medium">Patient informatons</h2>
+                <h2 class="font-bold">Patient informatons</h2>
                 <p class="text-sm "> <span class="font-bold">Name:
                     </span><?= ucfirst($patient->first_name) . " " . ucfirst($patient->middle_name) . " " . ucfirst($patient->last_name) . "." ;?>
                 </p>
-                <p class="text-sm"><span class="font-bold">Address: </span<?= $setting?->address ?>< /p>
-                        <p class="text-sm"><span class="font-bold">Phone: </span<?= $patient?->phone ?>< /p>
+                <p>Printed by - <i><?= $invoiceType->user?->name ;?></i></p>
             </div>
             <table class="w-full">
                 <thead>
@@ -68,9 +67,6 @@
                 </tbody>
             </table>
             <div class="mt-6 text-right">
-                <p class="text-sm">SUBTOTAL TSH: <?= number_format($total) ?></p>
-                <p class="text-sm">TAX RATE: 0%</p>
-                <p class="text-sm">DISCOUNT: 0%</p>
                 <p class="text-xl font-semibold mt-2">TOTAL TSH: <?= number_format($total) ?></p>
             </div>
             <div class="my-3 text-center">
