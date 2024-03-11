@@ -53,16 +53,20 @@
                       <td class="p-2 border border-gray-600"><?= number_format($item->price) ?></td>
                       <td class="p-2 border border-gray-600"><?= $item->quantity ?></td>
                       <?php 
-                      if($item->status == "seen") {
+                      if($invoice->invoiceable_type == 'investigations' && $item->status == "seen") {
+                        $total += ($item->price * $item->quantity) ;
+                      } else {
                         $total += ($item->price * $item->quantity) ;
                       }
                       ?>
                       <td class="p-2 border border-gray-600"><?= number_format($item->price * $item->quantity) ?></td>
-                      <?php if($item->status == 'seen'):?>
-                       <td class="p-2 border border-gray-600 text-green-600"><?= $item->status ?></td>
-                      <?php else: ?>
-                        <td class="p-2 border border-gray-600 text-red-600"><?= $item->status ?></td>
-                      <?php endif ?>
+                      <?php if($invoice->invoiceable_type == 'investigations'): ?>
+                        <?php if($item->status == 'seen'):?>
+                        <td class="p-2 border border-gray-600 text-green-600"><?= $item->status ?></td>
+                        <?php else: ?>
+                          <td class="p-2 border border-gray-600 text-red-600"><?= $item->status ?></td>
+                        <?php endif ?>
+                      <?php endif ;?>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
