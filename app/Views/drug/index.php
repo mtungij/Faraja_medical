@@ -3,12 +3,6 @@
 
 <?= $this->section('content') ;?>
 
-<style>
-        /* Add this style to make all text uppercase */
-        body {
-            text-transform: uppercase;
-        }
-    </style>
 
 
 

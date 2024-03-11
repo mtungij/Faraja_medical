@@ -45,7 +45,7 @@ class AppointmentController extends BaseController
     
      model(AppointmentModel::class)->insert($validatedData );
 
-     return redirect()->back()->with("success","data saved successfully");
+     return redirect()->back()->with("success","Appointment for patient successfully saved ");
 
     }
 

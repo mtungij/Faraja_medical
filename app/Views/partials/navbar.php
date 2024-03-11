@@ -4,8 +4,15 @@ use App\Models\SettingModel;
 $setting = model(SettingModel::class)->first();
 
 ;?>
-
-<nav class="bg-white border-b border-gray-200  dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body class="">
+<nav class="border-b  dark fixed left-0 right-0 top-0 z-50">
       <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
           <button
@@ -55,3 +62,5 @@ $setting = model(SettingModel::class)->first();
         
       </div>
     </nav>
+</body>
+</html>

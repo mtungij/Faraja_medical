@@ -40,7 +40,7 @@ class ComplainController extends BaseController
      model(ComplainModel::class)->insert($validatedData );
     
 
-       return redirect()->back()->with("success","data saved successfully");
+       return redirect()->back()->with("success"," Chief Complain successfully recorded");
         
     }
 }

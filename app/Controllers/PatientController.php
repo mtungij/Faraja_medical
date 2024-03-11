@@ -75,8 +75,8 @@ if ($search == '') {
     {   
         if( !$this->validate([
             'first_name' => 'required',
-            'middle_name' => 'required',
-            'last_name'=> 'required',
+            'middle_name' => 'permit_empty',
+            'last_name'=> 'permit_empty',
             'phone'=> 'permit_empty',
             'illiness_status'=>'required',
             'gender'=>'required',
@@ -89,7 +89,7 @@ if ($search == '') {
     
      $validatedData = $this->validator->getValidated();
     
-    $patientExist = model(PatientModel::class)->where(['first_name' => $validatedData['first_name'], 'middle_name' => $validatedData['middle_name'],'last_name'=>$validatedData['last_name']])->first();
+    $patientExist = model(PatientModel::class)->where(['first_name' => $validatedData['first_name']])->first();
     
     if($patientExist)
     {

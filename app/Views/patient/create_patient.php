@@ -28,17 +28,17 @@
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
              
               <div class="w-full">
-                  <label for="phone" class="block mb-2 text-sm font-medium text-red-700 dark:text-white">First Name</label>
+                  <label for="phone" class="block mb-2 text-sm font-medium  dark:text-white">Jina Kamili La Mgonjwa (MAJINA MATATU)</label>
                   <input type="text" name="first_name" id="phone"  class="bg-gray-50 border border-red-700 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<?= old('first_name') ?>" required="">
               </div>
-              <div class="w-full">
+              <!-- <div class="w-full">
                   <label for="phone" class="block mb-2 text-sm font-medium text-red-700 dark:text-white">Middle Name</label>
                   <input type="text" name="middle_name" id="phone"  class="bg-gray-50 border border-red-700 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<?= old('middle_name') ?>" required="">
               </div>
               <div class="w-full">
                   <label for="phone" class="block mb-2 text-sm font-medium text-red-700 dark:text-white">Last Name</label>
                   <input type="text" name="last_name" id="phone"  class="bg-gray-50 border border-red-700 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<?= old('last_name') ?>" required="">
-              </div>
+              </div> -->
               <div class="w-full">
                   <label for="order_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
                   <input type="number" name="phone" id="order_type"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<?= old('phone') ?>">
