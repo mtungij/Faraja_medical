@@ -28,7 +28,11 @@ class PrintController extends BaseController
             'user_id' => session()->get('user_id')
         ]);
 
-          $invoice = model(InvoiceModel::class)->find($invoice_id);
+          $invoice = model(InvoiceModel::class)->select("invoices.*, users.name as user_name")
+                            ->join('users', 'users.id = invoices.user_id')
+                            ->where('invoices.id', $invoice_id)
+                            ->first();
+
 
         $invoiceType = [];
 
@@ -42,12 +46,6 @@ class PrintController extends BaseController
                                    ->where('investigation_items.investigation_id', $invoiceType->id)
                                    ->get()
                                    ->getResult();
-            $invoiceType->user = model(InvestigationModel::class)->builder()
-                                   ->select('users.name')
-                                   ->join('users', 'users.id = investigation_items.user_id')
-                                   ->where('investigations.id', $invoiceType->id)
-                                   ->get()
-                                   ->getRow();
 
         } elseif($invoice->invoiceable_type == 'surgicals') {
             $invoiceType = model(SurgicalRecordModel::class)->find($invoice->invoiceable_id);
@@ -59,12 +57,6 @@ class PrintController extends BaseController
                                         ->where('surgical_record_items.surgical_record_id', $invoiceType->id)
                                         ->get()
                                         ->getResult();
-        $invoiceType->user = model(SurgicalRecordModel::class)->builder()
-                                        ->select('users.name')
-                                        ->join('users', 'surgical_records.id = users.id')
-                                        ->where('surgical_records.id', $invoiceType->id)
-                                        ->get()
-                                        ->getRow();
 
         } elseif($invoice->invoiceable_type == 'rches') {
             $invoiceType = model(RchRecordModel::class)->find($invoice->invoiceable_id);
@@ -76,12 +68,6 @@ class PrintController extends BaseController
                                         ->where('rch_record_items.rch_record_id', $invoiceType->id)
                                         ->get()
                                         ->getResult();
-            $invoiceType->user = model(RchRecordModel::class)->builder()
-                                        ->select('users.name')
-                                        ->join('users', 'surgical_records.id = users.id')
-                                        ->where('rch_records.id', $invoiceType->id)
-                                        ->get()
-                                        ->getRow();
                                         
         } elseif($invoice->invoiceable_type == 'drugs') {
             $invoiceType = model(SaleModel::class)->find($invoice->invoiceable_id);
@@ -93,14 +79,9 @@ class PrintController extends BaseController
                                     ->where('sale_items.sale_id', $invoiceType->id)
                                     ->get()
                                     ->getResult();
-            $invoiceType->user = model(SaleModel::class)->builder()
-                                        ->select('users.name')
-                                        ->join('users', 'sales.id = users.id')
-                                        ->where('sales.id', $invoiceType->id)
-                                        ->get()
-                                        ->getRow();
            
         }
+
 
 
         return view("patient_receipt", [

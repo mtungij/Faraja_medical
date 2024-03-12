@@ -29,7 +29,7 @@
                 <p class="text-sm "> <span class="font-bold">Name:
                     </span><?= ucfirst($patient->first_name) . " " . ucfirst($patient->middle_name) . " " . ucfirst($patient->last_name) . "." ;?>
                 </p>
-                <p>Printed by - <i><?= $invoiceType->user?->name ;?></i></p>
+                <p>Printed by - <i><?= $invoice?->user_name ;?></i></p>
             </div>
             <table class="w-full">
                 <thead>
