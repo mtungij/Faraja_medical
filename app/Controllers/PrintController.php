@@ -39,7 +39,7 @@ class PrintController extends BaseController
             $invoiceType->items = model(InvestigationItemModel::class)->builder()
                                    ->select('categories.name, categories.price, investigation_items.*')
                                    ->join('categories', 'categories.id = investigation_items.category_id')
-                                   ->where('investigation_id', $invoiceType->id)
+                                   ->where('investigation_items.investigation_id', $invoiceType->id)
                                    ->get()
                                    ->getResult();
             $invoiceType->user = model(InvestigationItemModel::class)->builder()
@@ -56,7 +56,7 @@ class PrintController extends BaseController
             $invoiceType->items = model(SurgicalRecordItemModel::class)->builder()
                                         ->select('surgicals.name, surgicals.price, surgical_record_items.*')
                                         ->join('surgicals', 'surgicals.id = surgical_record_items.surgical_id')
-                                        ->where('surgical_record_id', $invoiceType->id)
+                                        ->where('surgical_record_items.surgical_record_id', $invoiceType->id)
                                         ->get()
                                         ->getResult();
         $invoiceType->user = model(SurgicalRecordModel::class)->builder()
@@ -90,7 +90,7 @@ class PrintController extends BaseController
             $invoiceType->items = model(SaleItemModel::class)->builder()
                                     ->select('drugs.name, drugs.sell_price as price, sale_items.*')
                                     ->join('drugs', 'drugs.id = sale_items.drug_id')
-                                    ->where('sale_id', $invoiceType->id)
+                                    ->where('sale_items.sale_id', $invoiceType->id)
                                     ->get()
                                     ->getResult();
             $invoiceType->user = model(SaleModel::class)->builder()
