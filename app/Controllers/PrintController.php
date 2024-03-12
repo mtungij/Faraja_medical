@@ -42,7 +42,7 @@ class PrintController extends BaseController
                                    ->where('investigation_items.investigation_id', $invoiceType->id)
                                    ->get()
                                    ->getResult();
-            $invoiceType->user = model(InvestigationItemModel::class)->builder()
+            $invoiceType->user = model(InvestigationModel::class)->builder()
                                    ->select('users.name')
                                    ->join('users', 'users.id = investigation_items.user_id')
                                    ->where('investigations.id', $invoiceType->id)
