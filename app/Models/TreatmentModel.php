@@ -12,7 +12,7 @@ class TreatmentModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['patient_id','user_id', 'desc', 'medicine_name', 'quantity', 'route', 'frequency', 'duration'];
+    protected $allowedFields    = ['user_id', 'patient_id', 'drug_id', 'qty'];
 
     // Dates
     protected $useTimestamps = true;

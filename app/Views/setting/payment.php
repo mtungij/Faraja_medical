@@ -4,22 +4,6 @@
 
 <section class="bg-white dark:bg-gray-900">
 
-
-<div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-  <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-  </svg>
-  <span class="sr-only">Danger</span>
-  <div>
-    <span class="font-medium">Angalizo kabla hujabonyeza button ya kudelete :</span>
-      <ul class="mt-1.5 list-disc list-inside">
-      <li>kwa usalama wa taarifa za nyuma za wateja </li>
-        <li>button ya kudelete itumike muda mchache baada ya kugundulika malipo yaliyoingizwa muda huo huo kimakosa </li>
-        <li>kabla ya watumiaji wa mfumo kutumia malipo(payment settings) uliyoyasajili</li>
-    </ul>
-  </div>
-  </div>
-
 <div class="py-8 px-4 pb-14 w-l ">
       <h2 class="mb-4 text-xl  font-bold text-gray-900 dark:text-white">PAYMENT SETTINGS</h2>
       <form action="create_payment" method="post">

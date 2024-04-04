@@ -34,7 +34,14 @@ class SellController extends BaseController
         $patientId = $this->request->getGet('patient_id');
         $payments = model(PaymentModel::class)->findAll();
         $patient = model(PatientModel::class)->find($patientId);
-        $treatment = model(TreatmentModel::class)->where('patient_id', $patientId)->where('DATE(created_at)',"$today")->find();
+        $treatments = model(TreatmentModel::class)->builder()
+                                ->select("treatments.*, users.name as user, drugs.*")
+                                ->join("users", 'users.id = treatments.user_id')
+                                ->join("drugs", "drugs.id = treatments.drug_id")
+                                ->where('patient_id', $patientId)
+                                ->where('DATE(treatments.created_at)', date('Y-m-d'))
+                                ->get()
+                                ->getResult();
 
         if(session('department') != "admin") {
             $transfer = model(TransferModel::class)->where('patient_id', $patientId)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
@@ -46,7 +53,7 @@ class SellController extends BaseController
         
         return view('drug/sell', [
             'cart' => $cart->contents(),
-            'treatment' => $treatment,
+            'treatments' => $treatments,
             'patient' => $patient,
             'payments' => $payments,
             'drugs' => model('App\Models\DrugModel')->findAll(),

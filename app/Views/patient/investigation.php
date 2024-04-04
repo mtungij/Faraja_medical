@@ -51,12 +51,7 @@
                             <?php foreach($investigation->items as $item): ?>
                                <li class="flex gap-5">
                                  <span><?= $item->name ?></span>
-                                 <?php if(session('department') == 'lab' && $item->status == 'seen'): ?>
-                                   <a href="<?= site_url('investigation/cancel/'. $item->item_id) ?>" class="text-red-500 font-medium">cancel</a>
-                                 <?php endif ;?>
-                                 <?php if(session('department') && $item->status == 'cancelled'): ?>
-                                   <a href="" class="text-red-800 font-medium p-1.5 border-red-200 bg-red-100 rounded-lg"><?= $item->status ;?></a>
-                                 <?php endif ;?>
+                                 <!-- -->
                                 </li>
                             <?php endforeach ;?>
                         </ul>

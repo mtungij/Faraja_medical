@@ -79,10 +79,8 @@ foreach($investigationInvoices as $investigation){
                                     <?php foreach($investigation->items as $category): ?>
                                         <li class="flex gap-3">
                                              <span>- <?= $category->name ?> </span>
-                                            <?php if($category->status == 'cancelled'): ?>
-                                                <a class="text-red-800 text-xs border-red-200 bg-red-100 rounded p-1"><?= $category->status ;?></a>
-                                            <?php endif ;?>
-                                            </li>
+                                            <a href="<?= site_url('item/cancel/'. $category->id) ?>" class="text-red-800 text-xs border-red-200 bg-red-100 hover:underline hover:bg-red-200 rounded p-1">Cancel</a>
+                                        </li>
                                     <?php endforeach ?>
                                 </ul>
                         </td>

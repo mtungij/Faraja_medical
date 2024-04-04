@@ -20,8 +20,9 @@ class TreatmentController extends BaseController
     public function index($id)
     {
         $treatments = model(TreatmentModel::class)->builder()
-                                ->select("treatments.*, users.name")
+                                ->select("treatments.*, users.name as user, drugs.*")
                                 ->join("users", 'users.id = treatments.user_id')
+                                ->join("drugs", "drugs.id = treatments.drug_id")
                                 ->where('patient_id', $id)
                                 ->get()
                                 ->getResult();
@@ -41,9 +42,6 @@ class TreatmentController extends BaseController
 
     public function show($id)
     {
-       
-
-
         if(session('department') != "admin") {
             $transfer = model(TransferModel::class)->where('patient_id', $id)->where('to', session('user_id'))->orderBy('created_at', 'desc')->first();
             if($transfer && $transfer->status == 'new') {
@@ -97,15 +95,16 @@ class TreatmentController extends BaseController
         ]);
 }
 
+
+
+
     public function store()
     {
         $rules = [
-            'medicine_name' => 'required',
-            'route' => 'required',
-            'frequency' => 'required',
-            'duration' => 'required',
+            'user_id' => 'required',
             'patient_id' => 'required',
-            'user_id'=> 'required',
+            'drug_id' => 'required',
+            'qty' => 'required',
         ];  
 
         if( !$this->validate($rules)){

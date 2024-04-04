@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <div class="w-fit h-fit  p-10">
         <div class="p-10 m-10 bg-slate-100">
             <header class="flex justify-between items-center mb-6">
@@ -54,16 +53,16 @@
                         $total += ($item->price * $item->quantity) ;
                       }
                       ?>
-                      <td class="p-2"><?= number_format($item->price * $item->quantity) ?></td>
-                      <?php if($invoice->invoiceable_type == 'investigations'): ?>
-                        <?php if($item->status == 'seen'):?>
-                        <td class="p-2 border text-green-600"><?= $item->status ?></td>
-                        <?php else: ?>
-                          <td class="p-2 border text-red-600"><?= $item->status ?></td>
-                        <?php endif ?>
-                      <?php endif ;?>
+                      <!-- <td class="p-2"><?//= number_format($item->price * $item->quantity) ?></td>
+                      <?//php if($invoice->invoiceable_type == 'investigations'): ?>
+                        <?//php if($item->status == 'seen'):?>
+                        <td class="p-2 border text-green-600"><?//= $item->status ?></td>
+                        <?//php else: ?>
+                          <td class="p-2 border text-red-600"><?//= $item->status ?></td>
+                        <?//php endif ?>
+                      <?//php endif ;?> -->
                   </tr>
-                    <?php endforeach; ?>
+                  <?php endforeach; ?>
                 </tbody>
             </table>
             <div class="mt-6 text-right">

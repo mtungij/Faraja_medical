@@ -2,28 +2,52 @@
 
 <?= $this->section('content') ;?>
 
-
-
-<!-- Toast -->
-<div class="w-full bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700" role="alert">
-  <div class="flex p-4">
-    <div class="flex-shrink-0">
-      <svg class="flex-shrink-0 size-4 text-teal-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-      </svg>
-    </div>
-    <div class="grid grid-cols-4 gap-4">
-        <?php foreach ($treatment as $treatments) : ?>
-      <p class="text-sm text-gray-700 dark:text-gray-400">
-      <?= $treatment ? '<strong style="font-size: 16px; ">Medicine Name:</strong> <span style ="font-weight:800">' . $treatments->medicine_name ."</span><br>".
-                  '<strong style="font-size: 16px;">Route:</strong> ' . $treatments->route ."<br>".
-                  '<strong style="font-size: 16px;">Frequency:</strong> ' . $treatments->frequency ."<br>".
-                  '<strong style="font-size: 16px;">Duration:</strong> ' . $treatments->duration : "No treatment available for this patient" ?>
-
-      </p>
-      <?php endforeach ?>
-    </div>
-  </div>
+<div class="relative overflow-x-auto mt-4">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-50 uppercase bg-sky-600 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Drug Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Quantity
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $total = 0; ?>
+            <?php foreach($treatments as $treatment): ?>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <?= $treatment->name ?>
+                    </th>
+                    <td class="px-6 py-4">
+                        <?= number_format($treatment->sell_price) ?>
+                    </td>
+                    <td class="px-6 py-4">
+                        <?= $treatment->qty ?>
+                    </td>
+                    <?php
+                    $total += $treatment->sell_price * $treatment->qty
+                        ?>
+                    <td><?= $treatment->created_at ?></td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+        <tfoot>
+            <tr class="font-semibold text-gray-900 dark:text-white">
+                <th scope="row" class="px-6 py-3 text-base">Total</th>
+                <td class="px-6 py-3"></td>
+                <td class="px-6 py-3"><?=number_format($total) ?></td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
 
 <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -97,9 +121,9 @@
                 <form action="<?= site_url("sell/checkout") ?>" method="post" class="space-y-3">
                     <?= csrf_field() ?>
                     <input type="hidden" name="patient_id" value="<?= $patient->id ?>">
-                    <select name="payment_id" data-te-select-init data-te-select-filter="true" class="shrink"   data-te-select-placeholder="Payment method">
+                    <select name="payment_id"  class="shrink">
                         <?php foreach ($payments as $payment): ?>
-                            <option value=" <?= $payment->id ?>"><?= $payment->name ?></option>
+                            <option selected value=" <?= $payment->id ?>"><?= $payment->name ?></option>
                         <?php endforeach ?>
                     </select>
                     <div class="flex justify-end">

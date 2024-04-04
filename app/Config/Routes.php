@@ -10,6 +10,7 @@ use App\Controllers\ExaminationController;
 use App\Controllers\FamilyhistorylController;
 use App\Controllers\HistoryController;
 use App\Controllers\InvestigationController;
+use App\Controllers\InvestigationItemController;
 use App\Controllers\InvoiceController;
 use App\Controllers\PastmedicalController;
 use App\Controllers\PatientController;
@@ -239,6 +240,9 @@ $routes->get('surgical-price',[PriceNoticeController::class, 'surgical']);
 $routes->get('investigation-price',[PriceNoticeController::class, 'investigation']);
 $routes->get('rch/price',[PriceNoticeController::class, 'rch']);
 $routes->get('medicine/price',[PriceNoticeController::class, 'medicine']);
+
+
+$routes->get('item/cancel/(:num)', [InvestigationItemController::class, 'cancelItem']);
 
 
 
